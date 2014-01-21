@@ -4,6 +4,7 @@ var walker;
 function setup() {
   createGraphics(640,360);
   walker = new Walker();
+  background(127);
 };
 
 function draw() {
@@ -23,7 +24,6 @@ Walker.prototype.render = function() {
 
 Walker.prototype.step = function() {
   var choice = floor(random(4));
-    
   if (choice == 0) {
     this.x++;
   } else if (choice == 1) {
@@ -33,7 +33,6 @@ Walker.prototype.step = function() {
   } else {
     this.y--;
   }
-
   this.x = constrain(this.x,0,width-1);
   this.y = constrain(this.y,0,height-1);
 }
