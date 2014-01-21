@@ -2,8 +2,6 @@
 // The Nature of Code
 // Daniel Shiffman
 // http://natureofcode.com
-"use strict";
-
 var movers = [];
 
 var attractor;
