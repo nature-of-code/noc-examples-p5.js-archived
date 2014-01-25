@@ -37,13 +37,13 @@ function randomGaussian()  {
 
 
 /*var y2;
-var use_last = false;
+var previous = false;
 
 // Implements Polar Form of Box Muller transformation
 function randomGaussian()  {
-  if (use_last) {
+  if (previous) {
     var y1 = y2;
-    use_last = false;
+    previous = false;
   } else {
     do {
       var x1 = random(2) - 1;
@@ -54,7 +54,7 @@ function randomGaussian()  {
     w = sqrt((-2 * log(w))/w);
     y1 = x1 * w;
     y2 = x2 * w;
-    use_last = true;
+    previous = true;
   }
   return y1;
 }*/
