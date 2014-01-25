@@ -1,4 +1,7 @@
-// http://mrl.nyu.edu/~perlin/noise/
+// Perlin Noise JS
+// Daniel Shiffman
+
+// Ported from: http://mrl.nyu.edu/~perlin/noise/
 // http://mrl.nyu.edu/~perlin/paper445.pdf
  
 function Perlin() {
