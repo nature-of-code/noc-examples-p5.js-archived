@@ -97,12 +97,9 @@ var core = function (require, shim, constants) {
                 imageMode: constants.CORNER,
                 ellipseMode: constants.CENTER,
                 colorMode: constants.RGB,
-                curSketchIndex: -1,
                 mousePressed: false,
                 angleMode: constants.RADIANS
             };
-            this.sketches = [];
-            this.sketchCanvases = [];
             this.styles = [];
             if (!sketchProc) {
                 this.isGlobal = true;
@@ -130,7 +127,7 @@ var core = function (require, shim, constants) {
         };
         Processing._init = function () {
             if (window.setup && typeof window.setup === 'function') {
-                var p = new Processing();
+                new Processing();
             }
         };
         Processing.prototype._start = function () {
@@ -173,7 +170,6 @@ var core = function (require, shim, constants) {
             });
         };
         Processing.prototype._setup = function () {
-            var self = this;
             var setup = this.setup || window.setup;
             if (typeof setup === 'function') {
                 setup();
@@ -191,16 +187,6 @@ var core = function (require, shim, constants) {
             }
             if (typeof userDraw === 'function') {
                 userDraw();
-            }
-            for (var i = 0; i < self.sketches.length; i++) {
-                var s = self.sketches[i];
-                if (typeof s.draw === 'function') {
-                    self.settings.curSketchIndex = i;
-                    self.pushStyle();
-                    s.draw();
-                    self.popStyle();
-                    self.settings.curSketchIndex = -1;
-                }
             }
             self.curElement.context.setTransform(1, 0, 0, 1, 0, 0);
         };
@@ -226,63 +212,262 @@ var core = function (require, shim, constants) {
         };
         return Processing;
     }({}, shim, constants);
-var colorcreating_reading = function (require, core) {
+var mathpvector = function (require) {
+        'use strict';
+        function PVector(x, y, z) {
+            this.x = x || 0;
+            this.y = y || 0;
+            this.z = z || 0;
+        }
+        PVector.prototype.set = function (x, y, z) {
+            if (x instanceof PVector) {
+                return this.set(x.x, x.y, x.z);
+            }
+            if (x instanceof Array) {
+                return this.set(x[0], x[1], x[2]);
+            }
+            this.x = x || 0;
+            this.y = y || 0;
+            this.z = z || 0;
+        };
+        PVector.prototype.get = function () {
+            return new PVector(this.x, this.y, this.z);
+        };
+        PVector.prototype.add = function (x, y, z) {
+            if (x instanceof PVector) {
+                return this.add(x.x, x.y, x.z);
+            }
+            if (x instanceof Array) {
+                return this.add(x[0], x[1], x[2]);
+            }
+            this.x += x || 0;
+            this.y += y || 0;
+            this.z += z || 0;
+            return this;
+        };
+        PVector.prototype.sub = function (x, y, z) {
+            if (x instanceof PVector) {
+                return this.sub(x.x, x.y, x.z);
+            }
+            if (x instanceof Array) {
+                return this.sub(x[0], x[1], x[2]);
+            }
+            this.x -= x || 0;
+            this.y -= y || 0;
+            this.z -= z || 0;
+            return this;
+        };
+        PVector.prototype.mult = function (n) {
+            this.x *= n || 0;
+            this.y *= n || 0;
+            this.z *= n || 0;
+            return this;
+        };
+        PVector.prototype.div = function (n) {
+            this.x /= n;
+            this.y /= n;
+            this.z /= n;
+            return this;
+        };
+        PVector.prototype.mag = function () {
+            return Math.sqrt(this.magSq());
+        };
+        PVector.prototype.magSq = function () {
+            var x = this.x, y = this.y, z = this.z;
+            return x * x + y * y + z * z;
+        };
+        PVector.prototype.dot = function (x, y, z) {
+            if (x instanceof PVector) {
+                return this.dot(x.x, x.y, x.z);
+            }
+            return this.x * (x || 0) + this.y * (y || 0) + this.z * (z || 0);
+        };
+        PVector.prototype.cross = function (v) {
+            var x = this.y * v.z - this.z * v.y;
+            var y = this.z * v.x - this.x * v.z;
+            var z = this.x * v.y - this.y * v.x;
+            return new PVector(x, y, z);
+        };
+        PVector.prototype.dist = function (v) {
+            var d = v.get().sub(this);
+            return d.mag();
+        };
+        PVector.prototype.normalize = function () {
+            return this.div(this.mag());
+        };
+        PVector.prototype.limit = function (l) {
+            var mSq = this.magSq();
+            if (mSq > l * l) {
+                this.div(Math.sqrt(mSq));
+                this.mult(l);
+            }
+            return this;
+        };
+        PVector.prototype.setMag = function (n) {
+            return this.normalize().mult(n);
+        };
+        PVector.prototype.heading = function () {
+            return Math.atan2(this.y, this.x);
+        };
+        PVector.prototype.rotate2D = function (a) {
+            var newHeading = this.heading() + a;
+            var mag = this.mag();
+            this.x = Math.cos(newHeading) * mag;
+            this.y = Math.sin(newHeading) * mag;
+            return this;
+        };
+        PVector.prototype.lerp = function (x, y, z, amt) {
+            if (x instanceof PVector) {
+                return this.lerp(x.x, x.y, x.z, y);
+            }
+            this.x += (x - this.x) * amt || 0;
+            this.y += (y - this.y) * amt || 0;
+            this.z += (z - this.z) * amt || 0;
+            return this;
+        };
+        PVector.prototype.array = function () {
+            return [
+                this.x || 0,
+                this.y || 0,
+                this.z || 0
+            ];
+        };
+        PVector.random2D = function () {
+        };
+        PVector.random3D = function () {
+        };
+        PVector.add = function (v1, v2) {
+            return v1.get().add(v2);
+        };
+        PVector.sub = function (v1, v2) {
+            return v1.get().sub(v2);
+        };
+        PVector.mult = function (v, n) {
+            return v.get().mult(n);
+        };
+        PVector.div = function (v, n) {
+            return v.get().div(n);
+        };
+        PVector.dot = function (v1, v2) {
+            return v1.dot(v2);
+        };
+        PVector.cross = function (v1, v2) {
+            return v1.cross(v2);
+        };
+        PVector.dist = function (v1, v2) {
+            return v1.dist(v2);
+        };
+        PVector.lerp = function (v1, v2, amt) {
+            return v1.get().lerp(v2, amt);
+        };
+        PVector.angleBetween = function (v1, v2) {
+            return Math.acos(v1.dot(v2) / (v1.mag() * v2.mag()));
+        };
+        return PVector;
+    }({});
+var mathcalculation = function (require, core) {
         'use strict';
         var Processing = core;
+        Processing.prototype.abs = Math.abs;
+        Processing.prototype.ceil = Math.ceil;
+        Processing.prototype.constrain = function (n, l, h) {
+            return this.max(this.min(n, h), l);
+        };
+        Processing.prototype.dist = function (x1, y1, x2, y2) {
+            var xs = x2 - x1;
+            var ys = y2 - y1;
+            return Math.sqrt(xs * xs + ys * ys);
+        };
+        Processing.prototype.exp = Math.exp;
+        Processing.prototype.floor = Math.floor;
+        Processing.prototype.lerp = function (start, stop, amt) {
+            return amt * (stop - start) + start;
+        };
+        Processing.prototype.log = Math.log;
+        Processing.prototype.mag = function (x, y) {
+            return Math.sqrt(x * x + y * y);
+        };
+        Processing.prototype.map = function (n, start1, stop1, start2, stop2) {
+            return (n - start1) / (stop1 - start1) * (stop2 - start2) + start2;
+        };
+        Processing.prototype.max = Math.max;
+        Processing.prototype.min = Math.min;
+        Processing.prototype.norm = function (n, start, stop) {
+            return this.map(n, start, stop, 0, 1);
+        };
+        Processing.prototype.pow = Math.pow;
+        Processing.prototype.round = Math.round;
+        Processing.prototype.sq = function (n) {
+            return n * n;
+        };
+        Processing.prototype.sqrt = Math.sqrt;
+        return Processing;
+    }({}, core);
+var colorcreating_reading = function (require, core, mathcalculation) {
+        'use strict';
+        var Processing = core;
+        var calculation = mathcalculation;
         Processing.prototype.alpha = function (rgb) {
-            if (rgb.length > 3)
+            if (rgb.length > 3) {
                 return rgb[3];
-            else
+            } else {
                 return 255;
+            }
         };
         Processing.prototype.blue = function (rgb) {
-            if (rgb.length > 2)
+            if (rgb.length > 2) {
                 return rgb[2];
-            else
+            } else {
                 return 0;
+            }
         };
         Processing.prototype.brightness = function (hsv) {
-            if (hsv.length > 2)
+            if (hsv.length > 2) {
                 return hsv[2];
-            else
+            } else {
                 return 0;
+            }
         };
         Processing.prototype.color = function () {
             return this.getNormalizedColor(arguments);
         };
         Processing.prototype.green = function (rgb) {
-            if (rgb.length > 2)
+            if (rgb.length > 2) {
                 return rgb[1];
-            else
+            } else {
                 return 0;
+            }
         };
         Processing.prototype.hue = function (hsv) {
-            if (hsv.length > 2)
+            if (hsv.length > 2) {
                 return hsv[0];
-            else
+            } else {
                 return 0;
+            }
         };
         Processing.prototype.lerpColor = function (c1, c2, amt) {
             var c = [];
             for (var i = 0; i < c1.length; i++) {
-                c.push(lerp(c1[i], c2[i], amt));
+                c.push(calculation.lerp(c1[i], c2[i], amt));
             }
             return c;
         };
         Processing.prototype.red = function (rgb) {
-            if (rgb.length > 2)
+            if (rgb.length > 2) {
                 return rgb[0];
-            else
+            } else {
                 return 0;
+            }
         };
         Processing.prototype.saturation = function (hsv) {
-            if (hsv.length > 2)
+            if (hsv.length > 2) {
                 return hsv[1];
-            else
+            } else {
                 return 0;
+            }
         };
         return Processing;
-    }({}, core);
+    }({}, core, mathcalculation);
 var colorsetting = function (require, core, constants) {
         'use strict';
         var Processing = core;
@@ -298,8 +483,9 @@ var colorsetting = function (require, core, constants) {
             this.curElement.context.clearRect(0, 0, this.width, this.height);
         };
         Processing.prototype.colorMode = function (mode) {
-            if (mode == constants.RGB || mode == constants.HSB)
+            if (mode === constants.RGB || mode === constants.HSB) {
                 this.settings.colorMode = mode;
+            }
         };
         Processing.prototype.fill = function () {
             var c = this.getNormalizedColor(arguments);
@@ -327,8 +513,8 @@ var colorsetting = function (require, core, constants) {
                 r = g = b = _args[0];
                 a = typeof _args[1] === 'number' ? _args[1] : 255;
             }
-            if (this.settings.colorMode == constants.HSB) {
-                rgba = hsv2rgb(r, g, b).concat(a);
+            if (this.settings.colorMode === constants.HSB) {
+                rgba = this.hsv2rgb(r, g, b).concat(a);
             } else {
                 rgba = [
                     r,
@@ -338,6 +524,13 @@ var colorsetting = function (require, core, constants) {
                 ];
             }
             return rgba;
+        };
+        Processing.prototype.hsv2rgb = function (h, s, b) {
+            return [
+                h,
+                s,
+                b
+            ];
         };
         Processing.prototype.getCSSRGBAColor = function (arr) {
             var a = arr.map(function (val) {
@@ -355,15 +548,15 @@ var dataarray_functions = function (require, core) {
             array.push(value);
             return array;
         };
-        Processing.prototype.arrayCopy = function (src, a, b, c, d) {
-            if (typeof d !== 'undefined') {
-                for (var i = a; i < min(a + d, src.length); i++) {
-                    b[dstPosition + i] = src[i];
+        Processing.prototype.arrayCopy = function (src, srcPosition, dst, dstPosition, length) {
+            if (typeof length !== 'undefined') {
+                for (var i = srcPosition; i < Math.min(srcPosition + length, src.length); i++) {
+                    dst[dstPosition + i] = src[i];
                 }
-            } else if (typeof b !== 'undefined') {
-                a = src.slice(0, min(b, src.length));
+            } else if (typeof dst !== 'undefined') {
+                srcPosition = src.slice(0, Math.min(dst, src.length));
             } else {
-                a = src.slice(0);
+                srcPosition = src.slice(0);
             }
         };
         Processing.prototype.concat = function (list0, list1) {
@@ -377,8 +570,8 @@ var dataarray_functions = function (require, core) {
             return list;
         };
         Processing.prototype.sort = function (list, count) {
-            var arr = count ? list.slice(0, min(count, list.length)) : list;
-            var rest = count ? list.slice(min(count, list.length)) : [];
+            var arr = count ? list.slice(0, Math.min(count, list.length)) : list;
+            var rest = count ? list.slice(Math.min(count, list.length)) : [];
             if (typeof arr[0] === 'string') {
                 arr = arr.sort();
             } else {
@@ -392,10 +585,11 @@ var dataarray_functions = function (require, core) {
             return list.splice(index, 0, value);
         };
         Processing.prototype.subset = function (list, start, count) {
-            if (typeof count !== 'undefined')
+            if (typeof count !== 'undefined') {
                 return list.slice(start, start + count);
-            else
+            } else {
                 return list.slice(start, list.length - 1);
+            }
         };
         return Processing;
     }({}, core);
@@ -410,7 +604,7 @@ var datastring_functions = function (require, core) {
         };
         Processing.prototype.matchAll = function (str, reg) {
             var re = new RegExp(reg, 'g');
-            match = re.exec(str);
+            var match = re.exec(str);
             var matches = [];
             while (match !== null) {
                 matches.push(match);
@@ -434,10 +628,10 @@ var datastring_functions = function (require, core) {
             var neg = num < 0;
             var n = neg ? num.toString().substring(1) : num.toString();
             var decimalInd = n.indexOf('.');
-            var intPart = decimalInd != -1 ? n.substring(0, decimalInd) : n;
-            var decPart = decimalInd != -1 ? n.substring(decimalInd + 1) : '';
+            var intPart = decimalInd !== -1 ? n.substring(0, decimalInd) : n;
+            var decPart = decimalInd !== -1 ? n.substring(decimalInd + 1) : '';
             var str = neg ? '-' : '';
-            if (arguments.length == 3) {
+            if (arguments.length === 3) {
                 for (var i = 0; i < arguments[1] - intPart.length; i++) {
                     str += '0';
                 }
@@ -449,7 +643,7 @@ var datastring_functions = function (require, core) {
                 }
                 return str;
             } else {
-                for (var k = 0; k < max(arguments[1] - intPart.length, 0); k++) {
+                for (var k = 0; k < Math.max(arguments[1] - intPart.length, 0); k++) {
                     str += '0';
                 }
                 str += n;
@@ -469,15 +663,16 @@ var datastring_functions = function (require, core) {
         function doNfc() {
             var num = arguments[0].toString();
             var dec = num.indexOf('.');
-            var rem = dec != -1 ? num.substring(dec) : '';
-            var n = dec != -1 ? num.substring(0, dec) : num;
+            var rem = dec !== -1 ? num.substring(dec) : '';
+            var n = dec !== -1 ? num.substring(0, dec) : num;
             n = n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-            if (arguments.length > 1)
+            if (arguments.length > 1) {
                 rem = rem.substring(0, arguments[1] + 1);
+            }
             return n + rem;
         }
         Processing.prototype.nfp = function () {
-            var nfRes = nf.apply(this, arguments);
+            var nfRes = this.nf(arguments);
             if (nfRes instanceof Array) {
                 return nfRes.map(addNfp);
             } else {
@@ -488,7 +683,7 @@ var datastring_functions = function (require, core) {
             return parseFloat(arguments[0]) > 0 ? '+' + arguments[0].toString() : arguments[0].toString();
         }
         Processing.prototype.nfs = function () {
-            var nfRes = nf.apply(this, arguments);
+            var nfRes = this.nf(arguments);
             if (nfRes instanceof Array) {
                 return nfRes.map(addNfs);
             } else {
@@ -509,9 +704,10 @@ var datastring_functions = function (require, core) {
         };
         Processing.prototype.trim = function (str) {
             if (str instanceof Array) {
-                return str.map(trim);
-            } else
+                return str.map(this.trim);
+            } else {
                 return str.trim();
+            }
         };
         return Processing;
     }({}, core);
@@ -527,92 +723,46 @@ var inputmouse = function (require, core, constants) {
             this._setProperty('pmouseY', this.mouseY);
             this._setProperty('mouseX', e.pageX);
             this._setProperty('mouseY', e.pageY);
-            for (var n = 0; n < this.sketchCanvases.length; n++) {
-                var s = this.sketches[n];
-                var c = this.sketchCanvases[n];
-                var bounds = c.elt.getBoundingClientRect();
-                s.pmouseX = s.mouseX;
-                s.pmouseY = s.mouseY;
-                s.mouseX = this.mouseX - bounds.left;
-                s.mouseY = this.mouseY - bounds.top;
-            }
         };
         Processing.prototype.setMouseButton = function (e) {
-            if (e.button == 1) {
+            if (e.button === 1) {
                 this._setProperty('mouseButton', constants.CENTER);
-            } else if (e.button == 2) {
+            } else if (e.button === 2) {
                 this._setProperty('mouseButton', constants.RIGHT);
             } else {
                 this._setProperty('mouseButton', constants.LEFT);
             }
-            for (var i = 0; i < this.sketches.length; i++) {
-                var s = this.sketches[i];
-                s.mouseButton = this.mouseButton;
-            }
         };
         Processing.prototype.onmousemove = function (e) {
             this.updateMouseCoords(e);
-            if (!this.mousePressed && typeof mouseMoved === 'function') {
-                mouseMoved(e);
+            if (!this.mousePressed && typeof this.mouseMoved === 'function') {
+                this.mouseMoved(e);
             }
-            if (this.mousePressed && typeof mouseDragged === 'function') {
-                mouseDragged(e);
-            }
-            for (var i = 0; i < this.sketches.length; i++) {
-                var s = this.sketches[i];
-                if (!this.mousePressed && typeof s.mouseMoved === 'function') {
-                    s.mouseMoved(e);
-                }
-                if (this.mousePressed && typeof s.mouseDragged === 'function') {
-                    s.mouseDragged(e);
-                }
+            if (this.mousePressed && typeof this.mouseDragged === 'function') {
+                this.mouseDragged(e);
             }
         };
         Processing.prototype.onmousedown = function (e) {
             this.mousePressed = true;
             this.setMouseButton(e);
-            if (typeof mousePressed === 'function') {
-                mousePressed(e);
-            }
-            for (var i = 0; i < this.sketches.length; i++) {
-                var s = this.sketches[i];
-                if (typeof s.mousePressed === 'function') {
-                    s.mousePressed(e);
-                }
+            if (typeof this.mousePressed === 'function') {
+                this.mousePressed(e);
             }
         };
         Processing.prototype.onmouseup = function (e) {
             this.mousePressed = false;
-            if (typeof mouseReleased === 'function') {
-                mouseReleased(e);
-            }
-            for (var i = 0; i < this.sketches.length; i++) {
-                var s = this.sketches[i];
-                if (typeof s.mouseReleased === 'function') {
-                    s.mouseReleased(e);
-                }
+            if (typeof this.mouseReleased === 'function') {
+                this.mouseReleased(e);
             }
         };
         Processing.prototype.onmouseclick = function (e) {
-            if (typeof mouseClicked === 'function') {
-                mouseClicked(e);
-            }
-            for (var i = 0; i < this.sketches.length; i++) {
-                var s = this.sketches[i];
-                if (typeof s.mouseClicked === 'function') {
-                    s.mouseClicked(e);
-                }
+            if (typeof this.mouseClicked === 'function') {
+                this.mouseClicked(e);
             }
         };
         Processing.prototype.onmousewheel = function (e) {
-            if (typeof mouseWheel === 'function') {
-                mouseWheel(e);
-            }
-            for (var i = 0; i < this.sketches.length; i++) {
-                var s = this.sketches[i];
-                if (typeof s.mouseWheel === 'function') {
-                    s.mouseWheel(e);
-                }
+            if (typeof this.mouseWheel === 'function') {
+                this.mouseWheel(e);
             }
         };
         return Processing;
@@ -624,71 +774,41 @@ var inputtouch = function (require, core) {
             this._setProperty('touchX', e.changedTouches[0].pageX);
             this._setProperty('touchY', e.changedTouches[0].pageY);
             var touches = [];
-            for (var n = 0; n < this.sketchCanvases.length; n++) {
-                this.sketches[n].touches = [];
-            }
             for (var i = 0; i < e.changedTouches.length; i++) {
                 var ct = e.changedTouches[i];
                 touches[i] = {
                     x: ct.pageX,
                     y: ct.pageY
                 };
-                for (var m = 0; m < this.sketchCanvases.length; n++) {
-                    var s = this.sketches[m];
-                    var c = this.sketchCanvases[m];
-                    var bounds = c.elt.getBoundingClientRect();
-                    s.touches[i] = {
-                        x: ct.pageX - bounds.left,
-                        y: ct.pageY - bounds.top
-                    };
-                }
             }
             this._setProperty('touches', touches);
         };
         Processing.prototype.ontouchstart = function (e) {
             this.setTouchPoints(e);
-            if (typeof touchStarted === 'function') {
-                touchStarted(e);
+            if (typeof this.touchStarted === 'function') {
+                this.touchStarted(e);
             }
             var m = typeof touchMoved === 'function';
-            for (var i = 0; i < this.sketches.length; i++) {
-                var s = this.sketches[i];
-                if (typeof s.touchStarted === 'function') {
-                    s.touchStarted(e);
-                }
-                m |= typeof s.touchMoved === 'function';
-            }
             if (m) {
                 e.preventDefault();
             }
         };
         Processing.prototype.ontouchmove = function (e) {
             this.setTouchPoints(e);
-            if (typeof touchMoved === 'function') {
-                touchMoved(e);
-            }
-            for (var i = 0; i < this.sketches.length; i++) {
-                var s = this.sketches[i];
-                if (typeof s.touchMoved === 'function') {
-                    s.touchMoved(e);
-                }
+            if (typeof this.touchMoved === 'function') {
+                this.touchMoved(e);
             }
         };
         Processing.prototype.ontouchend = function (e) {
             this.setTouchPoints(e);
-            if (typeof touchEnded === 'function') {
-                touchEnded(e);
-            }
-            for (var i = 0; i < this.sketches.length; i++) {
-                var s = this.sketches[i];
-                if (typeof s.touchEnded === 'function') {
-                    s.touchEnded(e);
-                }
+            if (typeof this.touchEnded === 'function') {
+                this.touchEnded(e);
             }
         };
         return Processing;
     }({}, core);
-var dompelement = function (require) {
+var dompelement = function (require, constants) {
+        var constants = constants;
         function PElement(elt, pInst) {
             this.elt = elt;
             this.pInst = pInst;
@@ -713,12 +833,15 @@ var dompelement = function (require) {
             this.elt.style.top = y + 'px';
         };
         PElement.prototype.size = function (w, h) {
-            var aW = w, aH = h;
-            if (aW != AUTO || aH != AUTO) {
-                if (aW == AUTO)
+            var aW = w;
+            var aH = h;
+            var AUTO = constants.AUTO;
+            if (aW !== AUTO || aH !== AUTO) {
+                if (aW === AUTO) {
                     aW = h * this.elt.width / this.elt.height;
-                else if (aH == AUTO)
+                } else if (aH === AUTO) {
                     aH = w * this.elt.height / this.elt.width;
+                }
                 if (this.elt instanceof HTMLCanvasElement) {
                     this.elt.setAttribute('width', aW);
                     this.elt.setAttribute('height', aH);
@@ -728,9 +851,9 @@ var dompelement = function (require) {
                 }
                 this.width = this.elt.offsetWidth;
                 this.height = this.elt.offsetHeight;
-                if (this.pInst.curElement.elt == this.elt) {
-                    width = this.elt.offsetWidth;
-                    height = this.elt.offsetHeight;
+                if (this.pInst.curElement.elt === this.elt) {
+                    this.pInst.width = this.elt.offsetWidth;
+                    this.pInst.height = this.elt.offsetHeight;
                 }
             }
         };
@@ -768,7 +891,7 @@ var dompelement = function (require) {
             }, false);
         };
         return PElement;
-    }({});
+    }({}, constants);
 var dommanipulate = function (require, core, inputmouse, inputtouch, dompelement) {
         var Processing = core;
         var PElement = dompelement;
@@ -785,11 +908,12 @@ var dommanipulate = function (require, core, inputmouse, inputtouch, dompelement
                     defaultCanvas.parentNode.removeChild(defaultCanvas);
                 }
                 if (targetID) {
-                    target = document.getElementById(targetID);
-                    if (target)
+                    var target = document.getElementById(targetID);
+                    if (target) {
                         target.appendChild(c);
-                    else
+                    } else {
                         document.body.appendChild(c);
+                    }
                 } else {
                     document.body.appendChild(c);
                 }
@@ -803,8 +927,8 @@ var dommanipulate = function (require, core, inputmouse, inputtouch, dompelement
             var elt = document.createElement('div');
             elt.innerHTML = html;
             document.body.appendChild(elt);
-            c = new PElement(elt, this);
-            context(c);
+            var c = new PElement(elt, this);
+            this.context(c);
             return c;
         };
         Processing.prototype.createHTMLImage = function (src, alt) {
@@ -814,19 +938,21 @@ var dommanipulate = function (require, core, inputmouse, inputtouch, dompelement
                 elt.alt = alt;
             }
             document.body.appendChild(elt);
-            c = new PElement(elt, this);
-            context(c);
+            var c = new PElement(elt, this);
+            this.context(c);
             return c;
         };
         Processing.prototype.find = function (e) {
             var res = document.getElementById(e);
-            if (res)
+            if (res) {
                 return [new PElement(res, this)];
-            else {
+            } else {
                 res = document.getElementsByClassName(e);
                 if (res) {
                     var arr = [];
-                    for (var i = 0, resl = res.length; i != resl; arr.push(new PElement(res[i++], this)));
+                    for (var i = 0, resl = res.length; i !== resl; i++) {
+                        arr.push(new PElement(res[i], this));
+                    }
                     return arr;
                 }
             }
@@ -834,7 +960,7 @@ var dommanipulate = function (require, core, inputmouse, inputtouch, dompelement
         };
         Processing.prototype.context = function (e) {
             var obj;
-            if (typeof e == 'string' || e instanceof String) {
+            if (typeof e === 'string' || e instanceof String) {
                 var elt = document.getElementById(e);
                 obj = elt ? new PElement(elt, this) : null;
             } else {
@@ -861,10 +987,8 @@ var dommanipulate = function (require, core, inputmouse, inputtouch, dompelement
                 this.curElement.ontouchstart = this.ontouchstart.bind(this);
                 this.curElement.ontouchmove = this.ontouchmove.bind(this);
                 this.curElement.ontouchend = this.ontouchend.bind(this);
-                if (typeof this.curElement.context !== 'undefined')
+                if (typeof this.curElement.context !== 'undefined') {
                     this.curElement.context.setTransform(1, 0, 0, 1, 0, 0);
-                if (-1 < this.curSketchIndex && this.sketchCanvases.length <= this.curSketchIndex) {
-                    this.sketchCanvases[this.curSketchIndex] = this.curElement;
                 }
             }
         };
@@ -913,8 +1037,9 @@ var image = function (require, core) {
                 canvas.width = pimg.width;
                 canvas.height = pimg.height;
                 ctx.drawImage(pimg.sourceImage, 0, 0);
-                if (typeof callback !== 'undefined')
+                if (typeof callback !== 'undefined') {
                     callback();
+                }
             };
             pimg.sourceImage.src = path;
             return pimg;
@@ -922,8 +1047,9 @@ var image = function (require, core) {
         Processing.prototype.preloadImage = function (path) {
             this.preload_count++;
             return this.loadImage(path, function () {
-                if (--this.preload_count === 0)
-                    setup();
+                if (--this.preload_count === 0) {
+                    this.setup();
+                }
             });
         };
         function PImage(w, h, pInst) {
@@ -962,7 +1088,7 @@ var image = function (require, core) {
         };
         PImage.prototype.set = function (x, y, val) {
             var ind = y * this.width + x;
-            if (typeof val.image == 'undefined') {
+            if (typeof val.image === 'undefined') {
                 if (ind < this.pixels.length) {
                     this.pixels[ind] = val;
                 }
@@ -983,28 +1109,28 @@ var canvas = function (require, constants) {
         var constants = constants;
         return {
             modeAdjust: function (a, b, c, d, mode) {
-                if (mode == constants.CORNER) {
+                if (mode === constants.CORNER) {
                     return {
                         x: a,
                         y: b,
                         w: c,
                         h: d
                     };
-                } else if (mode == constants.CORNERS) {
+                } else if (mode === constants.CORNERS) {
                     return {
                         x: a,
                         y: b,
                         w: c - a,
                         h: d - b
                     };
-                } else if (mode == constants.RADIUS) {
+                } else if (mode === constants.RADIUS) {
                     return {
                         x: a - c,
                         y: b - d,
                         w: 2 * c,
                         h: 2 * d
                     };
-                } else if (mode == constants.CENTER) {
+                } else if (mode === constants.CENTER) {
                     return {
                         x: a - c * 0.5,
                         y: b - d * 0.5,
@@ -1030,18 +1156,10 @@ var imageloading_displaying = function (require, core, canvas, constants) {
             this.curElement.context.drawImage(arguments[0].sourceImage, vals.x, vals.y, vals.w, vals.h);
         };
         Processing.prototype.imageMode = function (m) {
-            if (m == constants.CORNER || m == constants.CORNERS || m == constants.CENTER) {
+            if (m === constants.CORNER || m === constants.CORNERS || m === constants.CENTER) {
                 this.settings.imageMode = m;
             }
         };
-        function getPixels(img) {
-            var c = document.createElement('canvas');
-            c.width = img.width;
-            c.height = img.height;
-            var ctx = c.getContext('2d');
-            ctx.drawImage(img);
-            return ctx.getImageData(0, 0, c.width, c.height);
-        }
         Processing.prototype.blend = function () {
         };
         Processing.prototype.copy = function () {
@@ -1049,6 +1167,8 @@ var imageloading_displaying = function (require, core, canvas, constants) {
         Processing.prototype.filter = function () {
         };
         Processing.prototype.get = function (x, y) {
+            var width = this.width;
+            var height = this.height;
             var pix = this.curElement.context.getImageData(0, 0, width, height).data;
             if (typeof x !== 'undefined' && typeof y !== 'undefined') {
                 if (x >= 0 && x < width && y >= 0 && y < height) {
@@ -1078,6 +1198,8 @@ var imageloading_displaying = function (require, core, canvas, constants) {
             }
         };
         Processing.prototype.loadPixels = function () {
+            var width = this.width;
+            var height = this.height;
             var a = this.curElement.context.getImageData(0, 0, width, height).data;
             var pixels = [];
             for (var i = 0; i < a.length; i += 4) {
@@ -1221,7 +1343,7 @@ var imageloading_displaying = function (require, core, canvas, constants) {
         }
         if (o['type'] == 'jsonp')
             return handleJsonp(o, fn, err, url);
-        http = o.xhr && o.xhr(o) || xhr(o);
+        http = xhr(o);
         http.open(method, url, o['async'] === false ? false : true);
         setHeaders(http, o);
         setCredentials(http, o);
@@ -1545,15 +1667,17 @@ var inputfiles = function (require, core, reqwest) {
         };
         Processing.prototype.loadJSON = function (path, callback) {
             var ret = [];
-            var t = path.indexOf('http') == -1 ? 'json' : 'jsonp';
+            var t = path.indexOf('http') === -1 ? 'json' : 'jsonp';
             reqwest({
                 url: path,
                 type: t,
                 success: function (resp) {
-                    for (var k in resp)
+                    for (var k in resp) {
                         ret[k] = resp[k];
-                    if (typeof callback !== 'undefined')
+                    }
+                    if (typeof callback !== 'undefined') {
                         callback(resp);
+                    }
                 }
             });
             return ret;
@@ -1565,10 +1689,12 @@ var inputfiles = function (require, core, reqwest) {
             req.onreadystatechange = function () {
                 if (req.readyState === 4 && (req.status === 200 || req.status === 0)) {
                     var arr = req.responseText.match(/[^\r\n]+/g);
-                    for (var k in arr)
+                    for (var k in arr) {
                         ret[k] = arr[k];
-                    if (typeof callback !== 'undefined')
+                    }
+                    if (typeof callback !== 'undefined') {
                         callback();
+                    }
                 }
             };
             req.send(null);
@@ -1577,14 +1703,16 @@ var inputfiles = function (require, core, reqwest) {
         Processing.prototype.loadTable = function () {
         };
         Processing.prototype.loadXML = function (path, callback) {
-            this.temp = [];
             var ret = [];
+            var self = this;
+            self.temp = [];
             reqwest(path, function (resp) {
-                console.log(resp);
-                this.temp = resp;
+                self.log(resp);
+                self.temp = resp;
                 ret[0] = resp;
-                if (typeof callback !== 'undefined')
+                if (typeof callback !== 'undefined') {
                     callback(resp);
+                }
             });
             return ret;
         };
@@ -1604,7 +1732,7 @@ var inputkeyboard = function (require, core) {
         'use strict';
         var Processing = core;
         Processing.prototype.isKeyPressed = Processing.prototype.keyIsPressed = function () {
-            return this.keyPressed;
+            return this.keyDown;
         };
         Processing.prototype.onkeydown = function (e) {
             var keyPressed = this.keyPressed || window.keyPressed;
@@ -1614,12 +1742,6 @@ var inputkeyboard = function (require, core) {
             if (typeof keyPressed === 'function') {
                 keyPressed(e);
             }
-            for (var i = 0; i < this.sketches.length; i++) {
-                var s = this.sketches[i];
-                if (typeof s.keyPressed === 'function') {
-                    s.keyPressed(e);
-                }
-            }
         };
         Processing.prototype.onkeyup = function (e) {
             var keyReleased = this.keyReleased || window.keyReleased;
@@ -1627,23 +1749,11 @@ var inputkeyboard = function (require, core) {
             if (typeof keyReleased === 'function') {
                 keyReleased(e);
             }
-            for (var i = 0; i < this.sketches.length; i++) {
-                var s = this.sketches[i];
-                if (typeof s.keyReleased === 'function') {
-                    s.keyReleased(e);
-                }
-            }
         };
         Processing.prototype.onkeypress = function (e) {
             var keyTyped = this.keyTyped || window.keyTyped;
             if (typeof keyTyped === 'function') {
                 keyTyped(e);
-            }
-            for (var i = 0; i < this.sketches.length; i++) {
-                var s = this.sketches[i];
-                if (typeof s.keyTyped === 'function') {
-                    s.keyTyped(e);
-                }
             }
         };
         return Processing;
@@ -1674,210 +1784,6 @@ var inputtime_date = function (require, core) {
         };
         return Processing;
     }({}, core);
-var mathcalculation = function (require, core) {
-        'use strict';
-        var Processing = core;
-        Processing.prototype.abs = Math.abs;
-        Processing.prototype.ceil = Math.ceil;
-        Processing.prototype.constrain = function (n, l, h) {
-            return this.max(this.min(n, h), l);
-        };
-        Processing.prototype.dist = function (x1, y1, x2, y2) {
-            var xs = x2 - x1;
-            var ys = y2 - y1;
-            return Math.sqrt(xs * xs + ys * ys);
-        };
-        Processing.prototype.exp = Math.exp;
-        Processing.prototype.floor = Math.floor;
-        Processing.prototype.lerp = function (start, stop, amt) {
-            return amt * (stop - start) + start;
-        };
-        Processing.prototype.log = Math.log;
-        Processing.prototype.mag = function (x, y) {
-            return Math.sqrt(x * x + y * y);
-        };
-        Processing.prototype.map = function (n, start1, stop1, start2, stop2) {
-            return (n - start1) / (stop1 - start1) * (stop2 - start2) + start2;
-        };
-        Processing.prototype.max = Math.max;
-        Processing.prototype.min = Math.min;
-        Processing.prototype.norm = function (n, start, stop) {
-            return map(n, start, stop, 0, 1);
-        };
-        Processing.prototype.pow = Math.pow;
-        Processing.prototype.round = Math.round;
-        Processing.prototype.sq = function (n) {
-            return n * n;
-        };
-        Processing.prototype.sqrt = Math.sqrt;
-        return Processing;
-    }({}, core);
-var polargeometry = function (require) {
-        return {
-            degreesToRadians: function (x) {
-                return 2 * Math.PI * x / 360;
-            },
-            radiansToDegrees: function (x) {
-                return 360 * x / (2 * Math.PI);
-            }
-        };
-    }({});
-var mathpvector = function (require, core, polargeometry) {
-        'use strict';
-        var Processing = core;
-        var polarGeometry = polargeometry;
-        function PVector(x, y, z) {
-            this.x = x || 0;
-            this.y = y || 0;
-            this.z = z || 0;
-        }
-        PVector.prototype.set = function (x, y, z) {
-            if (x instanceof PVector) {
-                return this.set(x.x, x.y, x.z);
-            }
-            if (x instanceof Array) {
-                return this.set(x[0], x[1], x[2]);
-            }
-            this.x = x || 0;
-            this.y = y || 0;
-            this.z = z || 0;
-        };
-        PVector.prototype.get = function () {
-            return new PVector(this.x, this.y, this.z);
-        };
-        PVector.prototype.add = function (x, y, z) {
-            if (x instanceof PVector) {
-                return this.add(x.x, x.y, x.z);
-            }
-            if (x instanceof Array) {
-                return this.add(x[0], x[1], x[2]);
-            }
-            this.x += x || 0;
-            this.y += y || 0;
-            this.z += z || 0;
-            return this;
-        };
-        PVector.prototype.sub = function (x, y, z) {
-            if (x instanceof PVector) {
-                return this.sub(x.x, x.y, x.z);
-            }
-            if (x instanceof Array) {
-                return this.sub(x[0], x[1], x[2]);
-            }
-            this.x -= x || 0;
-            this.y -= y || 0;
-            this.z -= z || 0;
-            return this;
-        };
-        PVector.prototype.mult = function (n) {
-            this.x *= n || 0;
-            this.y *= n || 0;
-            this.z *= n || 0;
-            return this;
-        };
-        PVector.prototype.div = function (n) {
-            this.x /= n;
-            this.y /= n;
-            this.z /= n;
-            return this;
-        };
-        PVector.prototype.mag = function () {
-            return Math.sqrt(this.magSq());
-        };
-        PVector.prototype.magSq = function () {
-            var x = this.x, y = this.y, z = this.z;
-            return x * x + y * y + z * z;
-        };
-        PVector.prototype.dot = function (x, y, z) {
-            if (x instanceof PVector) {
-                return this.dot(x.x, x.y, x.z);
-            }
-            return this.x * (x || 0) + this.y * (y || 0) + this.z * (z || 0);
-        };
-        PVector.prototype.cross = function (v) {
-            var x = this.y * v.z - this.z * v.y;
-            var y = this.z * v.x - this.x * v.z;
-            var z = this.x * v.y - this.y * v.x;
-            return new PVector(x, y, z);
-        };
-        PVector.prototype.dist = function (v) {
-            var d = v.get().sub(this);
-            return d.mag();
-        };
-        PVector.prototype.normalize = function () {
-            return this.div(this.mag());
-        };
-        PVector.prototype.limit = function (l) {
-            var mSq = this.magSq();
-            if (mSq > l * l) {
-                this.div(Math.sqrt(mSq));
-                this.mult(l);
-            }
-            return this;
-        };
-        PVector.prototype.setMag = function (n) {
-            return this.normalize().mult(n);
-        };
-        PVector.prototype.heading = function () {
-            return Math.atan2(this.y, this.x);
-        };
-        PVector.prototype.rotate2D = function (a) {
-            var newHeading = this.heading() + polarGeometry.convertToRadians(a);
-            var mag = this.mag();
-            this.x = Math.cos(newHeading) * mag;
-            this.y = Math.sin(newHeading) * mag;
-            return this;
-        };
-        PVector.prototype.lerp = function (x, y, z, amt) {
-            if (x instanceof PVector) {
-                return this.lerp(x.x, x.y, x.z, y);
-            }
-            this.x += (x - this.x) * amt || 0;
-            this.y += (y - this.y) * amt || 0;
-            this.z += (z - this.z) * amt || 0;
-            return this;
-        };
-        PVector.prototype.array = function () {
-            return [
-                this.x || 0,
-                this.y || 0,
-                this.z || 0
-            ];
-        };
-        PVector.random2D = function () {
-        };
-        PVector.random3D = function () {
-        };
-        PVector.add = function (v1, v2) {
-            return v1.get().add(v2);
-        };
-        PVector.sub = function (v1, v2) {
-            return v1.get().sub(v2);
-        };
-        PVector.mult = function (v, n) {
-            return v.get().mult(n);
-        };
-        PVector.div = function (v, n) {
-            return v.get().div(n);
-        };
-        PVector.dot = function (v1, v2) {
-            return v1.dot(v2);
-        };
-        PVector.cross = function (v1, v2) {
-            return v1.cross(v2);
-        };
-        PVector.dist = function (v1, v2) {
-            return v1.dist(v2);
-        };
-        PVector.lerp = function (v1, v2, amt) {
-            return v1.get().lerp(v2, amt);
-        };
-        PVector.angleBetween = function (v1, v2) {
-            return Math.acos(v1.dot(v2) / (v1.mag() * v2.mag()));
-        };
-        Processing.PVector = PVector;
-        return Processing;
-    }({}, core, polargeometry);
 var mathrandom = function (require, core) {
         'use strict';
         var Processing = core;
@@ -1892,6 +1798,16 @@ var mathrandom = function (require, core) {
         };
         return Processing;
     }({}, core);
+var polargeometry = function (require) {
+        return {
+            degreesToRadians: function (x) {
+                return 2 * Math.PI * x / 360;
+            },
+            radiansToDegrees: function (x) {
+                return 360 * x / (2 * Math.PI);
+            }
+        };
+    }({});
 var mathtrigonometry = function (require, core, polargeometry, constants) {
         'use strict';
         var Processing = core;
@@ -1917,7 +1833,7 @@ var mathtrigonometry = function (require, core, polargeometry, constants) {
             return Math.tan(this.radians(x));
         };
         Processing.prototype.angleMode = function (mode) {
-            if (mode == constants.DEGREES || mode == constants.RADIANS) {
+            if (mode === constants.DEGREES || mode === constants.RADIANS) {
                 this.settings.angleMode = mode;
             }
         };
@@ -1933,13 +1849,16 @@ var outputfiles = function (require, core) {
         Processing.prototype.createOutput = function () {
         };
         Processing.prototype.createWriter = function (name) {
-            if (this.pWriters.indexOf(name) == -1) {
-                this.pWriters.name = new PrintWriter(name);
+            if (this.pWriters.indexOf(name) === -1) {
+                this.pWriters.name = new this.PrintWriter(name);
             }
         };
         Processing.prototype.endRaw = function () {
         };
         Processing.prototype.endRecord = function () {
+        };
+        Processing.prototype.escape = function (content) {
+            return content;
         };
         Processing.prototype.PrintWriter = function (name) {
             this.name = name;
@@ -1954,7 +1873,7 @@ var outputfiles = function (require, core) {
                 this.content = '';
             };
             this.close = function () {
-                writeFile(this.content);
+                this.writeFile(this.content);
             };
         };
         Processing.prototype.saveBytes = function () {
@@ -1973,7 +1892,7 @@ var outputfiles = function (require, core) {
         Processing.prototype.selectOutput = function () {
         };
         Processing.prototype.writeFile = function (content) {
-            this.open('data:text/json;charset=utf-8,' + escape(content), 'download');
+            this.open('data:text/json;charset=utf-8,' + this.escape(content), 'download');
         };
         return Processing;
     }({}, core);
@@ -1985,17 +1904,28 @@ var outputimage = function (require, core) {
         };
         return Processing;
     }({}, core);
-var outputtext_area = function (require, core) {
+var log = function (require, core) {
         'use strict';
         var Processing = core;
-        Processing.prototype.print = console.log.bind(console);
-        Processing.prototype.println = console.log.bind(console);
+        Processing.prototype.log = function () {
+            if (window.console && console.log) {
+                console.log.apply(console, arguments);
+            }
+        };
         return Processing;
     }({}, core);
-var shape2d_primitives = function (require, core, canvas) {
+var outputtext_area = function (require, core, log) {
+        'use strict';
+        var Processing = core;
+        Processing.prototype.print = Processing.prototype.log;
+        Processing.prototype.println = Processing.prototype.log;
+        return Processing;
+    }({}, core, log);
+var shape2d_primitives = function (require, core, canvas, constants) {
         'use strict';
         var Processing = core;
         var canvas = canvas;
+        var constants = constants;
         Processing.prototype.arc = function () {
         };
         Processing.prototype.ellipse = function (a, b, c, d) {
@@ -2033,7 +1963,7 @@ var shape2d_primitives = function (require, core, canvas) {
             this.curElement.context.fillStyle = s;
             if (this.curElement.context.lineWidth > 1) {
                 this.curElement.context.beginPath();
-                this.curElement.context.arc(x, y, this.curElement.context.lineWidth / 2, 0, TWO_PI, false);
+                this.curElement.context.arc(x, y, this.curElement.context.lineWidth / 2, 0, constants.TWO_PI, false);
                 this.curElement.context.fill();
             } else {
                 this.curElement.context.fillRect(x, y, 1, 1);
@@ -2071,13 +2001,13 @@ var shape2d_primitives = function (require, core, canvas) {
             return this;
         };
         return Processing;
-    }({}, core, canvas);
+    }({}, core, canvas, constants);
 var shapeattributes = function (require, core, constants) {
         'use strict';
         var Processing = core;
         var constants = constants;
         Processing.prototype.ellipseMode = function (m) {
-            if (m == constants.CORNER || m == constants.CORNERS || m == constants.RADIUS || m == constants.CENTER) {
+            if (m === constants.CORNER || m === constants.CORNERS || m === constants.RADIUS || m === constants.CENTER) {
                 this.settings.ellipseMode = m;
             }
             return this;
@@ -2088,7 +2018,7 @@ var shapeattributes = function (require, core, constants) {
             return this;
         };
         Processing.prototype.rectMode = function (m) {
-            if (m == constants.CORNER || m == constants.CORNERS || m == constants.RADIUS || m == constants.CENTER) {
+            if (m === constants.CORNER || m === constants.CORNERS || m === constants.RADIUS || m === constants.CENTER) {
                 this.settings.rectMode = m;
             }
             return this;
@@ -2099,22 +2029,23 @@ var shapeattributes = function (require, core, constants) {
             return this;
         };
         Processing.prototype.strokeCap = function (cap) {
-            if (cap == constants.ROUND || cap == constants.SQUARE || cap == constants.PROJECT) {
+            if (cap === constants.ROUND || cap === constants.SQUARE || cap === constants.PROJECT) {
                 this.curElement.context.lineCap = cap;
             }
             return this;
         };
         Processing.prototype.strokeJoin = function (join) {
-            if (join == constants.ROUND || join == constants.BEVEL || join == constants.MITER) {
+            if (join === constants.ROUND || join === constants.BEVEL || join === constants.MITER) {
                 this.curElement.context.lineJoin = join;
             }
             return this;
         };
         Processing.prototype.strokeWeight = function (w) {
-            if (typeof w === 'undefined' || w === 0)
+            if (typeof w === 'undefined' || w === 0) {
                 this.curElement.context.lineWidth = 0.0001;
-            else
+            } else {
                 this.curElement.context.lineWidth = w;
+            }
             return this;
         };
         return Processing;
@@ -2154,10 +2085,11 @@ var shapevertex = function (require, core, constants) {
         Processing.prototype.beginContour = function () {
         };
         Processing.prototype.beginShape = function (kind) {
-            if (kind == constants.POINTS || kind == constants.LINES || kind == constants.TRIANGLES || kind == constants.TRIANGLE_FAN || kind == constants.TRIANGLE_STRIP || kind == constants.QUADS || kind == constants.QUAD_STRIP)
+            if (kind === constants.POINTS || kind === constants.LINES || kind === constants.TRIANGLES || kind === constants.TRIANGLE_FAN || kind === constants.TRIANGLE_STRIP || kind === constants.QUADS || kind === constants.QUAD_STRIP) {
                 this.shapeKind = kind;
-            else
+            } else {
                 this.shapeKind = null;
+            }
             this.shapeInited = true;
             this.curElement.context.beginPath();
             return this;
@@ -2171,7 +2103,7 @@ var shapevertex = function (require, core, constants) {
         Processing.prototype.endContour = function () {
         };
         Processing.prototype.endShape = function (mode) {
-            if (mode == constants.CLOSE) {
+            if (mode === constants.CLOSE) {
                 this.curElement.context.closePath();
                 this.curElement.context.fill();
             }
@@ -2269,7 +2201,7 @@ var linearalgebra = function (require) {
             }
         };
     }({});
-var transform = function (require, core, linearalgebra) {
+var transform = function (require, core, linearalgebra, log) {
         'use strict';
         var Processing = core;
         var linearAlgebra = linearalgebra;
@@ -2292,7 +2224,7 @@ var transform = function (require, core, linearalgebra) {
             return this;
         };
         Processing.prototype.printMatrix = function () {
-            console.log(this.matrices[this.matrices.length - 1]);
+            this.log(this.matrices[this.matrices.length - 1]);
             return this;
         };
         Processing.prototype.pushMatrix = function () {
@@ -2343,7 +2275,7 @@ var transform = function (require, core, linearalgebra) {
         };
         Processing.prototype.scale = function () {
             var x = 1, y = 1;
-            if (arguments.length == 1) {
+            if (arguments.length === 1) {
                 x = y = arguments[0];
             } else {
                 x = arguments[0];
@@ -2358,12 +2290,12 @@ var transform = function (require, core, linearalgebra) {
             return this;
         };
         Processing.prototype.shearX = function (angle) {
-            this.curElement.context.transform(1, 0, tan(angle), 1, 0, 0);
+            this.curElement.context.transform(1, 0, this.tan(angle), 1, 0, 0);
             var m = this.matrices[this.matrices.length - 1];
             m = linearAlgebra.pMultiplyMatrix(m, [
                 1,
                 0,
-                tan(angle),
+                this.tan(angle),
                 1,
                 0,
                 0
@@ -2371,11 +2303,11 @@ var transform = function (require, core, linearalgebra) {
             return this;
         };
         Processing.prototype.shearY = function (angle) {
-            this.curElement.context.transform(1, tan(angle), 0, 1, 0, 0);
+            this.curElement.context.transform(1, this.tan(angle), 0, 1, 0, 0);
             var m = this.matrices[this.matrices.length - 1];
             m = linearAlgebra.pMultiplyMatrix(m, [
                 1,
-                tan(angle),
+                this.tan(angle),
                 0,
                 1,
                 0,
@@ -2391,13 +2323,13 @@ var transform = function (require, core, linearalgebra) {
             return this;
         };
         return Processing;
-    }({}, core, linearalgebra);
+    }({}, core, linearalgebra, log);
 var typographyattributes = function (require, core, constants) {
         'use strict';
         var Processing = core;
         var constants = constants;
         Processing.prototype.textAlign = function (a) {
-            if (a == constants.LEFT || a == constants.RIGHT || a == constants.CENTER) {
+            if (a === constants.LEFT || a === constants.RIGHT || a === constants.CENTER) {
                 this.curElement.context.textAlign = a;
             }
         };
@@ -2414,7 +2346,7 @@ var typographyattributes = function (require, core, constants) {
             this._setProperty('_textSize', s);
         };
         Processing.prototype.textStyle = function (s) {
-            if (s == constants.NORMAL || s == constants.ITALIC || s == constants.BOLD) {
+            if (s === constants.NORMAL || s === constants.ITALIC || s === constants.BOLD) {
                 this._setProperty('_textStyle', s);
             }
         };
@@ -2423,16 +2355,15 @@ var typographyattributes = function (require, core, constants) {
         };
         return Processing;
     }({}, core, constants);
-var typographyloading_displaying = function (require, core, canvas) {
+var typographyloading_displaying = function (require, core) {
         'use strict';
         var Processing = core;
-        var canvas = canvas;
         Processing.prototype.text = function () {
             this.curElement.context.font = this._textStyle + ' ' + this._textSize + 'px ' + this._textFont;
-            if (arguments.length == 3) {
+            if (arguments.length === 3) {
                 this.curElement.context.fillText(arguments[0], arguments[1], arguments[2]);
                 this.curElement.context.strokeText(arguments[0], arguments[1], arguments[2]);
-            } else if (arguments.length == 5) {
+            } else if (arguments.length === 5) {
                 var words = arguments[0].split(' ');
                 var line = '';
                 var vals = this.modeAdjust(arguments[1], arguments[2], arguments[3], arguments[4], this.rectMode);
@@ -2459,15 +2390,17 @@ var typographyloading_displaying = function (require, core, canvas) {
             }
         };
         return Processing;
-    }({}, core, canvas);
-var src_p5 = function (require, core, colorcreating_reading, colorsetting, dataarray_functions, datastring_functions, dommanipulate, dompelement, environment, image, imageloading_displaying, inputfiles, inputkeyboard, inputmouse, inputtime_date, inputtouch, mathcalculation, mathpvector, mathrandom, mathtrigonometry, outputfiles, outputimage, outputtext_area, shape2d_primitives, shapeattributes, shapecurves, shapevertex, structure, transform, typographyattributes, typographyloading_displaying) {
+    }({}, core);
+var src_p5 = function (require, core, mathpvector, colorcreating_reading, colorsetting, dataarray_functions, datastring_functions, dommanipulate, dompelement, environment, image, imageloading_displaying, inputfiles, inputkeyboard, inputmouse, inputtime_date, inputtouch, mathcalculation, mathrandom, mathtrigonometry, outputfiles, outputimage, outputtext_area, shape2d_primitives, shapeattributes, shapecurves, shapevertex, structure, transform, typographyattributes, typographyloading_displaying) {
         'use strict';
         var Processing = core;
+        var PVector = mathpvector;
         if (document.readyState === 'complete') {
             Processing._init();
         } else {
             window.addEventListener('load', Processing._init, false);
         }
         window.Processing = Processing;
+        window.PVector = PVector;
         return Processing;
-    }({}, core, colorcreating_reading, colorsetting, dataarray_functions, datastring_functions, dommanipulate, dompelement, environment, image, imageloading_displaying, inputfiles, inputkeyboard, inputmouse, inputtime_date, inputtouch, mathcalculation, mathpvector, mathrandom, mathtrigonometry, outputfiles, outputimage, outputtext_area, shape2d_primitives, shapeattributes, shapecurves, shapevertex, structure, transform, typographyattributes, typographyloading_displaying);}());
+    }({}, core, mathpvector, colorcreating_reading, colorsetting, dataarray_functions, datastring_functions, dommanipulate, dompelement, environment, image, imageloading_displaying, inputfiles, inputkeyboard, inputmouse, inputtime_date, inputtouch, mathcalculation, mathrandom, mathtrigonometry, outputfiles, outputimage, outputtext_area, shape2d_primitives, shapeattributes, shapecurves, shapevertex, structure, transform, typographyattributes, typographyloading_displaying);}());

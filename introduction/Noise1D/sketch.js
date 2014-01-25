@@ -33,5 +33,7 @@ function draw() {
   // Draw the ellipse at the value produced by perlin noise
   fill(200);
   ellipse(x,height/2, 64, 64);
+
+  println(n);
 };
 
