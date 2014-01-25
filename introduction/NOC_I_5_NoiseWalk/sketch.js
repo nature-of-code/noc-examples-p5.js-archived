@@ -20,7 +20,7 @@ function draw() {
 
 function Walker() {
   this.location = new PVector(width/2,height/2);
-  this.noff = new PVector(0,2000);
+  this.noff = new PVector(random(1000),random(1000));
 };
 
 Walker.prototype.display = function() {
