@@ -2,7 +2,7 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-// Example 1-4: Vector multiplication
+// Example 1-5: Vector magnitude
 
 function setup() {
   createGraphics(640,360);
@@ -15,8 +15,10 @@ function draw() {
   var center = new PVector(width/2,height/2);
   mouse.sub(center);
 
-  // Multiplying a vector!  The vector is now half its original size (multiplied by 0.5).
-  mouse.mult(0.5);  
+  var m = mouse.mag();
+  fill(255);
+  noStroke();
+  rect(0,0,m,10);
   
   translate(width/2,height/2);
   strokeWeight(2);
