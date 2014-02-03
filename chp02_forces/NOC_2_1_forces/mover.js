@@ -2,10 +2,10 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-function Mover(m,x,y) {
-    this.mass = m;
-    this.position = new PVector(x,y);
-    this.velocity = new PVector(1,0);
+function Mover() {
+    this.mass = 1;
+    this.position = new PVector(30,30);
+    this.velocity = new PVector(0,0);
     this.acceleration = new PVector(0,0);
 }
   
@@ -24,7 +24,7 @@ Mover.prototype.display = function() {
   stroke(0);
   strokeWeight(2);
   fill(255,127);
-  ellipse(this.position.x,this.position.y,this.mass*16,this.mass*16);
+  ellipse(this.position.x,this.position.y,48,48);
 };
 
 Mover.prototype.checkEdges = function() {

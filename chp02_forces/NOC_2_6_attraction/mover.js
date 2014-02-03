@@ -2,11 +2,11 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-function Mover(m,x,y) {
-    this.mass = m;
-    this.position = new PVector(x,y);
-    this.velocity = new PVector(1,0);
-    this.acceleration = new PVector(0,0);
+function Mover() {
+  this.position = new PVector(400,50);
+  this.velocity = new PVector(1,0);
+  this.acceleration = new PVector(0,0);
+  this.mass = 1;
 }
   
 Mover.prototype.applyForce = function(force) {

@@ -5,7 +5,7 @@
 function Mover(m,x,y) {
     this.mass = m;
     this.position = new PVector(x,y);
-    this.velocity = new PVector(1,0);
+    this.velocity = new PVector(0,0);
     this.acceleration = new PVector(0,0);
 }
   
