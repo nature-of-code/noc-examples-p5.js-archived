@@ -2,9 +2,12 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-function ParticleSystem(location){	
+function ParticleSystem(num, location){	
 	this.origin = location.get();
 	this.particles = [];
+  for (var i = 0; i < num; i++) {
+      this.particles.push(new Particle(this.origin));    // Add "num" amount of particles to the arraylist
+    }
 }
 
 ParticleSystem.prototype.addParticle = function(){

@@ -22,16 +22,13 @@ function draw() {
   }
 
   fill(0);
-  text("click mouse to add particle systems",10,height-30);
-
-  // if(mouseIsPressed()){
-  // 	println("pressed");
-  // }
-
+  text("press space to add particle systems at mouse position",10,height-30);
   
 }
 
-function mousePressed() {
-	println("pressed");
-	systems.add(new ParticleSystem(1,new PVector(mouseX,mouseY)));
+function keyPressed() {
+	if(key === ' '){
+		systems.push(new ParticleSystem(1, new PVector(mouseX,mouseY)));
+	}
+	
 }
