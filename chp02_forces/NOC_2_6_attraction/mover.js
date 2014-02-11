@@ -2,12 +2,12 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-function Mover() {
-  this.position = new PVector(400,50);
-  this.velocity = new PVector(1,0);
-  this.acceleration = new PVector(0,0);
+var Mover = function() {
+  this.position = new PVector(400, 50);
+  this.velocity = new PVector(1, 0);
+  this.acceleration = new PVector(0, 0);
   this.mass = 1;
-}
+};
   
 Mover.prototype.applyForce = function(force) {
   var f = PVector.div(force,this.mass);
@@ -23,8 +23,8 @@ Mover.prototype.update = function() {
 Mover.prototype.display = function() {
   stroke(0);
   strokeWeight(2);
-  fill(255,127);
-  ellipse(this.position.x,this.position.y,this.mass*16,this.mass*16);
+  fill(255, 127);
+  ellipse(this.position.x, this.position.y, this.mass*16, this.mass*16);
 };
 
 Mover.prototype.checkEdges = function() {

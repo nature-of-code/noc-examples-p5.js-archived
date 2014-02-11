@@ -5,22 +5,22 @@
 
 var movers = [];
 
-var g = 1;
+var G = 1;
 
 function setup() {
-  createGraphics(640,360);
+  createGraphics(640, 360);
   for (var i = 0; i < 10; i++) {
-    movers[i] = new Mover(random(0.1,2),random(width),random(height)); 
+    movers[i] = new Mover(random(0.1, 2), random(width), random(height));
   }
-};
+}
 
 function draw() {
   background(51);
 
   for (var i = 0; i < movers.length; i++) {
     for (var j = 0; j < movers.length; j++) {
-      if (i != j) {
-        var force = movers[j].attract(movers[i]);
+      if (i !== j) {
+        var force = movers[j].calculateAttraction(movers[i]);
         movers[i].applyForce(force);
       }
     }
@@ -28,4 +28,4 @@ function draw() {
     movers[i].update();
     movers[i].display();
   }
-};
+}

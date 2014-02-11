@@ -19,7 +19,7 @@ function setup() {
   reset();
   // Create liquid object
   liquid = new Liquid(0, height/2, width, height/2, 0.1);
-};
+}
 
 function draw() {
   background(127);
@@ -32,7 +32,7 @@ function draw() {
     // Is the Mover in the liquid?
     if (liquid.contains(movers[i])) {
       // Calculate drag force
-      var dragForce = liquid.drag(movers[i]);
+      var dragForce = liquid.calculateDrag(movers[i]);
       // Apply drag force to Mover
       movers[i].applyForce(dragForce);
     }
@@ -49,22 +49,22 @@ function draw() {
   }
   
   fill(255); // Fill not working for text?
-  text("click mouse to reset",10,30);
+  text("click mouse to reset", 10, 30);
   
-};
+}
 
 
 // Not working???
 function mousePressed() {
   reset();
-};
+}
 
 // Restart all the Mover objects randomly
 function reset() {
   for (var i = 0; i < 9; i++) {
     movers[i] = new Mover(random(0.5, 3), 40+i*70, 0);
   }
-};
+}
 
 
 
