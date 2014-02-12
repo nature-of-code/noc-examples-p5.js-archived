@@ -5,9 +5,9 @@
 var movers = [];
 
 function setup() {
-  createGraphics(640,360);
+  createGraphics(640, 360);
   for (var i = 0; i < 20; i++) {
-    movers[i] = new Mover(random(1,4),random(width),0); 
+    movers[i] = new Mover(random(1, 4), random(width), 0);
   }
 }
 
@@ -15,14 +15,16 @@ function draw() {
   background(51);
   
   for (var i = 0; i < movers.length; i++) {
-    var wind = new PVector(0.01,0);
+    var wind = new PVector(0.01, 0);
     var gravity = new PVector(0, 0.1*movers[i].mass);
 
-    var c = 0.05;
+    var c = 0.01;
+    var normal = 1;
+    var frictionMag = c * normal;
     var friction = movers[i].velocity.get();
-    friction.mult(-1); 
+    friction.mult(-1);
     friction.normalize();
-    friction.mult(c);
+    friction.mult(frictionMag);
 
 
     movers[i].applyForce(friction);
@@ -32,4 +34,4 @@ function draw() {
     movers[i].display();
     movers[i].checkEdges();
   }
-};
+}

@@ -7,33 +7,40 @@ var movers = [];
 var attractor;
 
 function setup() {
-  createGraphics(640,360);
+  createGraphics(640, 360);
   for (var i = 0; i < 10; i++) {
-    movers[i] = new Mover(random(0.1,2),random(width),random(height));
+    movers[i] = new Mover(random(0.1, 2), random(width), random(height));
   }
   attractor = new Attractor();
-};
+}
 
 function draw() {
-  background(51);
+  background(50);
 
   attractor.display();
-  attractor.drag();
-  attractor.hover(mouseX, mouseY);
 
   for (var i = 0; i < movers.length; i++) {
-    var force = attractor.attract(movers[i]);
+    var force = attractor.calculateAttraction(movers[i]);
     movers[i].applyForce(force);
 
     movers[i].update();
     movers[i].display();
   }
-};
+}
+
+function mouseMoved() {
+  attractor.handleHover(mouseX, mouseY);
+}
 
 function mousePressed() {
-  attractor.clicked(mouseX, mouseY);
-};
+  attractor.handlePress(mouseX, mouseY);
+}
+
+function mouseDragged() {
+  attractor.handleHover(mouseX, mouseY);
+  attractor.handleDrag(mouseX, mouseY);
+}
 
 function mouseReleased() {
   attractor.stopDragging();
-};
+}

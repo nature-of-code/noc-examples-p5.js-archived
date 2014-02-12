@@ -2,22 +2,23 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-function Liquid(x_, y_, w_, h_, c_) {
-  this.x = x_;
-  this.y = y_;
-  this.w = w_;
-  this.h = h_;
-  this.c = c_;
+var Liquid = function(x, y, w, h, c) {
+  this.x = x;
+  this.y = y;
+  this.w = w;
+  this.h = h;
+  this.c = c;
 };
   
-  // Is the Mover in the Liquid?
+// Is the Mover in the Liquid?
 Liquid.prototype.contains = function(m) {
   var l = m.position;
-  return l.x > this.x && l.x < this.x + this.w && l.y > this.y && l.y < this.y + this.h;
+  return l.x > this.x && l.x < this.x + this.w &&
+         l.y > this.y && l.y < this.y + this.h;
 };
   
-  // Calculate drag force
-Liquid.prototype.drag = function(m) {
+// Calculate drag force
+Liquid.prototype.calculateDrag = function(m) {
   // Magnitude is coefficient * speed squared
   var speed = m.velocity.mag();
   var dragMagnitude = this.c * speed * speed;
@@ -35,6 +36,6 @@ Liquid.prototype.drag = function(m) {
   
 Liquid.prototype.display = function() {
   noStroke();
-  fill(51);
-  rect(this.x,this.y,this.w,this.h);
+  fill(50);
+  rect(this.x, this.y, this.w, this.h);
 };
