@@ -3,7 +3,7 @@
 // http://natureofcode.com
 
 function Mover(m, x, y) {
-  this.location = new PVector(x,y);
+  this.position = new PVector(x,y);
   this.mass = m;
 
   this.angle = 0;
@@ -22,7 +22,7 @@ Mover.prototype.applyForce = function (force) {
 Mover.prototype.update = function () {
 
   this.velocity.add(this.acceleration);
-  this.location.add(this.velocity);
+  this.position.add(this.velocity);
 
   this.aAcceleration = this.acceleration.x / 10.0;
   this.aVelocity += this.aAcceleration;
@@ -37,7 +37,7 @@ Mover.prototype.display = function () {
   fill(175,200);
   rectMode(CENTER);
   pushMatrix();
-  translate(this.location.x,this.location.y);
+  translate(this.position.x,this.position.y);
   rotate(this.angle);
   rect(0,0,this.mass*16,this.mass*16);
   popMatrix();

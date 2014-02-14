@@ -3,7 +3,7 @@
 // http://natureofcode.com
 
 function Mover() {
-  this.location = new PVector(width/2, height/2);
+  this.position = new PVector(width/2, height/2);
   this.velocity = new PVector(0, 0);
   this.acceleration;
   this.topspeed = 4;
@@ -14,14 +14,14 @@ function Mover() {
 
 Mover.prototype.update = function () {
   var mouse = new PVector(mouseX, mouseY);
-  var dir = PVector.sub(mouse, this.location);
+  var dir = PVector.sub(mouse, this.position);
   dir.normalize();
   dir.mult(0.5);
   this.acceleration = dir;
 
   this.velocity.add(this.acceleration);
   this.velocity.limit(this.topspeed);
-  this.location.add(this.velocity);
+  this.position.add(this.velocity);
 }
 
 Mover.prototype.display = function () {
@@ -32,24 +32,24 @@ Mover.prototype.display = function () {
   fill(127);
   pushMatrix()
   rectMode(CENTER);
-  translate(this.location.x,this.location.y);
+  translate(this.position.x,this.position.y);
   rotate(theta);
   rect(0,0,30,10);
   popMatrix();
 }
 
 Mover.prototype.checkEdges = function () {
-  if (this.location.x > width) {
-    this.location.x = 0;
+  if (this.position.x > width) {
+    this.position.x = 0;
   }
-  else if (this.location.x < 0) {
-    this.location.x = width;
+  else if (this.position.x < 0) {
+    this.position.x = width;
   }
 
-  if (this.location.y > height) {
-    this.location.y = 0;
+  if (this.position.y > height) {
+    this.position.y = 0;
   }
-  else if (this.location.y < 0) {
-    this.location.y = height;
+  else if (this.position.y < 0) {
+    this.position.y = height;
   }
 }

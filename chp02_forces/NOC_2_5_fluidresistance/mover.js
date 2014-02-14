@@ -19,7 +19,7 @@ Mover.prototype.applyForce = function(force) {
 Mover.prototype.update = function() {
   // Velocity changes according to acceleration
   this.velocity.add(this.acceleration);
-  // Location changes by velocity
+  // position changes by velocity
   this.position.add(this.velocity);
   // We must clear acceleration each frame
   this.acceleration.mult(0);

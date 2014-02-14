@@ -7,13 +7,13 @@
 // A class for a draggable attractive body in our world
 
 function Attractor() {
-  this.location = new PVector(width/2, height/2);     // Mass, tied to size
-  this.mass = 20;   // Location
+  this.position = new PVector(width/2, height/2);     // Mass, tied to size
+  this.mass = 20;   // position
   this.g = 0.4;
 }
 
 Attractor.prototype.attract = function(m) {
-  var force = PVector.sub(this.location, m.location);             // Calculate direction of force
+  var force = PVector.sub(this.position, m.position);             // Calculate direction of force
   var distance = force.mag();                                 // Distance between objects
   distance = constrain(distance, 5.0, 25.0);                             // Limiting the distance to eliminate "extreme" results for very close or very far objects
   force.normalize();                                            // Normalize vector (distance doesn't matter here, we just want this vector for direction)
@@ -27,5 +27,5 @@ Attractor.prototype.display = function () {
   stroke(0);
   strokeWeight(2);
   fill(127);
-  ellipse(this.location.x, this.location.y, 48, 48);
+  ellipse(this.position.x, this.position.y, 48, 48);
 }

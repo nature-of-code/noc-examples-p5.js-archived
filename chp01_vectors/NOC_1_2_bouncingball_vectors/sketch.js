@@ -16,7 +16,7 @@ function setup() {
 function draw() {
   background(255);
   
-  // Add the current speed to the location.
+  // Add the current speed to the position.
   position.add(velocity);
 
   if ((position.x > width) || (position.x < 0)) {
@@ -26,7 +26,7 @@ function draw() {
     velocity.y = velocity.y * -1;
   }
 
-  // Display circle at x location
+  // Display circle at x position
   stroke(0);
   strokeWeight(2);
   fill(127);

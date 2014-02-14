@@ -2,8 +2,8 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-function ParticleSystem(num, location){	
-	this.origin = location.get();
+function ParticleSystem(num, position){	
+	this.origin = position.get();
 	this.particles = [];
   for (var i = 0; i < num; i++) {
       this.particles.push(new Particle(this.origin));    // Add "num" amount of particles to the arraylist

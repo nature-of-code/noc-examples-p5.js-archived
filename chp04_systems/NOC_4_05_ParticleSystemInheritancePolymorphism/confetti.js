@@ -2,8 +2,8 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-function Confetti(location){
-	this.location = location;	
+function Confetti(position){
+	this.position = position;	
 }
 
 Confetti.prototype = Particle.prototype;
@@ -17,8 +17,8 @@ Confetti.prototype.display = function(){
     stroke(0,this.lifespan);
     strokeWeight(2);
     pushMatrix();
-    translate(this.location.x,this.location.y);
-    var theta = map(this.location.x,0,width,0,TWO_PI*2);
+    translate(this.position.x,this.position.y);
+    var theta = map(this.position.x,0,width,0,TWO_PI*2);
     rotate(theta);
     rect(0,0,12,12);
     popMatrix();
