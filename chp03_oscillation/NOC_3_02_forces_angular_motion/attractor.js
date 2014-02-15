@@ -2,30 +2,33 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-// Attraction
+// An object for a draggable attractive body in our world
 
-// A class for a draggable attractive body in our world
+var Attractor = function() {
+  this.position = new PVector(width/2, height/2);
+  this.mass = 20;
+  this.G = 1;
+};
 
-function Attractor() {
-  this.location = new PVector(width/2, height/2);     // Mass, tied to size
-  this.mass = 20;   // Location
-  this.g = 0.4;
-}
-
-Attractor.prototype.attract = function(m) {
-  var force = PVector.sub(this.location, m.location);             // Calculate direction of force
-  var distance = force.mag();                                 // Distance between objects
-  distance = constrain(distance, 5.0, 25.0);                             // Limiting the distance to eliminate "extreme" results for very close or very far objects
-  force.normalize();                                            // Normalize vector (distance doesn't matter here, we just want this vector for direction)
-  var strength = (this.g * this.mass * m.mass) / (distance * distance); // Calculate gravitional force magnitude
-  force.mult(strength);                                         // Get force vector --> magnitude * direction
+Attractor.prototype.calculateAttraction = function(m) {
+  // Calculate direction of force
+  var force = PVector.sub(this.position, m.position);
+  // Distance between objects       
+  var distance = force.mag();
+  // Limiting the distance to eliminate "extreme" results for very close or very far objects                            
+  distance = constrain(distance, 5, 25);
+  // Normalize vector (distance doesn't matter here, we just want this vector for direction)                                  
+  force.normalize();
+  // Calculate gravitional force magnitude  
+  var strength = (this.G * this.mass * m.mass) / (distance * distance);
+  // Get force vector --> magnitude * direction
+  force.mult(strength);
   return force;
-}
+};
 
-// Method to display
-Attractor.prototype.display = function () {
+Attractor.prototype.display = function() {
+  ellipseMode(CENTER);
+  strokeWeight(4);
   stroke(0);
-  strokeWeight(2);
-  fill(127);
-  ellipse(this.location.x, this.location.y, 48, 48);
-}
+  ellipse(this.position.x, this.position.y, this.mass*2, this.mass*2);
+};

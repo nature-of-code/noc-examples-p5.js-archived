@@ -3,25 +3,24 @@
 // http://natureofcode.com
 
 var movers = [];
-var moversLength = 20;
-var a;
+var attractor;
 
 function setup() {
-  createGraphics(640,360);
-  background(255);
-  for (i = 0; i < moversLength; i++) {
-    movers[i] = new Mover(random(0.1,2),random(width),random(height));
+  createGraphics(640, 360);
+  
+  for (var i = 0; i < 20; i++) {
+    movers.push(new Mover(random(0.1, 2), random(width), random(height)));
   }
-  a = new Attractor();
+  attractor = new Attractor();
 }
 
 function draw() {
   background(51);
 
-  a.display();
+  attractor.display();
 
-  for (i = 0; i < movers.length; i++) {
-    var force = a.attract(movers[i]);
+  for (var i = 0; i < movers.length; i++) {
+    var force = attractor.calculateAttraction(movers[i]);
     movers[i].applyForce(force);
 
     movers[i].update();

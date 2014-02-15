@@ -2,16 +2,16 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var movers;
+var mover;
 
 function setup() {
-  createGraphics(640,360);
+  createGraphics(640, 360);
   background(255);
   mover = new Mover();
 }
 
 function draw() {
-  background(51);
+  background(50);
   mover.update();
   mover.checkEdges();
   mover.display();
