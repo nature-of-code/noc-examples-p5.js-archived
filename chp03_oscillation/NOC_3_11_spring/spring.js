@@ -1,3 +1,7 @@
+// Nature of Code 2011
+// Daniel Shiffman
+// Chapter 3: Oscillation
+
 // Object to describe an anchor point that can connect to "Bob" objects via a spring
 // Thank you: http://www.myphysicslab.com/spring2d.html
 
@@ -15,7 +19,7 @@ Spring.prototype.connect = function(b) {
   var d = force.mag();
   // Stretch is difference between current distance and rest length
   var stretch = d - this.restLength;
-  
+
   // Calculate force according to Hooke's Law
   // F = k * stretch
   force.normalize();
@@ -41,6 +45,27 @@ Spring.prototype.constrainLength = function(b, minLength, maxLength) {
     // Reset location and stop from moving (not realistic physics)
     b.position = PVector.add(this.anchor, dir);
     b.velocity.mult(0);
+  }
+};
+
+// Constrain the distance between bob and anchor between min and max
+Spring.prototype.constrainLength = function(bob, minlen, maxlen) {
+  var dir = PVector.sub(bob.position, this.anchor);
+  var d = dir.mag();
+  // Is it too short?
+  if (d < minlen) {
+    dir.normalize();
+    dir.mult(minlen);
+    // Reset position and stop from moving (not realistic physics)
+    bob.position = PVector.add(anchor, dir);
+    bob.velocity.mult(0);
+    // Is it too long?
+  } else if (d > maxlen) {
+    dir.normalize();
+    dir.mult(maxlen);
+    // Reset position and stop from moving (not realistic physics)
+    bob.position = PVector.add(this.anchor, dir);
+    bob.velocity.mult(0);
   }
 };
 

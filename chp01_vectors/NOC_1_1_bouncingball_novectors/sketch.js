@@ -15,7 +15,7 @@ function setup() {
 function draw() {
   background(51);
 
-  // Add the current speed to the location.
+  // Add the current speed to the position.
   x = x + xspeed;
   y = y + yspeed;
 
@@ -26,7 +26,7 @@ function draw() {
     yspeed = yspeed * -1;
   }
 
-  // Display circle at x location
+  // Display circle at x position
   stroke(0);
   strokeWeight(2);
   fill(127);

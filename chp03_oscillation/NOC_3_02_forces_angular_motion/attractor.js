@@ -28,7 +28,8 @@ Attractor.prototype.calculateAttraction = function(m) {
 
 Attractor.prototype.display = function() {
   ellipseMode(CENTER);
-  strokeWeight(4);
+  strokeWeight(2);
   stroke(0);
+  fill(127);
   ellipse(this.position.x, this.position.y, this.mass*2, this.mass*2);
 };

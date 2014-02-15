@@ -12,7 +12,7 @@ function setup() {
 function draw() {
   background(51);
   
-  // A vector that points to the mouse location
+  // A vector that points to the mouse position
   var mouse = new PVector(mouseX,mouseY);
   // A vector that points to the center of the window
   var center = new PVector(width/2,height/2);

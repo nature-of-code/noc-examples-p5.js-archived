@@ -2,8 +2,8 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-function ParticleSystem(location){	
-	this.origin = location.get();
+function ParticleSystem(position){	
+	this.origin = position.get();
 	this.particles = [];
 }
 

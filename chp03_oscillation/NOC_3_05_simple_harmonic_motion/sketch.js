@@ -11,8 +11,10 @@ function draw() {
 
   var period = 120;
   var amplitude = 300;
+
   // Calculating horizontal location according to formula for simple harmonic motion
   var x = amplitude * sin(TWO_PI * frameCount / period);
+
   stroke(0);
   strokeWeight(2);
   fill(127);

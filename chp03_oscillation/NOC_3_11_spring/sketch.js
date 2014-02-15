@@ -1,16 +1,24 @@
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Mover object
 var bob;
+
+// Spring object
 var spring;
 
-function setup() {
-  createGraphics(800, 200);
+function setup()  {
+  createGraphics(640, 360);
   // Create objects at starting location
   // Note third argument in Spring constructor is "rest length"
-  bob = new Bob(width/2, 100);
   spring = new Spring(width/2, 10, 100);
+  bob = new Bob(width/2, 100);
 }
 
 function draw() {
   background(255);
+
   // Apply a gravity force to the bob
   var gravity = new PVector(0,2);
   bob.applyForce(gravity);
@@ -43,4 +51,3 @@ function mouseDragged() {
 function mouseReleased() {
   bob.stopDragging();
 }
-

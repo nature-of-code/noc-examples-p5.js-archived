@@ -32,9 +32,11 @@ Mover.prototype.display = function () {
   fill(127);
   pushMatrix();
   rectMode(CENTER);
+
   translate(this.position.x, this.position.y);
   rotate(angle);
   rect(0, 0, 30, 10);
+
   popMatrix();
 };
 

@@ -12,7 +12,7 @@ function Mover() {
 }
 
 Mover.prototype.update = function() {
-  // Compute a vector that points from location to mouse
+  // Compute a vector that points from position to mouse
   var mouse = new PVector(mouseX,mouseY);
   this.acceleration = PVector.sub(mouse,this.position);
   // Set magnitude of acceleration
