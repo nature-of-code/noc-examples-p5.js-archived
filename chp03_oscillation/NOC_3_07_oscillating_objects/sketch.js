@@ -3,15 +3,14 @@
 // http://natureofcode.com
 
 // An array of objects
-oscillators = [];
-oscillatorsLength = 10;
+var oscillators = [];
 
 function setup()  {
-  createGraphics(640,360);
+  createGraphics(640, 360);
   smooth();
   // Initialize all objects
-  for (i = 0; i < oscillatorsLength; i++) {
-    oscillators[i] = new Oscillator();
+  for (var i = 0; i < 10; i++) {
+    oscillators.push(new Oscillator());
   }
   background(255);
 }
@@ -19,7 +18,7 @@ function setup()  {
 function draw() {
   background(255);
   // Run all objects
-  for (i = 0; i < oscillatorsLength; i++) {
+  for (var i = 0; i < oscillators.length; i++) {
     oscillators[i].oscillate();
     oscillators[i].display();
   }

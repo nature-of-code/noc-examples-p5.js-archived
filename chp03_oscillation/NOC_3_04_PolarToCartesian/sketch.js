@@ -21,6 +21,7 @@ function draw() {
   background(255);
 
   // Translate the origin point to the center of the screen
+  resetMatrix();
   translate(width/2, height/2);
 
   // Convert polar to cartesian
@@ -32,7 +33,7 @@ function draw() {
   fill(127);
   stroke(0);
   strokeWeight(2);
-  line(0,0,x,y);
+  line(0, 0, x, y);
   ellipse(x, y, 48, 48);
 
   // Increase the angle over time
