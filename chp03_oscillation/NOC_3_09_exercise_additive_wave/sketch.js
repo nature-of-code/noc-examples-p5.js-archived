@@ -31,7 +31,7 @@ function setup() {
 }
 
 function draw() {
-  background(0);
+  background(51);
   calcWave();
   renderWave();
 }
@@ -60,7 +60,7 @@ function calcWave() {
 function renderWave() {
   // A simple way to draw the wave with an ellipse at each position
   noStroke();
-  fill(255,50);
+  fill(255,100);
   ellipseMode(CENTER);
   for (var x = 0; x < yvalues.length; x++) {
     ellipse(x*xspacing,height/2+yvalues[x],16,16);

@@ -29,11 +29,11 @@ Bob.prototype.applyForce = function(force) {
 
 // Draw the bob
 Bob.prototype.display = function() {
-  stroke(0);
+  stroke(255);
   strokeWeight(2);
-  fill(175);
+  fill(127);
   if (this.dragging) {
-    fill(50);
+    fill(200);
   }
   ellipse(this.position.x, this.position.y, this.mass*2, this.mass*2);
 };

@@ -70,8 +70,8 @@ Spring.prototype.constrainLength = function(bob, minlen, maxlen) {
 };
 
 Spring.prototype.display = function() {
-  stroke(0);
-  fill(175);
+  stroke(255);
+  fill(127);
   strokeWeight(2);
   rectMode(CENTER);
   rect(this.anchor.x, this.anchor.y, 10, 10);
@@ -79,6 +79,6 @@ Spring.prototype.display = function() {
 
 Spring.prototype.displayLine = function(b) {
   strokeWeight(2);
-  stroke(0);
+  stroke(255);
   line(b.position.x, b.position.y, this.anchor.x, this.anchor.y);
 };

@@ -45,13 +45,13 @@ Pendulum.prototype.display = function() {
   this.position.set(this.r*sin(this.angle), this.r*cos(this.angle), 0);         // Polar to cartesian conversion
   this.position.add(this.origin);                                               // Make sure the position is relative to the pendulum's origin
 
-  stroke(0);
+  stroke(255);
   strokeWeight(2);
   // Draw the arm
   line(this.origin.x, this.origin.y, this.position.x, this.position.y);
   ellipseMode(CENTER);
-  fill(175);
-  if (this.dragging) fill(0);
+  fill(127);
+  if (this.dragging) fill(200);
   // Draw the ball
   ellipse(this.position.x, this.position.y, this.ballr, this.ballr);
 }

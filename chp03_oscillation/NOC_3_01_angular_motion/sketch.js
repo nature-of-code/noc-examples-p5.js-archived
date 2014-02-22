@@ -13,7 +13,6 @@ function setup() {
 function draw() {
   background(220);
 
-  resetMatrix();
   translate(width/2, height/2);
   rotate(angle);
 

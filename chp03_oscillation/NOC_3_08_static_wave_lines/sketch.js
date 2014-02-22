@@ -7,8 +7,8 @@ var angleVel = 0.1;
 
 function setup() {
   createGraphics(640, 360);
-  background(255);
-  stroke(0);
+  background(51);
+  stroke(255);
   strokeWeight(2);
   noFill();
 

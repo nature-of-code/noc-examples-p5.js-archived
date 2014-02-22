@@ -6,7 +6,6 @@ var mover;
 
 function setup() {
   createGraphics(640, 360);
-  background(255);
   mover = new Mover();
 }
 

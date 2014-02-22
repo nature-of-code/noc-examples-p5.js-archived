@@ -18,10 +18,9 @@ function setup() {
 }
 
 function draw() {
-  background(255);
+  background(51);
 
   // Translate the origin point to the center of the screen
-  resetMatrix();
   translate(width/2, height/2);
 
   // Convert polar to cartesian
@@ -31,7 +30,7 @@ function draw() {
   // Draw the ellipse at the cartesian coordinate
   ellipseMode(CENTER);
   fill(127);
-  stroke(0);
+  stroke(255);
   strokeWeight(2);
   line(0, 0, x, y);
   ellipse(x, y, 48, 48);

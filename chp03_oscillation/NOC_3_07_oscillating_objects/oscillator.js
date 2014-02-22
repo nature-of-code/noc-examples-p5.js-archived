@@ -18,7 +18,7 @@ Oscillator.prototype.display = function() {
 
   pushMatrix();
   translate(width/2, height/2);
-  stroke(0);
+  stroke(255);
   strokeWeight(2);
   fill(127, 127);
   line(0, 0, x, y);

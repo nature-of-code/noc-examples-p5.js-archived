@@ -7,16 +7,14 @@ var oscillators = [];
 
 function setup()  {
   createGraphics(640, 360);
-  smooth();
   // Initialize all objects
   for (var i = 0; i < 10; i++) {
     oscillators.push(new Oscillator());
   }
-  background(255);
 }
 
 function draw() {
-  background(255);
+  background(51);
   // Run all objects
   for (var i = 0; i < oscillators.length; i++) {
     oscillators[i].oscillate();
