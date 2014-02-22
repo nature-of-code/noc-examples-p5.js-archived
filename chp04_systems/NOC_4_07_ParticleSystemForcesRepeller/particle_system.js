@@ -13,13 +13,12 @@ ParticleSystem.prototype.addParticle = function(){
 
 ParticleSystem.prototype.run = function(){
 	for (var i = this.particles.length-1; i >= 0; i--) {
-      var p = this.particles[i];
-      p.run();
-      if (p.isDead()) {
-        this.particles.splice(i, 1);
-      }
+    var p = this.particles[i];
+    p.run();
+    if (p.isDead()) {
+      this.particles.splice(i, 1);
     }
-
+  }
 }
 
 // A function to apply a force to all Particles

@@ -6,11 +6,12 @@ var ps;
 
 function setup() {
   createGraphics(640,360);
+  setFrameRate(60);
   ps = new ParticleSystem(new PVector(width/2, 50));
 }
 
 function draw() {
-  background(255);
+  background(51);
 
   // Apply gravity force to all Particles
   var gravity = new PVector(0,0.1);
@@ -18,5 +19,4 @@ function draw() {
 
   ps.addParticle();
   ps.run();
-
 };

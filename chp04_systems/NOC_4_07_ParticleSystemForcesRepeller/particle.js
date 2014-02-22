@@ -35,7 +35,7 @@ Particle.prototype.update = function(){
 
 // Method to display
 Particle.prototype.display = function() {
-  stroke(0, this.lifespan);
+  stroke(255, this.lifespan);
   strokeWeight(2);
   fill(127, this.lifespan);
   ellipse(this.position.x, this.position.y, 12, 12);
@@ -45,8 +45,7 @@ Particle.prototype.display = function() {
 Particle.prototype.isDead = function(){
   if (this.lifespan < 0.0) {
       return true;
-    } 
-    else {
-      return false;
-    }
+  } else {
+    return false;
+  }
 }
