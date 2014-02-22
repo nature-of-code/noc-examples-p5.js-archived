@@ -2,17 +2,18 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-function Confetti(position){
-	this.position = position;	
+// Child class constructor
+function Confetti(position) {
+  Particle.call(this,position);
 }
 
-Confetti.prototype = Particle.prototype;
-
-// Inherits update() from parent
+// Inherit from the parent class
+Confetti.prototype = Object.create(Particle.prototype);
+Confetti.prototype.constructor = Confetti;
 
 // Override the display method
 Confetti.prototype.display = function(){
-	rectMode(CENTER);
+    rectMode(CENTER);
     fill(127,this.lifespan);
     stroke(0,this.lifespan);
     strokeWeight(2);
