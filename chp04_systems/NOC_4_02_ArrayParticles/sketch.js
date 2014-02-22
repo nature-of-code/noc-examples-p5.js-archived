@@ -9,7 +9,7 @@ function setup() {
 }
 
 function draw() {
-  background(255);
+  background(51);
   particles.push(new Particle(new PVector(width/2,50)));
 
   // Looping through backwards to delete

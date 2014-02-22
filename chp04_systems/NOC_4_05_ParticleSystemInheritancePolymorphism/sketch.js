@@ -16,7 +16,7 @@ function setup() {
 }
 
 function draw() {
-  background(255);  
+  background(51);  
   particleSystem.addParticle();
   particleSystem.run();
 }

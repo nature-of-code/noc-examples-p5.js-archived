@@ -7,7 +7,7 @@
 // A ParticleSystem object manages a variable size 
 // list of particles.
 
-//an array of ParticleSystems
+// an array of ParticleSystems
 var systems = [];
 
 function setup() {
@@ -15,20 +15,20 @@ function setup() {
 }
 
 function draw() {
-  background(255);  
+  background(51);  
   for(var i=0; i<systems.length; i++){
   	systems[i].addParticle();
   	systems[i].run();
   }
 
-  fill(0);
-  text("press space to add particle systems at mouse position",10,height-30);
+  fill(151);
+  stroke(151);
+  strokeWeight(1);
+  textSize(16);
+  text("click to add particle systems",10,height-30);
   
 }
 
-function keyPressed() {
-	if(key === ' '){
-		systems.push(new ParticleSystem(1, new PVector(mouseX,mouseY)));
-	}
-	
+function mousePressed() {
+  systems.push(new ParticleSystem(1, new PVector(mouseX,mouseY)));
 }

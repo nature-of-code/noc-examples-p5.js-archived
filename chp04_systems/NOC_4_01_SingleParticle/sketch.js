@@ -5,15 +5,12 @@
 var p;
 
 function setup() {
-  createGraphics(800,200);
+  createGraphics(640,360);
    p = new Particle(new PVector(width/2, 20));
-   background(255);
-   smooth();
-  
 }
 
 function draw() {
-  background(255);
+  background(51);
 
   this.p.run();
   if (this.p.isDead()) {
