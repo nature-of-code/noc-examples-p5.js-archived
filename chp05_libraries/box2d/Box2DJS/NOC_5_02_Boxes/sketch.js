@@ -47,7 +47,7 @@ function draw() {
   }
 
   // Display all the boxes
-  for (var i = boxes.size()-1; i >= 0; i--) {
+  for (var i = boxes.length-1; i >= 0; i--) {
     boxes[i].display();
     if (boxes[i].done()) {
       boxes.splice(i,1);
