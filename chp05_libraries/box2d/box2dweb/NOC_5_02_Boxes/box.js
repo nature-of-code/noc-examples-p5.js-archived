@@ -18,12 +18,11 @@ function Box(x, y) {
   fd.restitution = 0.2;
  
   var bd = new BodyDef();
- 
+
   bd.type = Body.b2_dynamicBody;
-  bd.position.x = (x-transX)/scaleFactor;//(width/2-transX)/scaleFactor;
-  bd.position.y = (y-transY)/scaleFactor;//(height/2-transY)/scaleFactor;
+  bd.position = pixelsToWorld(x,y);
   fd.shape = new PolygonShape();
-  fd.shape.SetAsBox(this.w/(scaleFactor*2), this.h/(scaleFactor*2));
+  fd.shape.SetAsBox(pixelsToWorld(this.w/2), pixelsToWorld(this.h/2));
   this.body = world.CreateBody(bd);
   this.body.CreateFixture(fd);
 
@@ -40,12 +39,9 @@ Box.prototype.killBody = function() {
 Box.prototype.done = function() {
   // Let's find the screen position of the particle
   var transform = this.body.GetTransform();
-  var pos = transform.position;
-  var x = pos.x*scaleFactor+transX;
-  var y = pos.y*scaleFactor+transY;
-
+  var pos = worldToPixels(transform.position);
   // Is it off the bottom of the screen?
-  if (y > height+this.w*this.h) {
+  if (pos.y > height+this.w*this.h) {
     this.killBody();
     return true;
   }
@@ -55,15 +51,13 @@ Box.prototype.done = function() {
 // Drawing the box
 Box.prototype.display = function() {
   var transform = this.body.GetTransform();
-  var pos = transform.position;
-  var x = pos.x*scaleFactor+transX;
-  var y = pos.y*scaleFactor+transY;
+  var pos = worldToPixels(transform.position);
   // Get its angle of rotation
   var a = transform.GetAngle();
 
   rectMode(CENTER);
   pushMatrix();
-  translate(x,y);
+  translate(pos.x,pos.y);
   rotate(a);
   fill(127);
   stroke(200);
