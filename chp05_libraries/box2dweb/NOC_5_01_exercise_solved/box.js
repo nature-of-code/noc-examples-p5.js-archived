@@ -4,13 +4,11 @@
 
 // A rectangular box
 
-
-// Constructor
 function Box(x, y) {
-  this.w = random(4, 16);
-  this.h = random(4, 16);
+  this.w = 16;
+  this.h = 16;
 
-  // Define a body
+   // Define a body
   var bd = new BodyDef();
   bd.type = Body.b2_dynamicBody;
   bd.position = pixelsToWorld(x,y);
@@ -31,33 +29,11 @@ function Box(x, y) {
   // Attach the fixture
   this.body.CreateFixture(fd);
 
-  // Some additional stuff
-  this.body.SetLinearVelocity(new Vec2(random(-5, 5), random(2, 5)));
-  this.body.SetAngularVelocity(random(-5,5));
-}
-
-// This function removes the particle from the box2d world
-Box.prototype.killBody = function() {
-  world.DestroyBody(this.body);
-}
-
-// Is the particle ready for deletion?
-Box.prototype.done = function() {
-  // Let's find the screen position of the particle
-  var transform = this.body.GetTransform();
-  var pos = worldToPixels(transform.position);
-  // Is it off the bottom of the screen?
-  if (pos.y > height+this.w*this.h) {
-    this.killBody();
-    return true;
-  }
-  return false;
 }
 
 // Drawing the box
 Box.prototype.display = function() {
-
-  // Get the body's "transform"
+ // Get the body's "transform"
   var transform = this.body.GetTransform();
   // Convert to pixel coordinates
   var pos = worldToPixels(transform.position);

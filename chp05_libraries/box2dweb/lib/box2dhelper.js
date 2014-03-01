@@ -17,12 +17,20 @@ var transY;
 var scaleFactor;
 //var yFlip;
 
-var createWorld = function() {
+var createWorld = function(gravity,dosleep) {
+  if (!gravity) {
+  	gravity = new Vec2(0,10);
+  }
+
+  if (dosleep == undefined) {
+  	dosleep = true;
+  }
+
   transX = width/2;
   transY = height/2;
   scaleFactor = 10;
   //yFlip = -1;
-  return new World(new Vec2(0, 10),true);
+  return new World(gravity,dosleep);
 }
 
 var pixelsToWorld = function(a,b) {
