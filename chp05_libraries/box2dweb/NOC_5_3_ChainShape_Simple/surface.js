@@ -18,12 +18,15 @@ function Surface() {
 
   // We can add 3 vertices by making an array of 3 Vec2 objects
   chain.vertices = [];
+
+  chain.isALoop = false;
+  chain.vertexCount = this.surface.length;
   for (var i = 0; i < this.surface.length; i++) {
     chain.vertices[i] = pixelsToWorld(this.surface[i]);
   }
 
   //chain.CreateChain(vertices, vertices.length);
-
+  
   // Need a body to attach shape!
   var bd = new BodyDef();
   //var body = world.CreateBody(bd);
@@ -38,22 +41,23 @@ function Surface() {
   fd.density = 1.0;
   fd.friction = 0.1;
   fd.restitution = 0.3;
- 
+
   // Create the body
   this.body = world.CreateBody(bd);
-  // Attach the fixture
-  this.body.CreateFixture(fd);
 
+  // SAD THIS IS NOT YET IMPLEMENTED IN BOX2DWEB, see: https://groups.google.com/forum/#!topic/box2dweb/trFvD__gvpo
+  // Attach the fixture
+  //this.body.CreateFixture(fd);
 }
 
-  // A simple function to just draw the edge chain as a series of vertex points
+// A simple function to just draw the edge chain as a series of vertex points
 Surface.prototype.display = function() {
   strokeWeight(1);
-  stroke(0);
-  fill(0);
+  stroke(200);
+  fill(200);
   beginShape();
-  for (var i = 0; i < surface.length; i++) {
-    vertex(surface[i].x, surface[i].y);
+  for (var i = 0; i < this.surface.length; i++) {
+    vertex(this.surface[i].x, this.surface[i].y);
   }
   vertex(width, height);
   vertex(0, height);
