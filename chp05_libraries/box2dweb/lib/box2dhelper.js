@@ -8,6 +8,7 @@ var World = Box2D.Dynamics.b2World;
 var MassData = Box2D.Collision.Shapes.b2MassData;
 var PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
 var CircleShape = Box2D.Collision.Shapes.b2CircleShape;
+var ChainShape = Box2D.Collision.Shapes.b2EdgeChainDef;
 var DebugDraw = Box2D.Dynamics.b2DebugDraw;
 var Transform = Box2D.Common.Math.b2Transform;
 
