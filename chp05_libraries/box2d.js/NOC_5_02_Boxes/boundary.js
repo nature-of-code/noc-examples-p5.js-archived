@@ -14,19 +14,23 @@ function Boundary(x_,y_, w_, h_) {
   this.w = w_;
   this.h = h_;
 
-  var fd = new FixtureDef();
-  fd.density = 1.0;
-  fd.friction = 0.5;
-  fd.restitution = 0.2;
- 
   var bd = new BodyDef();
+  bd.set_type(Box2D.b2_staticBody);
+  bd.set_position(pixelsToWorld(this.x,this.y));
  
-  bd.type = Body.b2_staticBody;
-  bd.position.x = (this.x-transX)/scaleFactor;
-  bd.position.y = (this.y-transY)/scaleFactor;
-  fd.shape = new PolygonShape();
-  fd.shape.SetAsBox(this.w/(scaleFactor*2), this.h/(scaleFactor*2));
-  this.body = world.CreateBody(bd).CreateFixture(fd);
+  // Define a shape
+  var ps = new PolygonShape();
+  ps.SetAsBox(pixelsToWorld(this.w/2), pixelsToWorld(this.h/2));
+
+  var fd = new FixtureDef();
+  fd.set_density(1.0);
+  fd.set_friction(0.5);
+  fd.set_restitution(0.2);
+ 
+  fd.set_shape(ps);
+  
+  this.body = world.CreateBody(bd);
+  this.body.CreateFixture(fd);
 }
 
   // Draw the boundary, if it were at an angle we'd have to do something fancier

@@ -10,25 +10,27 @@ function Box(x, y) {
   this.w = random(4, 16);
   this.h = random(4, 16);
 
-  // Define a body
+   // Define a body
   var bd = new BodyDef();
-  bd.type = Body.b2_dynamicBody;
-  bd.position = pixelsToWorld(x,y);
-
+  bd.set_type(Box2D.b2_dynamicBody);
+  bd.set_position(pixelsToWorld(x,y));
+  
+  // Define a shape
+  var ps = new PolygonShape();
+  ps.SetAsBox(pixelsToWorld(this.w/2), pixelsToWorld(this.h/2));
+  
   // Define a fixture
   var fd = new FixtureDef();
   // Fixture holds shape
-  fd.shape = new PolygonShape();
-  fd.shape.SetAsBox(pixelsToWorld(this.w/2), pixelsToWorld(this.h/2));
+  fd.set_shape(ps);
   
   // Some physics
-  fd.density = 1.0;
-  fd.friction = 0.5;
-  fd.restitution = 0.2;
+  fd.set_density(1.0);
+  fd.set_friction(0.5);
+  fd.set_restitution(0.2);
  
   // Create the body
   this.body = world.CreateBody(bd);
-  // Attach the fixture
   this.body.CreateFixture(fd);
 
   // Some additional stuff
@@ -43,11 +45,11 @@ Box.prototype.killBody = function() {
 
 // Is the particle ready for deletion?
 Box.prototype.done = function() {
-  // Let's find the screen position of the particle
-  var transform = this.body.GetTransform();
-  var pos = worldToPixels(transform.position);
+ // Get the body's "transform"
+  var pos = worldToPixels(this.body.GetPosition());
+
   // Is it off the bottom of the screen?
-  if (pos.y > height+this.w*this.h) {
+  if (pos.get_y() > height+this.w*this.h) {
     this.killBody();
     return true;
   }
@@ -57,17 +59,15 @@ Box.prototype.done = function() {
 // Drawing the box
 Box.prototype.display = function() {
 
-  // Get the body's "transform"
-  var transform = this.body.GetTransform();
-  // Convert to pixel coordinates
-  var pos = worldToPixels(transform.position);
+ // Get the body's "transform"
+  var pos = worldToPixels(this.body.GetPosition());
   // Get its angle of rotation
-  var a = transform.GetAngle();
+  var a = this.body.GetAngle();
   
   // Draw it!
   rectMode(CENTER);
   pushMatrix();
-  translate(pos.x,pos.y);
+  translate(pos.get_x(),pos.get_y());
   rotate(a);
   fill(127);
   stroke(200);
