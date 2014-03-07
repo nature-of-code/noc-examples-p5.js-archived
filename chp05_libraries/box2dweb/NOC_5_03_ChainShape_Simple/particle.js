@@ -12,13 +12,13 @@ function Particle(x,y,r) {
   // Define a body
   var bd = new BodyDef();
   bd.type = Body.b2_dynamicBody;
-  bd.position = pixelsToWorld(x,y);
+  bd.position = translateToWorld(x,y);
 
   // Define a fixture
   var fd = new FixtureDef();
   // Fixture holds shape
   fd.shape = new CircleShape();
-  fd.shape.m_radius = pixelsToWorld(this.r);
+  fd.shape.m_radius = translateToWorld(this.r);
   
   // Some physics
   fd.density = 1.0;
@@ -44,7 +44,7 @@ Particle.prototype.killBody = function() {
 Particle.prototype.done = function() {
   // Let's find the screen position of the particle
   var transform = this.body.GetTransform();
-  var pos = worldToPixels(transform.position);
+  var pos = translateToPixels(transform.position);
   // Is it off the bottom of the screen?
   if (pos.y > height+this.r*2) {
     this.killBody();
@@ -59,7 +59,7 @@ Particle.prototype.display = function() {
   // Get the body's "transform"
   var transform = this.body.GetTransform();
   // Convert to pixel coordinates
-  var pos = worldToPixels(transform.position);
+  var pos = translateToPixels(transform.position);
   // Get its angle of rotation
   var a = transform.GetAngle();
   

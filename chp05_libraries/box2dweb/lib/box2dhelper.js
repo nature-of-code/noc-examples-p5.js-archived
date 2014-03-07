@@ -16,7 +16,7 @@ var Transform = Box2D.Common.Math.b2Transform;
 var transX;
 var transY;
 var scaleFactor;
-//var yFlip;
+var yFlip;
 
 var createWorld = function(gravity,dosleep) {
   if (!gravity) {
@@ -30,11 +30,11 @@ var createWorld = function(gravity,dosleep) {
   transX = width/2;
   transY = height/2;
   scaleFactor = 10;
-  //yFlip = -1;
+  yFlip = 1;
   return new World(gravity,dosleep);
 }
 
-var pixelsToWorld = function(a,b) {
+var translateToWorld = function(a,b) {
 	if (a instanceof Vec2) {
 		var newv = new Vec2();
 		newv.x = (a.x-transX)/scaleFactor;
@@ -51,7 +51,7 @@ var pixelsToWorld = function(a,b) {
 
 }
 
-var worldToPixels = function(a,b) {
+var translateToPixels = function(a,b) {
 	if (a instanceof Vec2) {
 		var newv = new Vec2();
 		newv.x = a.x*scaleFactor+transX;
@@ -66,16 +66,16 @@ var worldToPixels = function(a,b) {
 	}
 }
 
-var scaleToWorld = function(a) {
+var scaleToWorld = function(a,b) {
 	if (a instanceof Vec2) {
 		var newv = new Vec2();
 		newv.x = (a.x)/scaleFactor;
-		newv.y = (a.x)/scaleFactor;
+		newv.y = yFlip*(a.y)/scaleFactor;
 		return newv;
 	} else if (b) {
 		var newv = new Vec2();
 		newv.x = (a)/scaleFactor;
-		newv.y = (b)/scaleFactor;
+		newv.y = yFlip*(b)/scaleFactor;
 		return newv;
 	} else {
 		return a/scaleFactor;
@@ -86,12 +86,12 @@ var scaleToPixels = function(a,b) {
 	if (a instanceof Vec2) {
 		var newv = new Vec2();
 		newv.x = a.x*scaleFactor;
-		newv.y = a.y*scaleFactor;
+		newv.y = yFlip*a.y*scaleFactor;
 		return newv;
 	} else if (b) {
 		var newv = new Vec2();
 		newv.x = a*scaleFactor;
-		newv.y = b*scaleFactor;
+		newv.y = yFlip*b*scaleFactor;
 	} else {
 		return a/scaleFactor;
 	}

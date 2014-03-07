@@ -36,7 +36,7 @@ function Surface() {
   var vertices = [];
 
   for (var i = 0; i < this.surface.length; i++) {
-    vertices[i] = pixelsToWorld(this.surface[i]);
+    vertices[i] = translateToWorld(this.surface[i]);
   }
 
   // This is what box2d uses to put the surface in its world

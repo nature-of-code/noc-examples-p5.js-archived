@@ -12,10 +12,10 @@ function Particle(x,y,r) {
   // Define a body
   var bd = new BodyDef();
   bd.set_type(Box2D.b2_dynamicBody);
-  bd.set_position(pixelsToWorld(x,y));
+  bd.set_position(translateToWorld(x,y));
 
   var cs = new CircleShape();
-  cs.set_m_radius(pixelsToWorld(this.r));
+  cs.set_m_radius(translateToWorld(this.r));
 
   // Define a fixture
   var fd = new FixtureDef();
@@ -45,7 +45,7 @@ Particle.prototype.killBody = function() {
 // Is the particle ready for deletion?
 Particle.prototype.done = function() {
   // Let's find the screen position of the particle
-  var pos = worldToPixels(this.body.GetPosition());
+  var pos = translateToPixels(this.body.GetPosition());
 
   // Is it off the bottom of the screen?
   if (pos.get_y() > height+this.r*2) {
@@ -59,7 +59,7 @@ Particle.prototype.done = function() {
 Particle.prototype.display = function() {
 
  // Get the body's "transform"
-  var pos = worldToPixels(this.body.GetPosition());
+  var pos = translateToPixels(this.body.GetPosition());
   // Get its angle of rotation
   var a = this.body.GetAngle();
   

@@ -7,17 +7,14 @@
 
 // Constructor
 function CustomShape(x, y) {
-  this.w = random(4, 16);
-  this.h = random(4, 16);
 
   // Define a body
   var bd = new BodyDef();
   bd.type = Body.b2_dynamicBody;
-  bd.position = pixelsToWorld(x,y);
+  bd.position = translateToWorld(x,y);
 
   // Define a fixture
   var fd = new FixtureDef();
-
 
   var vertices = [];
   vertices[3] = scaleToWorld(new Vec2(-15, 25));
@@ -25,13 +22,12 @@ function CustomShape(x, y) {
   vertices[1] = scaleToWorld(new Vec2(20, -15));
   vertices[0] = scaleToWorld(new Vec2(-10, -10));
 
-
   // Fixture holds shape
   fd.shape = new PolygonShape();
   fd.shape.SetAsArray(vertices,vertices.length);
-  println(fd.shape);
+  //println(fd.shape);
 
-  //fd.shape.SetAsBox(vertices,vertices.length);
+  //fd.shape.SetAsBox(scaleToWorld(10),scaleToWorld(10));
 
   // Some physics
   fd.density = 1.0;
@@ -57,7 +53,7 @@ CustomShape.prototype.killBody = function() {
 CustomShape.prototype.done = function() {
   // Let's find the screen position of the particle
   var transform = this.body.GetTransform();
-  var pos = worldToPixels(transform.position);
+  var pos = translateToPixels(transform.position);
   // Is it off the bottom of the screen?
   if (pos.y > height+this.w*this.h) {
     this.killBody();
@@ -71,10 +67,9 @@ CustomShape.prototype.display = function() {
 
   // Get the body's "transform"
   var transform = this.body.GetTransform();
-  // Convert to pixel coordinates
-  //println(transform.position.x + " " + transform.position.y);
 
-  var pos = worldToPixels(transform.position);
+  // Convert to pixel coordinates
+  var pos = translateToPixels(transform.position);
   
   // Get its angle of rotation
   var a = transform.GetAngle();
@@ -85,10 +80,11 @@ CustomShape.prototype.display = function() {
 
   rectMode(CENTER);
   pushMatrix();
+  translate(pos.x,pos.y);
   //println(pos.x + " " + pos.y);
-  rotate(-a);
+  rotate(a);
   fill(127);
-  stroke(0);
+  stroke(200);
   strokeWeight(2);
   ellipse(0,0,20,20);
   beginShape();

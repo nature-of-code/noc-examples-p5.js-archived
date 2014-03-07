@@ -16,11 +16,11 @@ function Boundary(x_,y_, w_, h_) {
 
   var bd = new BodyDef();
   bd.set_type(Box2D.b2_staticBody);
-  bd.set_position(pixelsToWorld(this.x,this.y));
+  bd.set_position(translateToWorld(this.x,this.y));
  
   // Define a shape
   var ps = new PolygonShape();
-  ps.SetAsBox(pixelsToWorld(this.w/2), pixelsToWorld(this.h/2));
+  ps.SetAsBox(translateToWorld(this.w/2), translateToWorld(this.h/2));
 
   var fd = new FixtureDef();
   fd.set_density(1.0);

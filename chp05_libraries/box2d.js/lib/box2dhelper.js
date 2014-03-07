@@ -36,7 +36,7 @@ var createWorld = function(gravity,dosleep) {
   return w;
 }
 
-var pixelsToWorld = function(a,b) {
+var translateToWorld = function(a,b) {
 	if (a instanceof Vec2) {
 		var newv = new Vec2((a.get_x()-transX)/scaleFactor,(a.get_x()-transY)/scaleFactor);
 		return newv;
@@ -49,7 +49,7 @@ var pixelsToWorld = function(a,b) {
 
 }
 
-var worldToPixels = function(a,b) {
+var translateToPixels = function(a,b) {
 	if (a instanceof Vec2) {
 		var newv = new Vec2(a.get_x()*scaleFactor+transX,a.get_y()*scaleFactor+transY);
 		return newv;

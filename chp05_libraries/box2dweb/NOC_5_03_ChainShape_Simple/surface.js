@@ -22,7 +22,7 @@ function Surface() {
   chain.isALoop = false;
   chain.vertexCount = this.surface.length;
   for (var i = 0; i < this.surface.length; i++) {
-    chain.vertices[i] = pixelsToWorld(this.surface[i]);
+    chain.vertices[i] = translateToWorld(this.surface[i]);
   }
 
   //chain.CreateChain(vertices, vertices.length);
