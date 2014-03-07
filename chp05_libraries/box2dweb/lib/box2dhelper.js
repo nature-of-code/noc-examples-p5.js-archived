@@ -65,3 +65,36 @@ var worldToPixels = function(a,b) {
 		return a/scaleFactor;
 	}
 }
+
+var scaleToWorld = function(a) {
+	if (a instanceof Vec2) {
+		var newv = new Vec2();
+		newv.x = (a.x)/scaleFactor;
+		newv.y = (a.x)/scaleFactor;
+		return newv;
+	} else if (b) {
+		var newv = new Vec2();
+		newv.x = (a)/scaleFactor;
+		newv.y = (b)/scaleFactor;
+		return newv;
+	} else {
+		return a/scaleFactor;
+	}
+}
+
+var scaleToPixels = function(a,b) {
+	if (a instanceof Vec2) {
+		var newv = new Vec2();
+		newv.x = a.x*scaleFactor;
+		newv.y = a.y*scaleFactor;
+		return newv;
+	} else if (b) {
+		var newv = new Vec2();
+		newv.x = a*scaleFactor;
+		newv.y = b*scaleFactor;
+	} else {
+		return a/scaleFactor;
+	}
+}
+
+
