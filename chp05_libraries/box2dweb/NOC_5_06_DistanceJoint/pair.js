@@ -27,6 +27,10 @@ function Pair(x,y) {
   var dj = world.CreateJoint(djd);
 }
 
+Pair.prototype.done = function() {
+  return this.p1.done() && this.p2.done();
+}
+
 Pair.prototype.display = function() {
   // Get the body's "transform"
   var transform1 = this.p1.body.GetTransform();

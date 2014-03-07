@@ -39,7 +39,7 @@ function draw() {
   // Draw the surface
   surface.display();
 
-  // Display all the boxes
+  // Display all the particles
   for (var i = particles.length-1; i >= 0; i--) {
     particles[i].display();
     if (particles[i].done()) {

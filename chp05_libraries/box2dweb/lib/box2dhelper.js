@@ -15,6 +15,7 @@ var DebugDraw = Box2D.Dynamics.b2DebugDraw;
 var Transform = Box2D.Common.Math.b2Transform;
 
 var DistanceJointDef = Box2D.Dynamics.Joints.b2DistanceJointDef;
+var RevoluteJointDef = Box2D.Dynamics.Joints.b2RevoluteJointDef;
 
 // variables for transformations
 var transX;

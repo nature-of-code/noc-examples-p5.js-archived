@@ -36,11 +36,13 @@ function draw() {
     boundaries[i].display();
   }
 
-  // Display all the boxes
-  for (var i = 0; i < pairs.length; i++) {
+  // Display all the pairs
+  for (var i = pairs.length-1; i >= 0; i--) {
     pairs[i].display();
+    if (pairs[i].done()) {
+      pairs.splice(i,1);
+    }
   }
-
 }
 
 function mousePressed() {
