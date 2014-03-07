@@ -1,4 +1,6 @@
 // Making it easier to use all these classes
+// This is probably a terrible idea for some reason
+
 var Vec2 = Box2D.Common.Math.b2Vec2;
 var BodyDef = Box2D.Dynamics.b2BodyDef;
 var Body = Box2D.Dynamics.b2Body;
@@ -11,6 +13,8 @@ var CircleShape = Box2D.Collision.Shapes.b2CircleShape;
 var ChainShape = Box2D.Collision.Shapes.b2EdgeChainDef;
 var DebugDraw = Box2D.Dynamics.b2DebugDraw;
 var Transform = Box2D.Common.Math.b2Transform;
+
+var DistanceJointDef = Box2D.Dynamics.Joints.b2DistanceJointDef;
 
 // variables for transformations
 var transX;
