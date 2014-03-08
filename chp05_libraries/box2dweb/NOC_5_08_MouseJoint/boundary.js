@@ -32,7 +32,7 @@ function Boundary(x_,y_, w_, h_) {
   // Draw the boundary, if it were at an angle we'd have to do something fancier
 Boundary.prototype.display = function() {
   fill(127);
-  stroke(200);
+  stroke(127);
   rectMode(CENTER);
   rect(this.x,this.y,this.w,this.h);
 }

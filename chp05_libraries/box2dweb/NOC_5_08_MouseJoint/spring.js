@@ -22,16 +22,11 @@ Spring.prototype.update = function(x, y) {
 Spring.prototype.display = function() {
   if (this.mouseJoint != null) {
     // We can get the two anchor points
-    var v1 = new Vec2(0,0);
-    this.mouseJoint.GetAnchorA(v1);
-    var v2 = new Vec2(0,0);
-    this.mouseJoint.GetAnchorB(v2);
-    // Convert them to screen coordinates
-    v1 = translateToPixels(v1);
-    v2 = translateToPixels(v2);
+    var v1 = translateToPixels(this.mouseJoint.GetAnchorA());
+    var v2 = translateToPixels(this.mouseJoint.GetAnchorB());
     // And just draw a line
-    stroke(0);
-    strokeWeight(1);
+    stroke(200);
+    strokeWeight(2);
     line(v1.x,v1.y,v2.x,v2.y);
   }
 }
@@ -50,7 +45,10 @@ Spring.prototype.bind = function(x,y,box) {
   // Get the mouse location in world coordinates
   var mp = translateToWorld(x,y);
   // And that's the target
-  md.target.Set(mp);
+  //println(mp.x + " " + mp.y);
+  md.target = mp;
+  //println(md.target.x + " " + md.target.y);
+
   // Some stuff about how strong and bouncy the spring should be
   md.maxForce = 1000.0 * box.body.m_mass;
   md.frequencyHz = 5.0;
