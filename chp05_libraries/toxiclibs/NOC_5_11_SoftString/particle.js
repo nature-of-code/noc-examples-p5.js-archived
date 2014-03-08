@@ -3,9 +3,9 @@
 // http://natureofcode.com
 
 // Child class constructor
-function Particle(position) {
+function Particle(x,y) {
+  VerletParticle2D.call(this,x,y);
   this.radius = 4;
-  VerletParticle2D.call(this,position);
 }
 
 // Inherit from the parent class
