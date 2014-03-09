@@ -2,13 +2,11 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-// A rectangular box
-
+// A circular particle
 
 // Constructor
-function Box(x, y) {
-  this.w = random(4, 16);
-  this.h = random(4, 16);
+function Particle(x, y) {
+  this.r = 8;
 
   // Define a body
   var bd = new BodyDef();
@@ -18,13 +16,13 @@ function Box(x, y) {
   // Define a fixture
   var fd = new FixtureDef();
   // Fixture holds shape
-  fd.shape = new PolygonShape();
-  fd.shape.SetAsBox(translateToWorld(this.w/2), translateToWorld(this.h/2));
+  fd.shape = new CircleShape();
+  fd.shape.m_radius = scaleToWorld(this.r);
   
   // Some physics
   fd.density = 1.0;
-  fd.friction = 0.5;
-  fd.restitution = 0.2;
+  fd.friction = 0.1;
+  fd.restitution = 0.3;
  
   // Create the body
   this.body = world.CreateBody(bd);
@@ -37,17 +35,17 @@ function Box(x, y) {
 }
 
 // This function removes the particle from the box2d world
-Box.prototype.killBody = function() {
+Particle.prototype.killBody = function() {
   world.DestroyBody(this.body);
 }
 
 // Is the particle ready for deletion?
-Box.prototype.done = function() {
+Particle.prototype.done = function() {
   // Let's find the screen position of the particle
   var transform = this.body.GetTransform();
   var pos = translateToPixels(transform.position);
   // Is it off the bottom of the screen?
-  if (pos.y > height+this.w*this.h) {
+  if (pos.y > height+this.r*2) {
     this.killBody();
     return true;
   }
@@ -55,7 +53,7 @@ Box.prototype.done = function() {
 }
 
 // Drawing the box
-Box.prototype.display = function() {
+Particle.prototype.display = function() {
 
   // Get the body's "transform"
   var transform = this.body.GetTransform();
@@ -72,7 +70,9 @@ Box.prototype.display = function() {
   fill(127);
   stroke(200);
   strokeWeight(2);
-  rect(0, 0, this.w, this.h);
+  ellipse(0,0,this.r*2,this.r*2);
+  // Let's add a line so we can see the rotation
+  line(0,0,this.r,0);
   popMatrix();
 }
 

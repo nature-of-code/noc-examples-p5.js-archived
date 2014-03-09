@@ -7,8 +7,8 @@
 
 // Constructor
 function Box(x, y) {
-  this.w = random(4, 16);
-  this.h = random(4, 16);
+  this.w = 24;
+  this.h = 24;
 
   // Define a body
   var bd = new BodyDef();
@@ -36,23 +36,15 @@ function Box(x, y) {
   this.body.SetAngularVelocity(random(-5,5));
 }
 
-// This function removes the particle from the box2d world
-Box.prototype.killBody = function() {
-  world.DestroyBody(this.body);
+Box.prototype.contains = function(x,y) {
+  var worldPoint = translateToWorld(x, y);
+  var f = this.body.GetFixtureList();
+  var inside = f.TestPoint(worldPoint);
+  return inside;
 }
 
-// Is the particle ready for deletion?
-Box.prototype.done = function() {
-  // Let's find the screen position of the particle
-  var transform = this.body.GetTransform();
-  var pos = translateToPixels(transform.position);
-  // Is it off the bottom of the screen?
-  if (pos.y > height+this.w*this.h) {
-    this.killBody();
-    return true;
-  }
-  return false;
-}
+
+
 
 // Drawing the box
 Box.prototype.display = function() {

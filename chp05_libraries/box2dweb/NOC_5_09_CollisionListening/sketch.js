@@ -6,11 +6,11 @@
 // A reference to our box2d world
 var world;
 
+
 // A list for all of our particles
 var particles = [];
 
-// An object to store information about the uneven surface
-var surface;
+var wall;
 
 function setup() {
   createGraphics(640,360);
@@ -18,8 +18,9 @@ function setup() {
   // Initialize box2d physics and create the world
   world = createWorld();
 
-  // Create the surface
-  surface = new Surface();
+  world.SetContactListener(new CustomListener());
+
+  wall = new Boundary(width/2, height-5, width, 10);
 }
 
 function draw() {
@@ -30,24 +31,25 @@ function draw() {
   // 2nd and 3rd arguments are velocity and position iterations
   world.Step(timeStep,10,10);
 
-  // particles fall from the top every so often
-  if (random(1) < 0.5) {
+  if (random(1) < 0.1) {
     var sz = random(4,8);
-    particles.push(new Particle(width/2,10,sz));
+    particles.push(new Particle(random(width), 20, sz));
   }
 
-  // Draw the surface
-  surface.display();
 
-  // Display all the boxes
+  // Look at all particles
   for (var i = particles.length-1; i >= 0; i--) {
     particles[i].display();
+    // Particles that leave the screen, we delete them
+    // (note they have to be deleted from both the box2d world and our list
     if (particles[i].done()) {
       particles.splice(i,1);
     }
   }
-}
+  
+  wall.display();
 
+}
 
 
 

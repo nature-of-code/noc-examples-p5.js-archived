@@ -11,10 +11,10 @@ function Box(x, y) {
    // Define a body
   var bd = new BodyDef();
   bd.set_type(Box2D.b2_dynamicBody);
-  bd.set_position(pixelsToWorld(x,y));
+  bd.set_position(translateToWorld(x,y));
   
   var ps = new PolygonShape();
-  ps.SetAsBox(pixelsToWorld(this.w/2), pixelsToWorld(this.h/2));
+  ps.SetAsBox(translateToWorld(this.w/2), translateToWorld(this.h/2));
   // Define a fixture
   var fd = new FixtureDef();
   // Fixture holds shape
@@ -33,7 +33,7 @@ function Box(x, y) {
 // Drawing the box
 Box.prototype.display = function() {
  // Get the body's "transform"
-  var pos = worldToPixels(this.body.GetPosition());
+  var pos = translateToPixels(this.body.GetPosition());
   // Get its angle of rotation
   var a = this.body.GetAngle();
   
