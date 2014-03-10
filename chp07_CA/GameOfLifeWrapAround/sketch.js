@@ -1,7 +1,7 @@
 var gol;
 
 function setup() {
-  	createGraphics(640, 360);
+  	createGraphics(400, 400);
   	gol = new GOL();
 }
 

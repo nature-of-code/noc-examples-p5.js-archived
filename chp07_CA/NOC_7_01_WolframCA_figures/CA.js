@@ -1,17 +1,16 @@
 function CA(r) {
-
-  	this.cells = new Array(width/scl);
-  	this.generation;
-  	this.ruleset = r;
-    	this.restart();
+	if(typeof r == "undefined") {
+		this.scl = 1;
+    		this.cells = new Array(width/this.scl);
+    		this.randomize();
+    		this.restart();
+	} else {
+  		this.cells = new Array(width/scl);
+  		this.generation;
+  		this.ruleset = r;
+    		this.restart();
+	}
 }
-
-/*function CA() {
-	this.scl = 1;
-    	this.cells = new Array(width/this.scl);
-    	this.randomize();
-    	this.restart();
-}*/
 
 CA.prototype.setRules = function(r) {
     	this.ruleset = r;

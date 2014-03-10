@@ -7,7 +7,6 @@ function setup() {
 
 function draw() {
   	background(255);
-  	gol.generate();
   	gol.display();
 };
 

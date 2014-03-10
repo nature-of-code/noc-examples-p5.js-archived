@@ -14,7 +14,7 @@ function draw() {
   	ca.generate();
   
   	if (ca.finished()) { 
-    		//saveFrame("rule222.png");		????
+    		//saveFrame("rule222.png");
     		noLoop();
   	}
 };
