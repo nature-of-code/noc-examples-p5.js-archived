@@ -41,14 +41,6 @@ CA.prototype.display = function() {
     	}
 }
 
-  // Implementing the Wolfram rules
-  // This is the concise conversion to binary way
-  /*int rules (int a, int b, int c) {
-   String s = "" + a + b + c;
-   int index = Integer.parseInt(s, 2);
-   return ruleset[index];
-   }*/
-  // For JavaScript Mode
 CA.prototype.rules = function(a, b, c) {
     	if (a == 1 && b == 1 && c == 1) return this.ruleset[0];
     	if (a == 1 && b == 1 && c == 0) return this.ruleset[1];

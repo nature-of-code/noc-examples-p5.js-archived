@@ -14,7 +14,7 @@ function CA(r) {
 
 CA.prototype.randomize = function() {
     	for (var i = 0; i < 8; i++) {
-      		this.ruleset[i] = Math.random(random(2));
+      		this.ruleset[i] = Math.floor(random(2));
     	}
 }
 

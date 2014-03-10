@@ -14,7 +14,6 @@ GOL.prototype.init = function() {
     	for (var i =1;i < this.columns-1;i++) {
       		for (var j =1;j < this.rows-1;j++) {
         		this.board[i][j] = Math.floor(random(2));
-			//println(Math.floor(random(2)));
       		}
     	}
 }
@@ -25,7 +24,6 @@ GOL.prototype.generate = function() {
 	for (var i = 0; i < this.columns; i++) {
 		next[i] = new Array(this.rows);
 	}
-    // Loop through every spot in our 2D array and check spots neighbors
     	for (var x = 1; x < this.columns-1; x++) {
       		for (var y = 1; y < this.rows-1; y++) {
         		var neighbors = 0;
@@ -44,11 +42,9 @@ GOL.prototype.generate = function() {
       		}
     	}
 
-    // Next is now our board
     this.board = next;
 }
 
-  // This is the easy part, just draw the cells, fill 255 for '1', fill 0 for '0'
 GOL.prototype.display = function() {
     	for ( var i = 0; i < this.columns;i++) {
       		for ( var j = 0; j < this.rows;j++) {
