@@ -19,14 +19,22 @@ function setup() {
 function draw() {
   background(51);
 
-  for (var i = 0; i < vehicles.length; i++) {
-    // Path following and separation are worked on in this function
-    vehicles[i].separate(vehicles);
-    // Call the generic run method (update, borders, display, etc.)
-    vehicles[i].update();
-    vehicles[i].borders();
-    vehicles[i].display();
+  
+  var go = function(vehicle) {
+    vehicle.separate(vehicles);
+    vehicle.update();
+    vehicle.borders();
+    vehicle.display(); 
   }
+  vehicles.forEach(go);
+
+  /*vehicles.forEach(function(vehicle) {
+    vehicle.separate(vehicles);
+    vehicle.update();
+    vehicle.borders();
+    vehicle.display();   
+  });*/
+
 
   // Instructions
   fill(200);
