@@ -20,21 +20,20 @@ function draw() {
   background(51);
 
   
-  var go = function(vehicle) {
-    vehicle.separate(vehicles);
-    vehicle.update();
-    vehicle.borders();
-    vehicle.display(); 
+  for (var i = 0; i < vehicles.length; i++) {
+    vehicles[i].separate(vehicles);
+    vehicles[i].update();
+    vehicles[i].borders();
+    vehicles[i].display(); 
   }
-  vehicles.forEach(go);
 
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
   /*vehicles.forEach(function(vehicle) {
     vehicle.separate(vehicles);
     vehicle.update();
     vehicle.borders();
     vehicle.display();   
   });*/
-
 
   // Instructions
   fill(200);
