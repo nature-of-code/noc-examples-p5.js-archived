@@ -34,8 +34,8 @@ CA.prototype.generate = function() {
 
 CA.prototype.display = function() {
     	for (var i = 0; i < this.cells.length; i++) {
-      		if (this.cells[i] == 1) fill(0);
-      		else               fill(255);
+      		if (this.cells[i] == 1) fill(200);
+      		else                    fill(51);
       		noStroke();
       		rect(i*this.w, this.generation*this.w, this.w, this.w);
     	}
