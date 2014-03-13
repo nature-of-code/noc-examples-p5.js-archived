@@ -17,7 +17,7 @@ CA.prototype.generate = function() {
 		var me = this.cells[i];
 		var right = this.cells[i+1];
 		nextgen[i] = this.rules(left, me, right);
-}
+  }
   this.cells = nextgen;
   this.generation++;
 }
