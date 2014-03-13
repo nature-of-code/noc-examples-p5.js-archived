@@ -6,12 +6,9 @@
 var xoff = 0;
 var xincrement = 0.01;
 
-var noisegen;
-
 function setup() {
   createGraphics(640,360);
   background(0);
-  noisegen = new Perlin();
   noStroke();
 };
 
@@ -23,7 +20,7 @@ function draw() {
   //var n = random(0,width);  // Try this line instead of noise
   
   // Get a noise value based on xoff and scale it according to the window's width
-  var n = noisegen.noise(xoff);
+  var n = noise(xoff);
 
   var x = map(n,0,1,0,width);
 
