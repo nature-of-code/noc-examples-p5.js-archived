@@ -17,6 +17,9 @@ var car1;
 var car2;
 
 function setup() {
+  var text = createHTML("Hit space bar to toggle debugging lines.");
+  text.position(10,365);
+
   createGraphics(640, 360);
   path = new Path();
 
@@ -39,12 +42,7 @@ function draw() {
   // Check if it gets to the end of the path since it's not a loop
   car1.borders(path);
   car2.borders(path);
-  
-  // Instructions
-  fill(200);
-  noStroke();
-  text("Hit space bar to toggle debugging lines.", 10, height-30);
-}
+  }
 
 function keyPressed() {
   if (key == ' ') {

@@ -14,6 +14,9 @@ var showParticles = true;
 
 function setup() {
 
+  text = createHTML("'p' to display or hide particles<br>'c' to display or hide connections<br>'n' for new graph");
+  text.position(10,365);
+
   createGraphics(640,360);
 
   // Initialize the physics
@@ -45,11 +48,6 @@ function draw() {
   if (showPhysics) {
     cluster.showConnections();
   }
-
-  // Instructions
-  fill(200);
-  noStroke();
-  text("'p' to display or hide particles\n'c' to display or hide connections\n'n' for new graph",10,20);
 
 }
 

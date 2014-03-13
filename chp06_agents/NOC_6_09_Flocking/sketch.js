@@ -11,6 +11,10 @@
 var flock;
 
 function setup() {
+  var text = createHTML("Drag the mouse to generate new boids.");
+  text.position(10,365);
+
+
   createGraphics(640,360);
   flock = new Flock();
   // Add an initial set of boids into the system
@@ -23,11 +27,6 @@ function setup() {
 function draw() {
   background(51);
   flock.run();
-  
-  // Instructions
-  fill(200);
-  noStroke();
-  text("Drag the mouse to generate new boids.",10,height-16);
 }
 
 // Add a new boid into the System

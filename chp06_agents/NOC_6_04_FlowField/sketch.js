@@ -14,6 +14,10 @@ var flowfield;
 var vehicles = [];
 
 function setup() {
+
+  var text = createHTML("Hit space bar to toggle debugging lines.<br>Click the mouse to generate a new flow field (<a href=\"https://github.com/shiffman/The-Nature-of-Code-Examples-p5.js/issues/12\">not working yet</a>).");
+  text.position(10,365);
+
   createGraphics(640, 360);
   // Make a new flow field with "resolution" of 16
   flowfield = new FlowField(20);
@@ -33,10 +37,6 @@ function draw() {
     vehicles[i].run();
   }
 
-  // Instructions
-  fill(200);
-  noStroke();
-  text("Hit space bar to toggle debugging lines.\nClick the mouse to generate a new flow field.",10,height-20);
 }
 
 

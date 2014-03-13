@@ -9,6 +9,9 @@
 var vehicles = [];
 
 function setup() {
+  var text = createHTML("Drag the mouse to generate new vehicles.");
+  text.position(10,365);
+
   createGraphics(640,360);
   // We are now making random vehicles and storing them in an array
   for (var i = 0; i < 100; i++) {
@@ -35,10 +38,6 @@ function draw() {
     vehicle.display();   
   });*/
 
-  // Instructions
-  fill(200);
-  noStroke();
-  text("Drag the mouse to generate new vehicles.",10,height-16);
 }
 
 

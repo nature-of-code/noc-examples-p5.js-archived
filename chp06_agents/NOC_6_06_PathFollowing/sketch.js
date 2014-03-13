@@ -17,6 +17,9 @@ var car1;
 var car2;
 
 function setup() {
+  var text = createHTML("Hit space bar to toggle debugging lines.<br>Click the mouse to generate a new path.");
+  text.position(10,365);
+
   createGraphics(640, 360);
   newPath();
 
@@ -40,10 +43,6 @@ function draw() {
   car1.borders(path);
   car2.borders(path);
   
-  // Instructions
-  fill(200);
-  noStroke();
-  text("Hit space bar to toggle debugging lines.\nClick the mouse to generate a new path.", 10, height-30);
 }
 
 function newPath() {
