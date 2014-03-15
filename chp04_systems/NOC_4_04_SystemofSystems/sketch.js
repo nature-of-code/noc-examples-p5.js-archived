@@ -11,6 +11,12 @@
 var systems = [];
 
 function setup() {
+<<<<<<< HEAD
+=======
+  var text = createHTML("click to add particle systems");
+  text.position(10,365);
+
+>>>>>>> 0be8fadae337a89d219e11c55dc6b32982409493
   createGraphics(640,360);
 }
 
@@ -19,6 +25,7 @@ function draw() {
   for(var i=0; i<systems.length; i++){
   	systems[i].addParticle();
   	systems[i].run();
+<<<<<<< HEAD
   }
 
   fill(151);
@@ -27,6 +34,9 @@ function draw() {
   textSize(16);
   text("click to add particle systems",10,height-30);
   
+=======
+  }  
+>>>>>>> 0be8fadae337a89d219e11c55dc6b32982409493
 }
 
 function mousePressed() {

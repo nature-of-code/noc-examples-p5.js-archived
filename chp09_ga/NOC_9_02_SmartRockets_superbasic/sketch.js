@@ -9,7 +9,7 @@ function setup() {
   	lifeCounter = 0;
   	target = new PVector(width/2, 24);
 
-  	var mutationRate = 0.01;
+  	var mutationRate = 0.1;
   	population = new Population(mutationRate, 50);
 }
 

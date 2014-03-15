@@ -53,13 +53,11 @@ Rocket.prototype.display = function() {
     	translate(this.location.x, this.location.y);
     	rotate(theta);
 
-    	// Thrusters
     	rectMode(CENTER);
     	fill(0);
     	rect(-(this.r/2), this.r*2, this.r/2, this.r);
     	rect(this.r/2, this.r*2, this.r/2, this.r);
 
-    	// Rocket body
     	fill(175);
 	stroke(0);
     	beginShape(TRIANGLES);

@@ -33,8 +33,13 @@ FlowField.prototype.init = function() {
   for (var i = 0; i < this.cols; i++) {
     var yoff = 0;
     for (var j = 0; j < this.rows; j++) {
+<<<<<<< HEAD
       //var theta = map(noise(xoff,yoff),0,1,0,TWO_PI);
       var theta = map(sin(xoff)+cos(yoff),-2,2,0,TWO_PI);
+=======
+      var theta = map(noise(xoff,yoff),0,1,0,TWO_PI);
+      //var theta = map(sin(xoff)+cos(yoff),-2,2,0,TWO_PI);
+>>>>>>> 0be8fadae337a89d219e11c55dc6b32982409493
       // Polar to cartesian coordinate transformation to get x and y components of the vector
       this.field[i][j] = new PVector(cos(theta),sin(theta));
       yoff += 0.1;

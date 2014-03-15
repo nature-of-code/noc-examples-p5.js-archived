@@ -40,8 +40,8 @@ Population.prototype.selection = function() {
 
 Population.prototype.reproduction = function() {
 	for (var i = 0; i < this.population.length; i++) {
-      		var m = Math.floor(random(this.matingPool.length));
-      		var d = Math.floor(random(this.matingPool.length));
+      		var m = floor(random(this.matingPool.length));
+      		var d = floor(random(this.matingPool.length));
 
       		var mom = this.matingPool[m];
       		var dad = this.matingPool[d];

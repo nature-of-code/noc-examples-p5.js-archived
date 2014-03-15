@@ -13,7 +13,17 @@ var particles = [];
 // An object to describe a Windmill (two bodies and one joint)
 var windmill;
 
+<<<<<<< HEAD
 function setup() {
+=======
+
+var text;
+
+function setup() {
+  text = createHTML("Click mouse to toggle motor.\nMotor: OFF");
+  text.position(10,365);
+
+>>>>>>> 0be8fadae337a89d219e11c55dc6b32982409493
   createGraphics(640,360);
 
   // Initialize box2d physics and create the world
@@ -51,14 +61,24 @@ function draw() {
   var status = "OFF";
   if (windmill.motorOn()) status = "ON";
   
+<<<<<<< HEAD
   fill(255);
   noStroke();
   //strokeWeight(1);
   text("Click mouse to toggle motor.\nMotor: " + status,10,height-30);
+=======
+>>>>>>> 0be8fadae337a89d219e11c55dc6b32982409493
 }
 
 function mousePressed() {
   windmill.toggleMotor();
+<<<<<<< HEAD
+=======
+
+  var status = "OFF";
+  if (windmill.motorOn()) status = "ON";
+  text.html("Click mouse to toggle motor.\nMotor: " + status);
+>>>>>>> 0be8fadae337a89d219e11c55dc6b32982409493
 }
 
 
