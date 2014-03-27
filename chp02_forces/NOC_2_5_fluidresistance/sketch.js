@@ -15,17 +15,23 @@ var movers = [];
 var liquid;
 
 function setup() {
+<<<<<<< HEAD
+=======
   // Must be before createGraphics
   var text = createHTML("click mouse to reset");
 
+>>>>>>> 0be8fadae337a89d219e11c55dc6b32982409493
   createGraphics(640, 360);
   reset();
   // Create liquid object
   liquid = new Liquid(0, height/2, width, height/2, 0.1);
+<<<<<<< HEAD
+=======
 
   // Here we call methods of each element to set the position and id, try changing these values.
   text.position(10, 365);
 
+>>>>>>> 0be8fadae337a89d219e11c55dc6b32982409493
 }
 
 function draw() {
@@ -55,6 +61,12 @@ function draw() {
     movers[i].checkEdges();
   }
   
+<<<<<<< HEAD
+  fill(255); // Fill not working for text?
+  text("click mouse to reset", 10, 30);
+  
+=======
+>>>>>>> 0be8fadae337a89d219e11c55dc6b32982409493
 }
 
 
