@@ -19,7 +19,6 @@ Button.prototype.display = function() {
     	fill(b);
     	textAlign(LEFT);
     	text(this.txt,this.r.x+10,this.r.y+14);
-
 }
 
 Button.prototype.rollover = function(mx, my) {

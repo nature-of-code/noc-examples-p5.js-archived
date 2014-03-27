@@ -3,12 +3,9 @@ function Rocket(l, dna_) {
   	this.location = l.get();
   	this.velocity = new PVector();
   	this.acceleration = new PVector();
-
   	this.r = 4;
-
   	this.fitness;
   	this.dna = dna_;
-
   	this.geneCounter = 0;
 	this.hitTarget = false;
 }
@@ -76,4 +73,3 @@ Rocket.prototype.getFitness = function() {
 Rocket.prototype.getDNA = function() {
     return this.dna;
 }
-

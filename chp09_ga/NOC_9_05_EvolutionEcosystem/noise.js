@@ -29,29 +29,29 @@ Perlin.prototype.permutation = [151,160,137,91,90,15,
 
 Perlin.prototype.noise = function(x, y, z) {
   
-  // This is probably not how you are supposed to do this
+
   y = y || 0;
   z = z || 0;
   
-  var X = Math.floor(x) & 255;                       // FIND UNIT CUBE THAT
-  var Y = Math.floor(y) & 255;                       // CONTAINS POINT.
+  var X = Math.floor(x) & 255;
+  var Y = Math.floor(y) & 255;
   var Z = Math.floor(z) & 255;
-  x -= Math.floor(x);                                // FIND RELATIVE X,Y,Z
-  y -= Math.floor(y);                                // OF POINT IN CUBE.
+  x -= Math.floor(x);
+  y -= Math.floor(y);
   z -= Math.floor(z);
   
-  var u = this.fade(x);                                   // COMPUTE FADE CURVES
-  var v = this.fade(y);                                   // FOR EACH OF X,Y,Z.
+  var u = this.fade(x);
+  var v = this.fade(y);
   var w = this.fade(z);
-  var A = this.p[X  ]+Y, AA = this.p[A]+Z, AB = this.p[A+1]+Z;      // HASH COORDINATES OF
-  var B = this.p[X+1]+Y, BA = this.p[B]+Z, BB = this.p[B+1]+Z;      // THE 8 CUBE CORNERS,
+  var A = this.p[X  ]+Y, AA = this.p[A]+Z, AB = this.p[A+1]+Z;
+  var B = this.p[X+1]+Y, BA = this.p[B]+Z, BB = this.p[B+1]+Z;
 
-  return this.lerp(w, this.lerp(v, this.lerp(u, this.grad(this.p[AA  ], x  , y  , z   ),  // AND ADD
-                                                this.grad(this.p[BA  ], x-1, y  , z   )), // BLENDED
-                                   this.lerp(u, this.grad(this.p[AB  ], x  , y-1, z   ),  // RESULTS
-                                                this.grad(this.p[BB  ], x-1, y-1, z   ))),// FROM  8
-                      this.lerp(v, this.lerp(u, this.grad(this.p[AA+1], x  , y  , z-1 ),  // CORNERS
-                                                this.grad(this.p[BA+1], x-1, y  , z-1 )), // OF CUBE
+  return this.lerp(w, this.lerp(v, this.lerp(u, this.grad(this.p[AA  ], x  , y  , z   ),
+                                                this.grad(this.p[BA  ], x-1, y  , z   )),
+                                   this.lerp(u, this.grad(this.p[AB  ], x  , y-1, z   ),
+                                                this.grad(this.p[BB  ], x-1, y-1, z   ))),
+                      this.lerp(v, this.lerp(u, this.grad(this.p[AA+1], x  , y  , z-1 ),
+                                                this.grad(this.p[BA+1], x-1, y  , z-1 )),
                                   this.lerp(u,  this.grad(this.p[AB+1], x  , y-1, z-1 ),
                                                 this.grad(this.p[BB+1], x-1, y-1, z-1 ))))*0.5+0.5;
 };
@@ -59,39 +59,8 @@ Perlin.prototype.noise = function(x, y, z) {
 Perlin.prototype.fade = function(t)        { return t * t * t * (t * (t * 6 - 15) + 10); }
 Perlin.prototype.lerp = function(t, a, b) { return a + t * (b - a); }
 Perlin.prototype.grad = function(hash, x, y, z) {
-  var h = hash & 15;                      // CONVERT LO 4 BITS OF HASH CODE
-  var u = h<8 ? x : y;                    // INTO 12 GRADIENT DIRECTIONS.
+  var h = hash & 15;
+  var u = h<8 ? x : y;
   var v = h<4 ? y : h==12||h==14 ? x : z;
   return ((h&1) == 0 ? u : -u) + ((h&2) == 0 ? v : -v);
 }
-
-
-// Seeding needs to be implemented
-// This is from: https://gist.github.com/leegrey/3253283
-// Based on: http://techcraft.codeplex.com/discussions/264014
-/*
-Perlin.prototype.setSeed = function( seed ) {
-  seed = seed || 1337;
-  this.permutation = []; //make permutation unique between instances
-  if( SeededRandomNumberGenerator == undefined ) {
-    console.log( 'Perlin.setSeed() - warning,'
-      +' SeededRandomNumberGenerator is undefined' );
-    return;
-  }
-  var seedRND = new SeededRandomNumberGenerator();
-  seedRND.seed = seed;
-  var i;
-  for ( i = 0; i < 256; i++)  { 
-    this.permutation[i] = i; 
-  } 
-  for (  i = 0; i < 256; i++) { 
-    var k = seedRND.randomIntRange( 0, 256 - i ) + i; //(256 - i) + i; 
-    var l = this.permutation[i];
-    this.permutation[i] = this.permutation[k]; 
-    this.permutation[k] = l; 
-    this.permutation[i + 256] = this.permutation[i]; 
-  } 
-  for (var i=0; i < 256 ; i++) {
-    this.p[256+i] = this.p[i] = this.permutation[i]; 
-  }
-}*/

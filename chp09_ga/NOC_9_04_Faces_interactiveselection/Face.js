@@ -5,7 +5,6 @@ function Face(dna_, x_, y_) {
     	this.y = y_;
   	this.wh = 70;
 	this.rolloverOn;
-
   	this.r = new Rectangle(Math.floor(this.x-this.wh/2), Math.floor(this.y-this.wh/2), Math.floor(this.wh), Math.floor(this.wh));
 }
 
@@ -25,23 +24,19 @@ Face.prototype.display = function() {
     	pushMatrix();
     	translate(this.x, this.y);
     	noStroke();
-
     	// Head
     	fill(c);
     	ellipseMode(CENTER);
     	ellipse(0, 0, r, r);
-
     	// Eyes
     	fill(eyecolor);
     	rectMode(CENTER);
     	rect(-eye_x, -eye_y, eye_size, eye_size);
     	rect( eye_x, -eye_y, eye_size, eye_size);
-
     	//Mouth
     	fill(mouthColor);
     	rectMode(CENTER);
     	rect(mouth_x, mouth_y, mouthw, mouthh);
-
     	// Box
     	stroke(0.25);
     	if (this.rolloverOn) fill(0, 0.25);
@@ -49,7 +44,6 @@ Face.prototype.display = function() {
     	rectMode(CENTER);
     	rect(0, 0, this.wh, this.wh);
     	popMatrix();
-
     	textAlign(CENTER);
     	if (this.rolloverOn) fill(0);
     	else fill(0.25);

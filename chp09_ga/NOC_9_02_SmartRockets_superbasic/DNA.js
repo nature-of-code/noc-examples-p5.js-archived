@@ -13,6 +13,7 @@ function DNA(newgenes) {
 	else {	this.genes = newgenes; 
 	}
 }
+
 DNA.prototype.crossover = function(partner) {
     	var child = new Array(this.genes.length);
     	var crossover = floor(random(this.genes.length));

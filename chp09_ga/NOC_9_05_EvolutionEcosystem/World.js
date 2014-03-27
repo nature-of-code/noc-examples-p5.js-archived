@@ -1,5 +1,4 @@
 function World(num) {
-
 	this.bloops = new Array();
   	this.food = new Food(num);
 	for (var i = 0; i < num; i++) {

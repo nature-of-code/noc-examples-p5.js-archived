@@ -24,7 +24,6 @@ Population.prototype.rollover = function(mx, my) {
 Population.prototype.selection = function() {
     	this.matingPool.length = 0;
     	maxFitness = this.getMaxFitness();
-
     	for (var i = 0; i < this.population.length; i++) {
       		var fitnessNormal = map(this.population[i].getFitness(), 0, maxFitness, 0, 1);
       		var n = Math.floor(fitnessNormal * 100);
