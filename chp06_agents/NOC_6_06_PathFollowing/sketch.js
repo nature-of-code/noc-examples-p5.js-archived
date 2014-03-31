@@ -20,7 +20,7 @@ function setup() {
   var text = createHTML("Hit space bar to toggle debugging lines.<br>Click the mouse to generate a new path.");
   text.position(10,365);
 
-  createGraphics(640, 360);
+  createCanvas(640, 360);
   newPath();
 
   // Each vehicle has different maxspeed and maxforce for demo purposes

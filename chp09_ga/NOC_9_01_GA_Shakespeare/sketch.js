@@ -4,7 +4,7 @@ var mutationRate;
 var population;
 
 function setup() {
-	createGraphics(1000, 360);
+	createCanvas(1000, 360);
   	target = "To be or not to be.";
   	popmax = 150;
   	mutationRate = 0.01;

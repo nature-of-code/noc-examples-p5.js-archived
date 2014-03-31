@@ -5,7 +5,7 @@
 // Example 1-5: Vector magnitude
 
 function setup() {
-  createGraphics(640,360);
+  createCanvas(640,360);
 };
 
 function draw() {

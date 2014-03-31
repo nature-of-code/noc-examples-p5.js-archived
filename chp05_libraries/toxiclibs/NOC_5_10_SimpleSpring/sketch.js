@@ -9,7 +9,7 @@ var p1;
 var p2;
 
 function setup() {
-  createGraphics(640,360);
+  createCanvas(640,360);
 
   // Initialize the physics
   physics=new VerletPhysics2D();

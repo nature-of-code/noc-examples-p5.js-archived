@@ -14,7 +14,7 @@ function setup() {
   var text = createHTML("click to add particle systems");
   text.position(10,365);
 
-  createGraphics(640,360);
+  createCanvas(640,360);
 }
 
 function draw() {

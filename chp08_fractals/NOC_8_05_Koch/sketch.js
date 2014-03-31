@@ -1,7 +1,7 @@
 var k;
 
 function setup() {
-	createGraphics(800,250);
+	createCanvas(800,250);
 	setFrameRate(1);
 	k = new KochFractal();
 	smooth();

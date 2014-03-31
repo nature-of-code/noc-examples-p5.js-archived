@@ -20,7 +20,7 @@ function setup() {
   text = createHTML("Click mouse to toggle motor.\nMotor: OFF");
   text.position(10,365);
 
-  createGraphics(640,360);
+  createCanvas(640,360);
 
   // Initialize box2d physics and create the world
   world = createWorld();

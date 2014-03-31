@@ -6,7 +6,7 @@ var movers = [];
 var attractor;
 
 function setup() {
-  createGraphics(640, 360);
+  createCanvas(640, 360);
   
   for (var i = 0; i < 20; i++) {
     movers.push(new Mover(random(0.1, 2), random(width), random(height)));

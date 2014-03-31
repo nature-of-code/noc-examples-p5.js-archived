@@ -1,5 +1,5 @@
 function setup() {
-	createGraphics(800, 200);
+	createCanvas(800, 200);
   	background(255);
   
   	cantor(35, 0, 730);

@@ -3,7 +3,7 @@ var ca;
 var delay = 0;
 
 function setup() {
-  	createGraphics(640, 360);
+  	createCanvas(640, 360);
   	background(51);
   	var ruleset = new Array(0, 1, 0, 1, 1, 0, 1, 0);
   	ca = new CA(ruleset);

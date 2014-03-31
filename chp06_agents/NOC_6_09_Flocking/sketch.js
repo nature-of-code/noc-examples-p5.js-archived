@@ -14,8 +14,7 @@ function setup() {
   var text = createHTML("Drag the mouse to generate new boids.");
   text.position(10,365);
 
-
-  createGraphics(640,360);
+  createCanvas(640,360);
   flock = new Flock();
   // Add an initial set of boids into the system
   for (var i = 0; i < 200; i++) {

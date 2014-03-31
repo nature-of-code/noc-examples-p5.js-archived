@@ -2,7 +2,7 @@ var current = "A";
 var count = 0;
 
 function setup() {
-	createGraphics(200, 200);
+	createCanvas(200, 200);
   	print("Generation " + count + ": " + current);
 }
 

@@ -6,7 +6,7 @@ var angle = 0;
 var aVelocity = 0.03;
 
 function setup() {
-  createGraphics(640, 360);
+  createCanvas(640, 360);
 }
 
 function draw() {

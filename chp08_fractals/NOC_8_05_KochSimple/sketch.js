@@ -1,7 +1,7 @@
 var lines = [];
 
 function setup() {
-	createGraphics(383,200);
+	createCanvas(383,200);
 	background(255);
 	var start = new PVector(0,150);
 	var end = new PVector(width,150);

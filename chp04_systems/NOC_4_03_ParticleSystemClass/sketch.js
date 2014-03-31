@@ -5,7 +5,7 @@
 var ps;
 
 function setup() {
-  createGraphics(640,360);
+  createCanvas(640,360);
   setFrameRate(60);
   ps = new ParticleSystem(new PVector(width/2, 50));
 }

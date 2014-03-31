@@ -6,7 +6,7 @@ var angle = 0;
 var angleVel = 0.1;
 
 function setup() {
-  createGraphics(640, 360);
+  createCanvas(640, 360);
   background(51);
   stroke(255);
   strokeWeight(2);

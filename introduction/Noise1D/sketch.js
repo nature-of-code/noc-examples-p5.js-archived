@@ -7,7 +7,7 @@ var xoff = 0;
 var xincrement = 0.01;
 
 function setup() {
-  createGraphics(640,360);
+  createCanvas(640,360);
   background(0);
   noStroke();
 };

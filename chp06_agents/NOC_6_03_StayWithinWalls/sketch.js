@@ -12,7 +12,7 @@ var debug = true;
 var d = 25;
 
 function setup() {
-  createGraphics(640,360);
+  createCanvas(640,360);
   v = new Vehicle(width/2, height/2);
 }
 

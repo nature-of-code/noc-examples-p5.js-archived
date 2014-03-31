@@ -9,7 +9,7 @@ var world;
 var boxes = [];
 
 function setup() {
-  createGraphics(640,360);
+  createCanvas(640,360);
 
   // Initialize box2d physics and create the world
   world = createWorld(new Vec2(0,0));

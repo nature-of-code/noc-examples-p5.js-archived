@@ -11,7 +11,7 @@
 var particleSystem;
 
 function setup() {
-  createGraphics(640,360);
+  createCanvas(640,360);
   particleSystem = new ParticleSystem(new PVector(width/2, 50));
 }
 

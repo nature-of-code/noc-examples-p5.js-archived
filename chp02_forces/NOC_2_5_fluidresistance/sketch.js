@@ -18,7 +18,7 @@ function setup() {
   // Must be before createGraphics
   var text = createHTML("click mouse to reset");
 
-  createGraphics(640, 360);
+  createCanvas(640, 360);
   reset();
   // Create liquid object
   liquid = new Liquid(0, height/2, width, height/2, 0.1);

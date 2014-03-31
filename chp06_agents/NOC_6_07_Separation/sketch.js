@@ -12,7 +12,7 @@ function setup() {
   var text = createHTML("Drag the mouse to generate new vehicles.");
   text.position(10,365);
 
-  createGraphics(640,360);
+  createCanvas(640,360);
   // We are now making random vehicles and storing them in an array
   for (var i = 0; i < 100; i++) {
     vehicles.push(new Vehicle(random(width),random(height)));

@@ -1,5 +1,5 @@
 function setup() {
-	createGraphics(800, 200);
+	createCanvas(800, 200);
   	newTree();
 }
 

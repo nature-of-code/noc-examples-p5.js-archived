@@ -6,7 +6,7 @@ var matingPool;
 var target;
 
 function setup() {
-  	createGraphics(700, 200);
+  	createCanvas(700, 200);
   	target = "to be or not to be";
 
 	for (var i = 0; i < population.length; i++) {

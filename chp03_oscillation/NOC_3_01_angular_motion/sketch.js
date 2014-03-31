@@ -7,7 +7,7 @@ var aVelocity = 0;
 var aAcceleration = 0.0001;
 
 function setup() {
-  createGraphics(640, 360);
+  createCanvas(640, 360);
 }
 
 function draw() {
