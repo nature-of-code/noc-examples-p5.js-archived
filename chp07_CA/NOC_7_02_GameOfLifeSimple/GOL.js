@@ -11,13 +11,22 @@ function GOL() {
   for (var i = 0; i < this.columns; i++) {
     this.board[i] = new Array(this.rows);
   } 
+  // Going to use multiple 2D arrays and swap them
+  this.next = new Array(this.columns);
+  for (var i = 0; i < this.columns; i++) {
+    this.next[i] = new Array(this.rows);
+  }
   this.init();
 }
 
 GOL.prototype.init = function() {
-  for (var i =1;i < this.columns-1;i++) {
-    for (var j =1;j < this.rows-1;j++) {
-      this.board[i][j] = Math.floor(random(2));
+  for (var i =0;i < this.columns;i++) {
+    for (var j =0;j < this.rows;j++) {
+      // Lining the edges with 0s
+      if (i == 0 || j == 0 || i == this.columns-1 || j == this.rows-1) this.board[i][j] = 0;
+      // Filling the rest randomly
+      else this.board[i][j] = Math.floor(random(2));
+      this.next[i][j] = 0;
     }
   }
 }
@@ -25,10 +34,6 @@ GOL.prototype.init = function() {
 // The process of creating the new generation
 GOL.prototype.generate = function() {
 
-  var next = new Array(this.columns);
-  for (var i = 0; i < this.columns; i++) {
-    next[i] = new Array(this.rows);
-  }
 
   // Loop through every spot in our 2D array and check spots neighbors
   for (var x = 1; x < this.columns-1; x++) {
@@ -47,15 +52,17 @@ GOL.prototype.generate = function() {
       neighbors -= this.board[x][y];
 
       // Rules of Life
-      if      ((this.board[x][y] == 1) && (neighbors <  2)) next[x][y] = 0;           // Loneliness
-      else if ((this.board[x][y] == 1) && (neighbors >  3)) next[x][y] = 0;           // Overpopulation
-      else if ((this.board[x][y] == 0) && (neighbors == 3)) next[x][y] = 1;           // Reproduction
-      else                                            next[x][y] = this.board[x][y];  // Stasis
+      if      ((this.board[x][y] == 1) && (neighbors <  2)) this.next[x][y] = 0;           // Loneliness
+      else if ((this.board[x][y] == 1) && (neighbors >  3)) this.next[x][y] = 0;           // Overpopulation
+      else if ((this.board[x][y] == 0) && (neighbors == 3)) this.next[x][y] = 1;           // Reproduction
+      else                                            this.next[x][y] = this.board[x][y];  // Stasis
     }
   }
 
-  // Next is now our board
-  this.board = next;
+  // Swap!
+  var temp = this.board;
+  this.board = this.next;
+  this.next = temp;
 }
 
 // This is the easy part, just draw the cells, fill 255 for '1', fill 0 for '0'

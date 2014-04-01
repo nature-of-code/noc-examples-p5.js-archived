@@ -8,6 +8,7 @@
 // with the system scrolling by
 // Also implements wrap around
 
+// An object to describe a Wolfram elementary Cellular Automata
 var ca;
 
 function setup() {
@@ -19,6 +20,7 @@ function setup() {
   //int[] ruleset = {0,1,1,1,1,0,0,0};   // Rule 30  
   //int[] ruleset = {0,1,1,1,0,1,1,0};   // Rule 110
 
+  // Initialize CA
   ca = new CA(ruleset);
 }
 
@@ -26,4 +28,4 @@ function draw() {
   background(51);
   ca.display();
   ca.generate();
-};
+}
