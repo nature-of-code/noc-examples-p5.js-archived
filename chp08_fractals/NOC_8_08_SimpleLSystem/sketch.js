@@ -27,8 +27,6 @@ function setup() {
   show.position(50,100);
 }
 
-
-
 function generate() {
   // A new StringBuffer for the next generation
   var next = '';
