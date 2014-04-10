@@ -17,6 +17,8 @@ function Population(p, m, num) {
   this.mutationRate = m;             // Mutation rate
   this.perfectScore = 1;
 
+  this.best = "";
+
   this.population = [];
   for (var i = 0; i < num; i++) {
     this.population[i] = new DNA(this.target.length);
@@ -73,8 +75,12 @@ Population.prototype.generate = function() {
 }
 
 
-// Compute the current "most fit" member of the population
 Population.prototype.getBest = function() {
+  return this.best;
+}
+
+// Compute the current "most fit" member of the population
+Population.prototype.evaluate = function() {
   var worldrecord = 0.0;
   var index = 0;
   for (var i = 0; i < this.population.length; i++) {
@@ -83,9 +89,11 @@ Population.prototype.getBest = function() {
       worldrecord = this.population[i].fitness;
     }
   }
-  
-  if (worldrecord == this.perfectScore) this.finished = true;
-  return this.population[index].getPhrase();
+
+  this.best = this.population[index].getPhrase();
+  if (worldrecord === this.perfectScore) {
+    this.finished = true;
+  }
 }
 
 Population.prototype.isFinished = function() {
