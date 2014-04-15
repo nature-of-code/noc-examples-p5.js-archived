@@ -6,7 +6,7 @@ var ps;
 var repeller;
 
 function setup() {
-  createGraphics(640,360);
+  createGraphics(640, 360);
   ps = new ParticleSystem(new PVector(width/2, 50));
   repeller = new Repeller(width/2-20, height/2);
 }
@@ -24,4 +24,4 @@ function draw() {
   repeller.display();
   ps.run();
 
-};
+}

@@ -5,12 +5,12 @@
 var particles = [];
 
 function setup() {
-  createGraphics(640,360);
+  createGraphics(640, 360);
 }
 
 function draw() {
   background(51);
-  particles.push(new Particle(new PVector(width/2,50)));
+  particles.push(new Particle(new PVector(width/2, 50)));
 
   // Looping through backwards to delete
   for (var i = particles.length-1; i >= 0; i--) {
@@ -22,4 +22,4 @@ function draw() {
     }
   }
 
-};
+}
