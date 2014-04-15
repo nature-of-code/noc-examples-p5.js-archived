@@ -11,7 +11,10 @@
 var systems = [];
 
 function setup() {
-  createGraphics(640, 360);
+  var text = createHTML("click to add particle systems");
+  text.position(10,365);
+
+  createCanvas(640,360);
 }
 
 function draw() {
@@ -20,12 +23,6 @@ function draw() {
     systems[i].addParticle();
     systems[i].run();
   }
-
-  fill(151);
-  stroke(151);
-  strokeWeight(1);
-  textSize(16);
-  text("click to add particle systems", 10, height - 30);
 }
 
 function mousePressed() {

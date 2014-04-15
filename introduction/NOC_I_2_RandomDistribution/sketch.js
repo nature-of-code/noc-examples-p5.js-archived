@@ -9,7 +9,7 @@ var randomCounts = [];
 var total = 20;
 
 function setup() {
-  createGraphics(640,360);
+  createCanvas(640,360);
   for (var i = 0; i < total; i++) {
     randomCounts[i] = 0;
   }

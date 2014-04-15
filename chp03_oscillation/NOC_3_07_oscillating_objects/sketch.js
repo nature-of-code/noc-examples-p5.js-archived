@@ -6,7 +6,7 @@
 var oscillators = [];
 
 function setup()  {
-  createGraphics(640, 360);
+  createCanvas(640, 360);
   // Initialize all objects
   for (var i = 0; i < 10; i++) {
     oscillators.push(new Oscillator());

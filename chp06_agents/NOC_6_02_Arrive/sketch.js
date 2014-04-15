@@ -11,7 +11,7 @@
 var v;
 
 function setup() {
-  createGraphics(640,360);
+  createCanvas(640,360);
   v = new Vehicle(width/2, height/2);
 }
 

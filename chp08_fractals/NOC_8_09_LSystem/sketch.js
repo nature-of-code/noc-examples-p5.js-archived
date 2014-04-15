@@ -2,7 +2,7 @@ var lsys;
 var turtle;
 
 function setup() {
-	createGraphics(600, 600);
+	createCanvas(600, 600);
   	var ruleset = [1];
   	ruleset[0] = new Rule('F', "FF+[+F-F-F]-[-F+F+F]");
   	lsys = new LSystem("F", ruleset);

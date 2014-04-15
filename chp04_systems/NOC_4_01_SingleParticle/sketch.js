@@ -5,7 +5,7 @@
 var p;
 
 function setup() {
-  createGraphics(640,360);
+  createCanvas(640,360);
    p = new Particle(new PVector(width/2, 20));
 }
 

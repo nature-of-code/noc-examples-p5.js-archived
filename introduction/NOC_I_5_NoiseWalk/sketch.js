@@ -4,11 +4,8 @@
 
 var walker;
 
-var perlin;
-
 function setup() {
-  createGraphics(640,360);
-  perlin = new Perlin();
+  createCanvas(640,360);
   walker = new Walker();
   background(127);
 };
@@ -31,7 +28,7 @@ Walker.prototype.display = function() {
 };
 
 Walker.prototype.walk = function() {
-  this.position.x = map(perlin.noise(this.noff.x),0,1,0,width);
-  this.position.y = map(perlin.noise(this.noff.y),0,1,0,height);
+  this.position.x = map(noise(this.noff.x),0,1,0,width);
+  this.position.y = map(noise(this.noff.y),0,1,0,height);
   this.noff.add(0.01,0.01,0);
 }

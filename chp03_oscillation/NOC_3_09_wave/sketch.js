@@ -2,7 +2,7 @@ var startAngle = 0;
 var angleVel = 0.23;
 
 function setup() {
-  createGraphics(640, 360);
+  createCanvas(640, 360);
 }
 
 function draw() {

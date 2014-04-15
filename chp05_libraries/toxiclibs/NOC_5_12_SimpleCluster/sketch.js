@@ -14,7 +14,10 @@ var showParticles = true;
 
 function setup() {
 
-  createGraphics(640,360);
+  text = createHTML("'p' to display or hide particles<br>'c' to display or hide connections<br>'n' for new graph");
+  text.position(10,365);
+
+  createCanvas(640,360);
 
   // Initialize the physics
   physics=new VerletPhysics2D();
@@ -45,11 +48,6 @@ function draw() {
   if (showPhysics) {
     cluster.showConnections();
   }
-
-  // Instructions
-  fill(200);
-  noStroke();
-  text("'p' to display or hide particles\n'c' to display or hide connections\n'n' for new graph",10,20);
 
 }
 

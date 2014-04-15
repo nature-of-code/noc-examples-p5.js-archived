@@ -9,7 +9,7 @@ var xspeed = 2.5;
 var yspeed = 2;
 
 function setup() {
-  createGraphics(640, 360);
+  createCanvas(640, 360);
 };
 
 function draw() {

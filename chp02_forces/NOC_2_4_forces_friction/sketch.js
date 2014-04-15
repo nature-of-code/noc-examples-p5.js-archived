@@ -5,7 +5,7 @@
 var movers = [];
 
 function setup() {
-  createGraphics(640, 360);
+  createCanvas(640, 360);
   for (var i = 0; i < 20; i++) {
     movers[i] = new Mover(random(1, 4), random(width), 0);
   }

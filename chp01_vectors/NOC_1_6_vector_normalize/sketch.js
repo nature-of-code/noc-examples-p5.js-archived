@@ -6,7 +6,7 @@
 // Normalizing a vector sets its length to 1.
 
 function setup() {
-  createGraphics(640,360);
+  createCanvas(640,360);
 };
 
 function draw() {

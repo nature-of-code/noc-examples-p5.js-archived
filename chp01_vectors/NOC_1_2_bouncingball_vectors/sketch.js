@@ -7,7 +7,7 @@ var position;
 var velocity;
 
 function setup() {
-  createGraphics(640,360);
+  createCanvas(640,360);
   background(255);
   position = new PVector(100,100);
   velocity = new PVector(2.5,5);

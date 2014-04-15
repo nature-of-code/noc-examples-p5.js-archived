@@ -5,7 +5,7 @@
 var walker;
 
 function setup() {
-  createGraphics(640,360);
+  createCanvas(640,360);
   walker = new Walker();
   background(127);
 };

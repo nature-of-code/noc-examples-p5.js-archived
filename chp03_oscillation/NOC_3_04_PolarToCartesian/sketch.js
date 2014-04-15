@@ -11,7 +11,7 @@ var r;
 var theta;
 
 function setup() {
-  createGraphics(640, 360);
+  createCanvas(640, 360);
   // Initialize all values
   r = height * 0.45;
   theta = 0;

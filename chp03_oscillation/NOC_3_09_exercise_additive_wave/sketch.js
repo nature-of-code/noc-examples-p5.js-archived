@@ -17,7 +17,7 @@ var dx = [];          // Value for incrementing X, to be calculated as a functio
 var yvalues;                           // Using an array to store height values for the wave (not entirely necessary)
 
 function setup() {
-  createGraphics(640,360);
+  createCanvas(640,360);
   colorMode(RGB, 255, 255, 255, 100);
   w = width + 16;
 

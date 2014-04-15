@@ -1,22 +1,28 @@
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Simple Recursion
+
 function setup() {
-	createGraphics(640, 360);  
+  createCanvas(640, 360);  
 }
 
 function draw() {
-  	background(255);
-  	drawCircle(width/2, height/2, 400);
-  	noLoop();
-};
+  background(51);
+  drawCircle(width/2, height/2, 400);
+  noLoop();
+}
 
 function drawCircle(x, y, radius) {
-  	noFill();
-  	stroke(0);
-  	ellipse(x, y, radius, radius);
-  	if (radius > 8) {
-    		drawCircle(x + radius/2, y, radius/2);
-    		drawCircle(x - radius/2, y, radius/2);
-    		drawCircle(x, y + radius/2, radius/2);
-    		drawCircle(x, y - radius/2, radius/2);
-  	}
-};
-
+  noFill();
+  stroke(255);
+  ellipse(x, y, radius, radius);
+  if (radius > 8) {
+    // Four circles! left right, up and down
+    drawCircle(x + radius/2, y, radius/2);
+    drawCircle(x - radius/2, y, radius/2);
+    drawCircle(x, y + radius/2, radius/2);
+    drawCircle(x, y - radius/2, radius/2);
+  }
+}

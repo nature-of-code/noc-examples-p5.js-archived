@@ -15,10 +15,17 @@ var movers = [];
 var liquid;
 
 function setup() {
-  createGraphics(640, 360);
+  // Must be before createGraphics
+  var text = createHTML("click mouse to reset");
+
+  createCanvas(640, 360);
   reset();
   // Create liquid object
   liquid = new Liquid(0, height/2, width, height/2, 0.1);
+
+  // Here we call methods of each element to set the position and id, try changing these values.
+  text.position(10, 365);
+
 }
 
 function draw() {
@@ -47,9 +54,6 @@ function draw() {
     movers[i].display();
     movers[i].checkEdges();
   }
-  
-  fill(255); // Fill not working for text?
-  text("click mouse to reset", 10, 30);
   
 }
 
