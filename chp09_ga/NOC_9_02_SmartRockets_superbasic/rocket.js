@@ -66,20 +66,19 @@ Rocket.prototype.display = function() {
   angleMode(DEGREES);
   var theta = degrees(this.velocity.heading()) + 90;
   var r = this.r;
-  fill(100, 100);
-  stroke(255);
+  stroke(0);
   pushMatrix();
   translate(this.location.x, this.location.y);
   rotate(theta);
 
   // Thrusters
   rectMode(CENTER);
-  fill(255);
+  fill(0);
   rect(-r/2, r*2, r/2, r);
   rect(r/2, r*2, r/2, r);
 
   // Rocket body
-  fill(175);
+  fill(255);
   beginShape(TRIANGLES);
   vertex(0, -r*2);
   vertex(-r, r*2);

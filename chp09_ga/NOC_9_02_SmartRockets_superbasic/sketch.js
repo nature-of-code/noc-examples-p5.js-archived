@@ -44,11 +44,11 @@ function setup() {
 }
 
 function draw() {
-  background(51);
+  background(101);
 
   // Draw the start and target locations
-  fill(255);
-  stroke(255);
+  fill(0);
+  stroke(0);
   ellipse(target.x,target.y,24,24);
 
 
