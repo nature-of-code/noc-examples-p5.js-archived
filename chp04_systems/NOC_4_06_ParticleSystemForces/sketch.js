@@ -14,9 +14,9 @@ function draw() {
   background(51);
 
   // Apply gravity force to all Particles
-  var gravity = new PVector(0,0.1);
+  var gravity = new PVector(0, 0.1);
   ps.applyForce(gravity);
 
   ps.addParticle();
   ps.run();
-};
+}

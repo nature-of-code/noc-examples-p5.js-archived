@@ -18,13 +18,13 @@ function setup() {
 }
 
 function draw() {
-  background(51);  
-  for(var i=0; i<systems.length; i++){
-  	systems[i].addParticle();
-  	systems[i].run();
-  }  
+  background(51);
+  for(var i = 0; i < systems.length; i++){
+    systems[i].addParticle();
+    systems[i].run();
+  }
 }
 
 function mousePressed() {
-  systems.push(new ParticleSystem(1, new PVector(mouseX,mouseY)));
+  systems.push(new ParticleSystem(1, new PVector(mouseX, mouseY)));
 }

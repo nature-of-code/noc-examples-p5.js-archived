@@ -14,8 +14,7 @@ function draw() {
 
   this.p.run();
   if (this.p.isDead()) {
-    this.p = new Particle(new PVector(width/2,20));
+    this.p = new Particle(new PVector(width/2, 20));
     //println("Particle dead!"); 
   }
-
-};
+}
