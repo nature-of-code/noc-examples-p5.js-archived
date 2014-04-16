@@ -26,8 +26,8 @@ function Rocket(l, dna_) {
 
 // Fitness function
 // fitness = one divided by distance squared
-Rocket.prototype.fitness = function() {
-  var d = dist(location.x, location.y, target.x, target.y);
+Rocket.prototype.calcFitness = function() {
+  var d = dist(this.location.x, this.location.y, target.x, target.y);
   this.fitness = pow(1/d, 2);
 };
 
@@ -66,15 +66,15 @@ Rocket.prototype.display = function() {
   angleMode(DEGREES);
   var theta = degrees(this.velocity.heading()) + 90;
   var r = this.r;
-  fill(200, 100);
-  stroke(0);
+  fill(100, 100);
+  stroke(255);
   pushMatrix();
   translate(this.location.x, this.location.y);
   rotate(theta);
 
   // Thrusters
   rectMode(CENTER);
-  fill(0);
+  fill(255);
   rect(-r/2, r*2, r/2, r);
   rect(r/2, r*2, r/2, r);
 

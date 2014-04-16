@@ -25,7 +25,7 @@ function DNA(newgenes) {
 DNA.prototype.crossover = function(partner) {
   var child = [];
   // Pick a midpoint
-  var crossover = floor(random(genes.length));
+  var crossover = floor(random(this.genes.length));
   // Take "half" from one and "half" from the other
   for (var i = 0; i < this.genes.length; i++) {
     if (i > crossover) child[i] = this.genes[i];

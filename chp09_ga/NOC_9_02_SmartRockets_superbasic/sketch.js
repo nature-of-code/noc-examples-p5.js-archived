@@ -22,6 +22,8 @@ var lifeCounter;   // Timer for cycle of generation
 
 var target;        // Target location
 
+var info;
+
 function setup() {
   createCanvas(640, 360);
   // The number of cycles we will allow a generation to live
@@ -36,13 +38,17 @@ function setup() {
   var mutationRate = 0.01;
   population = new Population(mutationRate, 50);
 
+  info = createHTML("");
+  info.position(10,380);
+
 }
 
 function draw() {
-  background(255);
+  background(51);
 
   // Draw the start and target locations
-  fill(0);
+  fill(255);
+  stroke(255);
   ellipse(target.x,target.y,24,24);
 
 
@@ -61,8 +67,8 @@ function draw() {
 
   // Display some info
   fill(0);
-  text("Generation #: " + population.getGenerations(), 10, 18);
-  text("Cycles left: " + (lifetime-lifeCounter), 10, 36);
+
+  info.html("Generation #: " + population.getGenerations() + "<br>" + "Cycles left: " + (lifetime-lifeCounter));
 }
 
 // Move the target if the mouse is pressed
