@@ -6,12 +6,12 @@
 
 function Vehicle(x, y) {
   // All the usual stuff
-  this.position = new PVector(x, y);
+  this.position = createVector(x, y);
   this.r = 12;
   this.maxspeed = 3;    // Maximum speed
   this.maxforce = 0.2;  // Maximum steering force
-  this.acceleration = new PVector(0, 0);
-  this.velocity = new PVector(0, 0);
+  this.acceleration = createVector(0, 0);
+  this.velocity = createVector(0, 0);
 }
 
 Vehicle.prototype.applyForce = function(force) {
@@ -23,15 +23,15 @@ Vehicle.prototype.applyForce = function(force) {
 // Method checks for nearby vehicles and steers away
 Vehicle.prototype.separate = function(vehicles) {
   var desiredseparation = this.r*2;
-  var sum = new PVector();
+  var sum = createVector();
   var count = 0;
   // For every boid in the system, check if it's too close
   for (var i = 0; i < vehicles.length; i++) {
-    var d = PVector.dist(this.position, vehicles[i].position);
+    var d = p5.Vector.dist(this.position, vehicles[i].position);
     // If the distance is greater than 0 and less than an arbitrary amount (0 when you are yourself)
     if ((d > 0) && (d < desiredseparation)) {
       // Calculate vector pointing away from neighbor
-      var diff = PVector.sub(this.position, vehicles[i].position);
+      var diff = p5.Vector.sub(this.position, vehicles[i].position);
       diff.normalize();
       diff.div(d);        // Weight by distance
       sum.add(diff);
@@ -45,7 +45,7 @@ Vehicle.prototype.separate = function(vehicles) {
     sum.normalize();
     sum.mult(this.maxspeed);
     // Implement Reynolds: Steering = Desired - Velocity
-    var steer = PVector.sub(sum, this.velocity);
+    var steer = p5.Vector.sub(sum, this.velocity);
     steer.limit(this.maxforce);
     this.applyForce(steer);
   }
@@ -66,10 +66,10 @@ Vehicle.prototype.display = function() {
   fill(127);
   stroke(200);
   strokeWeight(2);
-  pushMatrix();
+  push();
   translate(this.position.x, this.position.y);
   ellipse(0, 0, this.r, this.r);
-  popMatrix();
+  pop();
 }
 
 // Wraparound

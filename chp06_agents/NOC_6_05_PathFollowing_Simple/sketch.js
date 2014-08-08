@@ -17,7 +17,7 @@ var car1;
 var car2;
 
 function setup() {
-  var text = createHTML("Hit space bar to toggle debugging lines.");
+  var text = createP("Hit space bar to toggle debugging lines.");
   text.position(10,365);
 
   createCanvas(640, 360);

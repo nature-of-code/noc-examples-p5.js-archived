@@ -11,7 +11,7 @@
 var systems = [];
 
 function setup() {
-  var text = createHTML("click to add particle systems");
+  var text = createP("click to add particle systems");
   text.position(10,365);
 
   createCanvas(640,360);
@@ -26,5 +26,5 @@ function draw() {
 }
 
 function mousePressed() {
-  systems.push(new ParticleSystem(1, new PVector(mouseX, mouseY)));
+  systems.push(new ParticleSystem(1, createVector(mouseX, mouseY)));
 }

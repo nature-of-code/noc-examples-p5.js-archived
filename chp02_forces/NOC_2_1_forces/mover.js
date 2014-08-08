@@ -4,13 +4,13 @@
 
 var Mover = function() {
     this.mass = 1;
-    this.position = new PVector(30, 30);
-    this.velocity = new PVector(0, 0);
-    this.acceleration = new PVector(0, 0);
+    this.position = createVector(30, 30);
+    this.velocity = createVector(0, 0);
+    this.acceleration = createVector(0, 0);
 };
   
 Mover.prototype.applyForce = function(force) {
-  var f = PVector.div(force, this.mass);
+  var f = p5.Vector.div(force, this.mass);
   this.acceleration.add(f);
 };
   

@@ -39,16 +39,16 @@ var allPhrases;
 var stats;
 
 function setup() {
-  bestPhrase = createHTML("Best phrase:");
-  bestPhrase.position(10,10);
+  bestPhrase = createP("Best phrase:");
+  //bestPhrase.position(10,10);
   bestPhrase.class("best");
 
-  allPhrases = createHTML("All phrases:");
+  allPhrases = createP("All phrases:");
   allPhrases.position(600,10);
   allPhrases.class("all");
 
-  stats = createHTML("Stats");
-  stats.position(10,200);
+  stats = createP("Stats");
+  //stats.position(10,200);
   stats.class("stats");
   
   //createCanvas(640, 360);

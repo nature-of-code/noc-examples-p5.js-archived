@@ -14,7 +14,7 @@
   this.generations = 0;               // Number of generations
   //make a new set of creatures
   for (var i = 0; i < num; i++) {
-    var location = new PVector(width/2,height+20);
+    var location = createVector(width/2,height+20);
     this.population[i] = new Rocket(location, new DNA());
   }
 }
@@ -73,7 +73,7 @@ Population.prototype.reproduction = function() {
     // Mutate their genes
     child.mutate(this.mutationRate);
     // Fill the new population with the new child
-    var location = new PVector(width/2,height+20);
+    var location = createVector(width/2,height+20);
     this.population[i] = new Rocket(location, child);
   }
   this.generations++;

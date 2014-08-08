@@ -16,7 +16,7 @@ var liquid;
 
 function setup() {
   // Must be before createGraphics
-  var text = createHTML("click mouse to reset");
+  var text = createP("click mouse to reset");
 
   createCanvas(640, 360);
   reset();
@@ -45,7 +45,7 @@ function draw() {
     }
 
     // Gravity is scaled by mass here!
-    var gravity = new PVector(0, 0.1*movers[i].mass);
+    var gravity = createVector(0, 0.1*movers[i].mass);
     // Apply gravity
     movers[i].applyForce(gravity);
    

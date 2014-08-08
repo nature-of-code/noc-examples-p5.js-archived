@@ -6,8 +6,8 @@
 // A class to manage the list of line segments in the snowflake pattern
 
 function KochFractal() {
-  this.start = new PVector(0,height-20);   // A PVector for the start
-  this.end = new PVector(width,height-20); // A PVector for the end
+  this.start = createVector(0,height-20);   // A p5.Vector for the start
+  this.end = createVector(width,height-20); // A p5.Vector for the end
   this.lines = [];                         // An array to keep track of all the lines
   this.count = 0;
   this.restart();
@@ -23,7 +23,7 @@ KochFractal.prototype.nextLevel = function() {
 KochFractal.prototype.restart = function() { 
   this.count = 0;      // Reset count
   this.lines = [];  // Empty the array list
-  this.lines.push(new KochLine(this.start,this.end));  // Add the initial line (from one end PVector to the other)
+  this.lines.push(new KochLine(this.start,this.end));  // Add the initial line (from one end p5.Vector to the other)
 }
 
 KochFractal.prototype.getCount = function() {
@@ -49,13 +49,13 @@ KochFractal.prototype.iterate = function(before) {
   var now = [];    // Create emtpy list
   for(var i = 0; i < this.lines.length; i++) {
     var l = this.lines[i];
-    // Calculate 5 koch PVectors (done for us by the line object)
+    // Calculate 5 koch p5.Vectors (done for us by the line object)
     var a = l.kochA();                 
     var b = l.kochB();
     var c = l.kochC();
     var d = l.kochD();
     var e = l.kochE();
-    // Make line segments between all the PVectors and add them
+    // Make line segments between all the p5.Vectors and add them
     now.push(new KochLine(a,b));
     now.push(new KochLine(b,c));
     now.push(new KochLine(c,d));

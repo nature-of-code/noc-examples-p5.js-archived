@@ -6,9 +6,9 @@
 // Methods for Separation, Cohesion, Alignment added
 
 function Boid(x,y) {
-  this.acceleration = new PVector(0,0);
-  this.velocity = new PVector(random(-1,1),random(-1,1));
-  this.position = new PVector(x,y);
+  this.acceleration = createVector(0,0);
+  this.velocity = createVector(random(-1,1),random(-1,1));
+  this.position = createVector(x,y);
   this.r = 3.0;
   this.maxspeed = 3;    // Maximum speed
   this.maxforce = 0.05; // Maximum steering force
@@ -55,12 +55,12 @@ Boid.prototype.update = function() {
 // A method that calculates and applies a steering force towards a target
 // STEER = DESIRED MINUS VELOCITY
 Boid.prototype.seek = function(target) {
-  var desired = PVector.sub(target,this.position);  // A vector pointing from the location to the target
+  var desired = p5.Vector.sub(target,this.position);  // A vector pointing from the location to the target
   // Normalize desired and scale to maximum speed
   desired.normalize();
   desired.mult(this.maxspeed);
   // Steering = Desired minus Velocity
-  var steer = PVector.sub(desired,this.velocity);
+  var steer = p5.Vector.sub(desired,this.velocity);
   steer.limit(this.maxforce);  // Limit to maximum steering force
   return steer;
 }
@@ -70,7 +70,7 @@ Boid.prototype.render = function() {
   var theta = this.velocity.heading() + radians(90);
   fill(127);
   stroke(200);
-  pushMatrix();
+  push();
   translate(this.position.x,this.position.y);
   rotate(theta);
   beginShape();
@@ -78,7 +78,7 @@ Boid.prototype.render = function() {
   vertex(-this.r, this.r*2);
   vertex(this.r, this.r*2);
   endShape(CLOSE);
-  popMatrix();
+  pop();
 }
 
 // Wraparound
@@ -93,15 +93,15 @@ Boid.prototype.borders = function() {
 // Method checks for nearby boids and steers away
 Boid.prototype.separate = function(boids) {
   var desiredseparation = 25.0;
-  var steer = new PVector(0,0);
+  var steer = createVector(0,0);
   var count = 0;
   // For every boid in the system, check if it's too close
   for (var i = 0; i < boids.length; i++) {
-    var d = PVector.dist(this.position,boids[i].position);
+    var d = p5.Vector.dist(this.position,boids[i].position);
     // If the distance is greater than 0 and less than an arbitrary amount (0 when you are yourself)
     if ((d > 0) && (d < desiredseparation)) {
       // Calculate vector pointing away from neighbor
-      var diff = PVector.sub(this.position,boids[i].position);
+      var diff = p5.Vector.sub(this.position,boids[i].position);
       diff.normalize();
       diff.div(d);        // Weight by distance
       steer.add(diff);
@@ -128,10 +128,10 @@ Boid.prototype.separate = function(boids) {
 // For every nearby boid in the system, calculate the average velocity
 Boid.prototype.align = function(boids) {
   var neighbordist = 50;
-  var sum = new PVector(0,0);
+  var sum = createVector(0,0);
   var count = 0;
   for (var i = 0; i < boids.length; i++) {
-    var d = PVector.dist(this.position,boids[i].position);
+    var d = p5.Vector.dist(this.position,boids[i].position);
     if ((d > 0) && (d < neighbordist)) {
       sum.add(boids[i].velocity);
       count++;
@@ -141,11 +141,11 @@ Boid.prototype.align = function(boids) {
     sum.div(count);
     sum.normalize();
     sum.mult(this.maxspeed);
-    var steer = PVector.sub(sum,this.velocity);
+    var steer = p5.Vector.sub(sum,this.velocity);
     steer.limit(this.maxforce);
     return steer;
   } else {
-    return new PVector(0,0);
+    return createVector(0,0);
   }
 }
 
@@ -153,10 +153,10 @@ Boid.prototype.align = function(boids) {
 // For the average location (i.e. center) of all nearby boids, calculate steering vector towards that location
 Boid.prototype.cohesion = function(boids) {
   var neighbordist = 50;
-  var sum = new PVector(0,0);   // Start with empty vector to accumulate all locations
+  var sum = createVector(0,0);   // Start with empty vector to accumulate all locations
   var count = 0;
   for (var i = 0; i < boids.length; i++) {
-    var d = PVector.dist(this.position,boids[i].position);
+    var d = p5.Vector.dist(this.position,boids[i].position);
     if ((d > 0) && (d < neighbordist)) {
       sum.add(boids[i].position); // Add location
       count++;
@@ -166,7 +166,7 @@ Boid.prototype.cohesion = function(boids) {
     sum.div(count);
     return this.seek(sum);  // Steer towards the location
   } else {
-    return new PVector(0,0);
+    return createVector(0,0);
   }
 }
 

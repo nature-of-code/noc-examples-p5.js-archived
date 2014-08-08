@@ -18,7 +18,7 @@ function setup() {
 function draw() {
   background(51);
 
-  var mouse = new PVector(mouseX, mouseY);
+  var mouse = createVector(mouseX, mouseY);
 
   // Draw an ellipse at the mouse location
   fill(127);

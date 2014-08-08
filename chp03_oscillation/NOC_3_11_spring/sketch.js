@@ -23,7 +23,7 @@ function draw() {
   background(51);
 
   // Apply a gravity force to the bob
-  var gravity = new PVector(0,2);
+  var gravity = createVector(0,2);
   bob.applyForce(gravity);
   
   // Connect the bob to the spring (this calculates the force)

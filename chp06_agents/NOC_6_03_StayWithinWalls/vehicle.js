@@ -5,9 +5,9 @@
 // The "Vehicle" class
 
 function Vehicle(x,y) {
-  this.acceleration = new PVector(0,0);
-  this.velocity = new PVector(5,4);
-  this.position = new PVector(x,y);
+  this.acceleration = createVector(0,0);
+  this.velocity = createVector(5,4);
+  this.position = createVector(x,y);
   this.r = 6;
   this.maxspeed = 3;
   this.maxforce = 0.15;
@@ -34,23 +34,23 @@ Vehicle.prototype.boundaries = function() {
   var desired = null;
 
   if (this.position.x < d) {
-    desired = new PVector(this.maxspeed, this.velocity.y);
+    desired = createVector(this.maxspeed, this.velocity.y);
   } 
   else if (this.position.x > width -d) {
-    desired = new PVector(-this.maxspeed, this.velocity.y);
+    desired = createVector(-this.maxspeed, this.velocity.y);
   } 
 
   if (this.position.y < d) {
-    desired = new PVector(this.velocity.x, this.maxspeed);
+    desired = createVector(this.velocity.x, this.maxspeed);
   } 
   else if (this.position.y > height-d) {
-    desired = new PVector(this.velocity.x, -this.maxspeed);
+    desired = createVector(this.velocity.x, -this.maxspeed);
   } 
 
   if (desired != null) {
     desired.normalize();
     desired.mult(this.maxspeed);
-    var steer = PVector.sub(desired, this.velocity);
+    var steer = p5.Vector.sub(desired, this.velocity);
     steer.limit(this.maxforce);
     this.applyForce(steer);
   }
@@ -62,7 +62,7 @@ Vehicle.prototype.display = function() {
   fill(127);
   stroke(200);
   strokeWeight(1);
-  pushMatrix();
+  push();
   translate(this.position.x,this.position.y);
   rotate(theta);
   beginShape();
@@ -70,7 +70,7 @@ Vehicle.prototype.display = function() {
   vertex(-this.r, this.r*2);
   vertex(this.r, this.r*2);
   endShape(CLOSE);
-  popMatrix();
+  pop();
 }
 
 

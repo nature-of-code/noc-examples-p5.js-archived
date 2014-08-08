@@ -11,7 +11,7 @@
 function Pendulum(origin_, r_) {
   // Fill all variables
   this.origin = origin_.get();
-  this.position = new PVector();
+  this.position = createVector();
   this.r = r_;
   this.angle = PI/4;
 

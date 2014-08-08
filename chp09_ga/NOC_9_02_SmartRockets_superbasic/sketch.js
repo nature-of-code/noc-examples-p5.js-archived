@@ -4,8 +4,8 @@
 
 // Smart Rockets w/ Genetic Algorithms
 
-// Each Rocket's DNA is an array of PVectors
-// Each PVector acts as a force for each frame of animation
+// Each Rocket's DNA is an array of p5.Vectors
+// Each p5.Vector acts as a force for each frame of animation
 // Imagine an booster on the end of the rocket that can point in any direction
 // and fire at any strength every frame
 
@@ -32,13 +32,13 @@ function setup() {
   // Initialize variables
   lifeCounter = 0;
   
-  target = new PVector(width/2, 24);
+  target = createVector(width/2, 24);
 
   // Create a population with a mutation rate, and population max
   var mutationRate = 0.01;
   population = new Population(mutationRate, 50);
 
-  info = createHTML("");
+  info = createP("");
   info.position(10,380);
 
 }

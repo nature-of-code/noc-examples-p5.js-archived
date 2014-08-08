@@ -50,12 +50,12 @@ var counter = 0;
 
 function mousePressed() {
   if (counter < 5) {
-    pushMatrix();
+    push();
     lsys.generate();
     //println(lsys.getSentence());
     turtle.setToDo(lsys.getSentence());
     turtle.changeLen(0.5);
-    popMatrix();
+    pop();
     //redraw();
     counter++;
   }

@@ -65,7 +65,7 @@ Particle.prototype.display = function() {
   
   // Draw it!
   rectMode(CENTER);
-  pushMatrix();
+  push();
   translate(pos.get_x(),pos.get_y());
   rotate(a);
   fill(127);
@@ -74,7 +74,7 @@ Particle.prototype.display = function() {
   ellipse(0,0,this.r*2,this.r*2);
   // Let's add a line so we can see the rotation
   line(0,0,this.r,0);
-  popMatrix();
+  pop();
 }
 
 

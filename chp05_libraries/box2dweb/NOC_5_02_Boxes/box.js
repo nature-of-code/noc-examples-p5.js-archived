@@ -66,14 +66,14 @@ Box.prototype.display = function() {
   
   // Draw it!
   rectMode(CENTER);
-  pushMatrix();
+  push();
   translate(pos.x,pos.y);
   rotate(a);
   fill(127);
   stroke(200);
   strokeWeight(2);
   rect(0, 0, this.w, this.h);
-  popMatrix();
+  pop();
 }
 
 

@@ -39,7 +39,7 @@ var target;                // Target phrase
 var display = "";
 
 function setup() {
-  display = createHTML("STARTING");
+  display = createP("STARTING");
   display.class("results");
   display.position(10,10);
 

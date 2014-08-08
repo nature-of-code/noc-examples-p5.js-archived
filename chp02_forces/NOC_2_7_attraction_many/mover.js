@@ -3,14 +3,14 @@
 // http://natureofcode.com
 
 var Mover = function() {
-  this.position = new PVector(400, 50);
-  this.velocity = new PVector(1, 0);
-  this.acceleration = new PVector(0, 0);
+  this.position = createVector(400, 50);
+  this.velocity = createVector(1, 0);
+  this.acceleration = createVector(0, 0);
   this.mass = 1;
 };
   
 Mover.prototype.applyForce = function(force) {
-  var f = PVector.div(force,this.mass);
+  var f = p5.Vector.div(force,this.mass);
   this.acceleration.add(f);
 };
   

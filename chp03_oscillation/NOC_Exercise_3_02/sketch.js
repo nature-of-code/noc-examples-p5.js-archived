@@ -2,10 +2,11 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var mover = new Mover();
+var mover;
 
 function setup() {
 	createCanvas(640,360);
+	mover = new Mover();
 }
 
 function draw() {

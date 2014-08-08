@@ -76,7 +76,7 @@ Lollipop.prototype.display = function() {
   
   // Draw it!
   rectMode(CENTER);
-  pushMatrix();
+  push();
   translate(pos.x, pos.y);
   rotate(a);
   fill(127);
@@ -85,7 +85,7 @@ Lollipop.prototype.display = function() {
 
   rect(0,0,this.w,this.h);
   ellipse(0, -this.h/2, this.r*2, this.r*2);
-  popMatrix();
+  pop();
 }
 
 

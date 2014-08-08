@@ -9,7 +9,7 @@
 var vehicles = [];
 
 function setup() {
-  var text = createHTML("Drag the mouse to generate new vehicles.");
+  var text = createP("Drag the mouse to generate new vehicles.");
   text.position(10,365);
 
   createCanvas(640,360);

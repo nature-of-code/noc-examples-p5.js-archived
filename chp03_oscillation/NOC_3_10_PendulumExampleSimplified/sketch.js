@@ -23,7 +23,7 @@ var p;
 function setup()  {
   createCanvas(640,360);
   // Make a new Pendulum with an origin location and armlength
-  p = new Pendulum(new PVector(width/2,0),175);
+  p = new Pendulum(createVector(width/2,0),175);
 
 }
 

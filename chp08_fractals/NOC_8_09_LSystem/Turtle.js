@@ -24,10 +24,10 @@ Turtle.prototype.render = function() {
       rotate(-this.theta);
     }
     else if (c === '[') {
-      pushMatrix();
+      push();
     }
     else if (c === ']') {
-      popMatrix();
+      pop();
     }
   }
 };

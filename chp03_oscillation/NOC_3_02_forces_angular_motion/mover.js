@@ -3,19 +3,19 @@
 // http://natureofcode.com
 
 var Mover = function(m, x, y) {
-  this.position = new PVector(x, y);
+  this.position = createVector(x, y);
   this.mass = m;
 
   this.angle = 0;
   this.aVelocity = 0;
   this.aAcceleration = 0;
 
-  this.velocity = new PVector(random(-1, 1), random(-1, 1));
-  this.acceleration = new PVector(0, 0);
+  this.velocity = createVector(random(-1, 1), random(-1, 1));
+  this.acceleration = createVector(0, 0);
 };
 
 Mover.prototype.applyForce = function(force) {
-  var f = PVector.div(force, this.mass);
+  var f = p5.Vector.div(force, this.mass);
   this.acceleration.add(f);
 };
 
@@ -36,9 +36,9 @@ Mover.prototype.display = function () {
   stroke(0);
   fill(175, 200);
   rectMode(CENTER);
-  pushMatrix();
+  push();
   translate(this.position.x, this.position.y);
   rotate(this.angle);
   rect(0, 0, this.mass*16, this.mass*16);
-  popMatrix();
+  pop();
 };

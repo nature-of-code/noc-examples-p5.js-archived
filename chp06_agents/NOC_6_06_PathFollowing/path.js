@@ -8,13 +8,13 @@
 function Path() {
   // A path has a radius, i.e how far is it ok for the vehicle to wander off
   this.radius = 20;
-  // A Path is an array of points (PVector objects)
+  // A Path is an array of points (p5.Vector objects)
   this.points = [];
 }
 
 // Add a point to the path
 Path.prototype.addPoint = function(x, y) {
-  var point = new PVector(x, y);
+  var point = createVector(x, y);
   this.points.push(point);
 }
 

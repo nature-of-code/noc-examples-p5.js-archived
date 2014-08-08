@@ -7,7 +7,7 @@
 // Angles and number of branches are random
 
 function setup() {
-  var test = createHTML('Click mouse to generate a new tree');
+  var test = createP('Click mouse to generate a new tree');
   test.position(10,372);
 
   createCanvas(640, 360);
@@ -27,12 +27,12 @@ function newTree() {
   background(51);
 
   stroke(255);
-  pushMatrix();
+  push();
   // Start the tree from the bottom of the screen
   translate(width/2, height);
   // Start the recursive branching!
   branch(120);
-  popMatrix();
+  pop();
 }
 
 
@@ -57,10 +57,10 @@ function branch(h) {
     for (var i = 0; i < n; i++) {
       // Picking a random angle
       var theta = random(-PI/3, PI/3);
-      pushMatrix();      // Save the current state of transformation (i.e. where are we now)
+      push();      // Save the current state of transformation (i.e. where are we now)
       rotate(theta);     // Rotate by theta
       branch(h);         // Ok, now call myself to branch again
-      popMatrix();       // Whenever we get back here, we "pop" in order to restore the previous matrix state
+      pop();       // Whenever we get back here, we "pop" in order to restore the previous matrix state
     }
   }
 }

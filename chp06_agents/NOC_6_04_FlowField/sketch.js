@@ -15,7 +15,7 @@ var vehicles = [];
 
 function setup() {
 
-  var text = createHTML("Hit space bar to toggle debugging lines.<br>Click the mouse to generate a new flow field (<a href=\"https://github.com/shiffman/The-Nature-of-Code-Examples-p5.js/issues/12\">not working yet</a>).");
+  var text = createP("Hit space bar to toggle debugging lines.<br>Click the mouse to generate a new flow field (<a href=\"https://github.com/shiffman/The-Nature-of-Code-Examples-p5.js/issues/12\">not working yet</a>).");
   text.position(10,365);
 
   createCanvas(640, 360);

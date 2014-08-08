@@ -5,9 +5,9 @@
 // The "Vehicle" class
 
 function Vehicle(x,y,ms,mf) {
-  this.position = new PVector(x,y);
-  this.acceleration = new PVector(0,0);
-  this.velocity = new PVector(2,0);
+  this.position = createVector(x,y);
+  this.acceleration = createVector(0,0);
+  this.velocity = createVector(2,0);
   this.r = 4;
   this.maxspeed = ms || 4;
   this.maxforce = mf || 0.1;
@@ -28,7 +28,7 @@ Vehicle.prototype.follow = function(p) {
   var predict = this.velocity.get();
   predict.normalize();
   predict.mult(50);
-  var predictLoc = PVector.add(this.position, predict);
+  var predictLoc = p5.Vector.add(this.position, predict);
  
   // Now we must find the normal to the path from the predicted location
   // We look at the normal for each line segment and pick out the closest one
@@ -56,7 +56,7 @@ Vehicle.prototype.follow = function(p) {
     }
 
     // How far away are we from the path?
-    var distance = PVector.dist(predictLoc, normalPoint);
+    var distance = p5.Vector.dist(predictLoc, normalPoint);
     // Did we beat the record and find the closest line segment?
     if (distance < worldRecord) {
       worldRecord = distance;
@@ -64,7 +64,7 @@ Vehicle.prototype.follow = function(p) {
       normal = normalPoint;
 
       // Look at the direction of the line segment so we can seek a little bit ahead of the normal
-      var dir = PVector.sub(b, a);
+      var dir = p5.Vector.sub(b, a);
       dir.normalize();
       // This is an oversimplification
       // Should be based on distance to path & velocity
@@ -108,7 +108,7 @@ Vehicle.prototype.applyForce = function(force) {
 // A method that calculates and applies a steering force towards a target
 // STEER = DESIRED MINUS VELOCITY
 Vehicle.prototype.seek = function(target) {
-  var desired = PVector.sub(target, this.position);  // A vector pointing from the position to the target
+  var desired = p5.Vector.sub(target, this.position);  // A vector pointing from the position to the target
 
   // If the magnitude of desired equals 0, skip out of here
   // (We could optimize this to check if x and y are 0 to avoid mag() square root
@@ -118,7 +118,7 @@ Vehicle.prototype.seek = function(target) {
   desired.normalize();
   desired.mult(this.maxspeed);
   // Steering = Desired minus Velocity
-  var steer = PVector.sub(desired, this.velocity);
+  var steer = p5.Vector.sub(desired, this.velocity);
   steer.limit(this.maxforce);  // Limit to maximum steering force
 
   this.applyForce(steer);
@@ -149,7 +149,7 @@ Vehicle.prototype.display = function() {
   fill(127);
   stroke(255);
   strokeWeight(1);
-  pushMatrix();
+  push();
   translate(this.position.x,this.position.y);
   rotate(theta);
   beginShape();
@@ -157,20 +157,20 @@ Vehicle.prototype.display = function() {
   vertex(-this.r, this.r*2);
   vertex(this.r, this.r*2);
   endShape(CLOSE);
-  popMatrix();
+  pop();
 }
 
 // A function to get the normal point from a point (p) to a line segment (a-b)
 // This function could be optimized to make fewer new Vector objects
 var getNormalPoint = function(p, a, b) {
   // Vector from a to p
-  var ap = PVector.sub(p, a);
+  var ap = p5.Vector.sub(p, a);
   // Vector from a to b
-  var ab = PVector.sub(b, a);
+  var ab = p5.Vector.sub(b, a);
   ab.normalize(); // Normalize the line
   // Project vector "diff" onto line by using the dot product
   ab.mult(ap.dot(ab));
-  var normalPoint = PVector.add(a, ab);
+  var normalPoint = p5.Vector.add(a, ab);
   return normalPoint;
 }
 

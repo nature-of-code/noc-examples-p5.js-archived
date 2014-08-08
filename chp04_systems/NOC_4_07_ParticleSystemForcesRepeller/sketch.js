@@ -7,7 +7,7 @@ var repeller;
 
 function setup() {
   createCanvas(640, 360);
-  ps = new ParticleSystem(new PVector(width/2, 50));
+  ps = new ParticleSystem(createVector(width/2, 50));
   repeller = new Repeller(width/2-20, height/2);
 }
 
@@ -16,7 +16,7 @@ function draw() {
   ps.addParticle();
 
   // Apply gravity force to all Particles
-  var gravity = new PVector(0,0.1);
+  var gravity = createVector(0,0.05);
   ps.applyForce(gravity);
 
   ps.applyRepeller(repeller);

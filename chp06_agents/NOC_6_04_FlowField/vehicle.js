@@ -5,9 +5,9 @@
 // The "Vehicle" class
 
 function Vehicle(x,y,ms,mf) {
-  this.position = new PVector(x,y);
-  this.acceleration = new PVector(0,0);
-  this.velocity = new PVector(0,0);
+  this.position = createVector(x,y);
+  this.acceleration = createVector(0,0);
+  this.velocity = createVector(0,0);
   this.r = 4;
   this.maxspeed = ms || 4;
   this.maxforce = mf || 0.1;
@@ -27,7 +27,7 @@ Vehicle.prototype.follow = function(flow) {
   // Scale it up by maxspeed
   desired.mult(this.maxspeed);
   // Steering is desired minus velocity
-  var steer = PVector.sub(desired, this.velocity);
+  var steer = p5.Vector.sub(desired, this.velocity);
   steer.limit(this.maxforce);  // Limit to maximum steering force
   this.applyForce(steer);
 }
@@ -62,7 +62,7 @@ Vehicle.prototype.display = function() {
   fill(127);
   stroke(200);
   strokeWeight(1);
-  pushMatrix();
+  push();
   translate(this.position.x,this.position.y);
   rotate(theta);
   beginShape();
@@ -70,7 +70,7 @@ Vehicle.prototype.display = function() {
   vertex(-this.r, this.r*2);
   vertex(this.r, this.r*2);
   endShape(CLOSE);
-  popMatrix();
+  pop();
 }
 
 

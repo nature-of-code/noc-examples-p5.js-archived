@@ -5,14 +5,14 @@
 // An object for a draggable attractive body in our world
 
 var Attractor = function() {
-  this.position = new PVector(width/2, height/2);
+  this.position = createVector(width/2, height/2);
   this.mass = 20;
   this.G = 1;
 };
 
 Attractor.prototype.calculateAttraction = function(m) {
   // Calculate direction of force
-  var force = PVector.sub(this.position, m.position);
+  var force = p5.Vector.sub(this.position, m.position);
   // Distance between objects       
   var distance = force.mag();
   // Limiting the distance to eliminate "extreme" results for very close or very far objects                            

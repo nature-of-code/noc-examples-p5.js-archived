@@ -14,7 +14,7 @@ function DNA(newgenes) {
     this.maxforce = 0.1;
     for (var i = 0; i < lifetime; i++) {
       var angle = random(TWO_PI);
-      this.genes[i] = PVector.fromAngle(angle);
+      this.genes[i] = p5.Vector.fromAngle(angle);
       this.genes[i].mult(random(0, this.maxforce));
     }
   }
@@ -40,7 +40,7 @@ DNA.prototype.mutate = function(m) {
   for (var i = 0; i < this.genes.length; i++) {
     if (random(1) < m) {
       var angle = random(TWO_PI);
-      this.genes[i] = PVector.fromAngle(angle);
+      this.genes[i] = p5.Vector.fromAngle(angle);
       this.genes[i].mult(random(0, this.maxforce));
     }
   }

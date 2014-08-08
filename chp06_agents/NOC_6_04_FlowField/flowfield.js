@@ -11,7 +11,7 @@ function FlowField(r) {
   // Determine the number of columns and rows based on sketch's width and height
   this.cols = width/this.resolution;
   this.rows = height/this.resolution;
-  // A flow field is a two dimensional array of PVectors
+  // A flow field is a two dimensional array of p5.Vectors
   this.field = make2Darray(this.cols);
   this.init();
 }
@@ -36,7 +36,7 @@ FlowField.prototype.init = function() {
       var theta = map(noise(xoff,yoff),0,1,0,TWO_PI);
       //var theta = map(sin(xoff)+cos(yoff),-2,2,0,TWO_PI);
       // Polar to cartesian coordinate transformation to get x and y components of the vector
-      this.field[i][j] = new PVector(cos(theta),sin(theta));
+      this.field[i][j] = createVector(cos(theta),sin(theta));
       yoff += 0.1;
     }
     xoff += 0.1;
@@ -61,7 +61,7 @@ FlowField.prototype.lookup = function(lookup) {
 
 // Renders a vector object 'v' as an arrow and a location 'x,y'
 var drawVector = function(v, x, y, scayl) {
-  pushMatrix();
+  push();
   var arrowsize = 4;
   // Translate to location to render vector
   translate(x,y);
@@ -74,7 +74,7 @@ var drawVector = function(v, x, y, scayl) {
   line(0,0,len,0);
   //line(len,0,len-arrowsize,+arrowsize/2);
   //line(len,0,len-arrowsize,-arrowsize/2);
-  popMatrix();
+  pop();
 }
 
 

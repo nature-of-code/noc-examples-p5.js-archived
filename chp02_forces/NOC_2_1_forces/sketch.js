@@ -12,8 +12,8 @@ function setup() {
 function draw() {
   background(51);
 
-  var wind = new PVector(0.01, 0);
-  var gravity = new PVector(0, 0.1);
+  var wind = createVector(0.01, 0);
+  var gravity = createVector(0, 0.1);
   m.applyForce(wind);
   m.applyForce(gravity);
 

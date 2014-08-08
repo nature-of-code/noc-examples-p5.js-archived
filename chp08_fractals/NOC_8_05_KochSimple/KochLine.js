@@ -4,12 +4,12 @@
 
 // Koch Curve
 // A class to describe one line segment in the fractal
-// Includes methods to calculate midPVectors along the line according to the Koch algorithm
+// Includes methods to calculate midp5.Vectors along the line according to the Koch algorithm
 
 function KochLine(a,b) {
-	// Two PVectors,
-	// start is the "left" PVector and 
-	// end is the "right PVector
+	// Two p5.Vectors,
+	// start is the "left" p5.Vector and 
+	// end is the "right p5.Vector
   this.start = a.get();
   this.end = b.get();
 }
@@ -25,16 +25,16 @@ KochLine.prototype.kochA = function() {
 
 // This is easy, just 1/3 of the way
 KochLine.prototype.kochB = function() {
-  var v = PVector.sub(this.end, this.start);
+  var v = p5.Vector.sub(this.end, this.start);
   v.div(3);
   v.add(this.start);
   return v;
 }    
 
-// More complicated, have to use a little trig to figure out where this PVector is!
+// More complicated, have to use a little trig to figure out where this p5.Vector is!
 KochLine.prototype.kochC = function() {
   var a = this.start.get(); // Start at the beginning
-  var v = PVector.sub(this.end, this.start);
+  var v = p5.Vector.sub(this.end, this.start);
   v.div(3);
   a.add(v);  // Move to point B
   v.rotate2D(-PI/3); // Rotate 60 degrees
@@ -44,7 +44,7 @@ KochLine.prototype.kochC = function() {
 
 // Easy, just 2/3 of the way
 KochLine.prototype.kochD = function() {
-  var v = PVector.sub(this.end, this.start);
+  var v = p5.Vector.sub(this.end, this.start);
   v.mult(2/3.0);
   v.add(this.start);
   return v;

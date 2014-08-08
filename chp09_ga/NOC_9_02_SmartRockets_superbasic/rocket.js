@@ -10,8 +10,8 @@
 //constructor
 function Rocket(l, dna_) {
   // All of our physics stuff
-  this.acceleration = new PVector();
-  this.velocity = new PVector();
+  this.acceleration = createVector();
+  this.velocity = createVector();
   this.location = l.get();
   // Size
   this.r = 4;
@@ -62,12 +62,10 @@ Rocket.prototype.update = function() {
 };
 
 Rocket.prototype.display = function() {
-  // TODO: Fix to work with radians https://github.com/lmccart/p5.js/pull/185#issuecomment-40615973
-  angleMode(DEGREES);
-  var theta = degrees(this.velocity.heading()) + 90;
+  var theta = this.velocity.heading() + PI/2;
   var r = this.r;
   stroke(0);
-  pushMatrix();
+  push();
   translate(this.location.x, this.location.y);
   rotate(theta);
 
@@ -85,7 +83,7 @@ Rocket.prototype.display = function() {
   vertex(r, r*2);
   endShape(CLOSE);
 
-  popMatrix();
+  pop();
 };
 
 Rocket.prototype.getFitness = function() {

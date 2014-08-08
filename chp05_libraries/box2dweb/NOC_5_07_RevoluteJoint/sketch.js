@@ -17,7 +17,7 @@ var windmill;
 var text;
 
 function setup() {
-  text = createHTML("Click mouse to toggle motor.\nMotor: OFF");
+  text = createP("Click mouse to toggle motor.\nMotor: OFF");
   text.position(10,365);
 
   createCanvas(640,360);

@@ -11,7 +11,7 @@
 function Pendulum(origin_, r_) {
   // Fill all variables
   this.origin = origin_.get();
-  this.position = new PVector();
+  this.position = createVector();
   this.r = r_;
   this.angle = PI/4;
 
@@ -78,7 +78,7 @@ Pendulum.prototype.drag = function() {
   // pendulum origin and mouse position
   // we assign that angle to the pendulum
   if (this.dragging) {
-    var diff = PVector.sub(this.origin, new PVector(mouseX, mouseY));      // Difference between 2 points
+    var diff = p5.Vector.sub(this.origin, createVector(mouseX, mouseY));      // Difference between 2 points
     this.angle = atan2(-1*diff.y, diff.x) - radians(90);                   // Angle relative to vertical axis
   }
 }

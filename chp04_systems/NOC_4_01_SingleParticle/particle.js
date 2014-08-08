@@ -7,8 +7,8 @@
 // A simple Particle class
 
 var Particle = function(position) {
-  this.acceleration = new PVector(0, 0.05);
-  this.velocity = new PVector(random(-1, 1), random(-1, 0));
+  this.acceleration = createVector(0, 0.05);
+  this.velocity = createVector(random(-1, 1), random(-1, 0));
   this.position = position.get();
   this.lifespan = 255.0;
 };

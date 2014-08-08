@@ -15,8 +15,8 @@ function draw() {
   background(51);
   
   for (var i = 0; i < movers.length; i++) {
-    var wind = new PVector(0.01, 0);
-    var gravity = new PVector(0, 0.1*movers[i].mass);
+    var wind = createVector(0.01, 0);
+    var gravity = createVector(0, 0.1*movers[i].mass);
 
     var c = 0.01;
     var normal = 1;

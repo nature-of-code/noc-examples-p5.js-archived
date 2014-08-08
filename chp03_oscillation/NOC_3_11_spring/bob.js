@@ -1,14 +1,14 @@
 // Bob object, just like our regular Mover (location, velocity, acceleration, mass)
 
 var Bob = function(x, y) {
-  this.position = new PVector(x,y);
-  this.velocity = new PVector();
-  this.acceleration = new PVector();
+  this.position = createVector(x,y);
+  this.velocity = createVector();
+  this.acceleration = createVector();
   this.mass = 24;
   // Arbitrary damping to simulate friction / drag
   this.damping = 0.98;
   // For user interaction
-  this.dragOffset = new PVector();
+  this.dragOffset = createVector();
   this.dragging = false;
 };
 

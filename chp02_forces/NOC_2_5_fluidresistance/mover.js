@@ -4,15 +4,15 @@
 
 function Mover(m,x,y) {
   this.mass = m;
-  this.position = new PVector(x,y);
-  this.velocity = new PVector(0,0);
-  this.acceleration = new PVector(0,0);
+  this.position = createVector(x,y);
+  this.velocity = createVector(0,0);
+  this.acceleration = createVector(0,0);
 }
 
 // Newton's 2nd law: F = M * A
 // or A = F / M
 Mover.prototype.applyForce = function(force) {
-  var f = PVector.div(force,this.mass);
+  var f = p5.Vector.div(force,this.mass);
   this.acceleration.add(f);
 };
   

@@ -38,15 +38,15 @@ function branch(len) {
   // All recursive functions must have an exit condition!!!!
   // Here, ours is when the length of the branch is 2 pixels or less
   if (len > 2) {
-    pushMatrix();    // Save the current state of transformation (i.e. where are we now)
+    push();    // Save the current state of transformation (i.e. where are we now)
     rotate(theta);   // Rotate by theta
     branch(len);       // Ok, now call myself to draw two new branches!!
-    popMatrix();     // Whenever we get back here, we "pop" in order to restore the previous matrix state
+    pop();     // Whenever we get back here, we "pop" in order to restore the previous matrix state
 
     // Repeat the same thing, only branch off to the "left" this time!
-    pushMatrix();
+    push();
     rotate(-theta);
     branch(len);
-    popMatrix();
+    pop();
   }
 }

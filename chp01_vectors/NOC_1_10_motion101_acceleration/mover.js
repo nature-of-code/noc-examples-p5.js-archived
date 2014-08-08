@@ -5,16 +5,16 @@
 // http://natureofcode.com
 
 function Mover() {
-  this.position = new PVector(width/2,height/2);
-  this.velocity = new PVector();
-  this.acceleration = new PVector();
+  this.position = createVector(width/2,height/2);
+  this.velocity = createVector();
+  this.acceleration = createVector();
   this.topspeed = 5;  
 }
 
 Mover.prototype.update = function() {
   // Compute a vector that points from position to mouse
-  var mouse = new PVector(mouseX,mouseY);
-  this.acceleration = PVector.sub(mouse,this.position);
+  var mouse = createVector(mouseX,mouseY);
+  this.acceleration = p5.Vector.sub(mouse,this.position);
   // Set magnitude of acceleration
   this.acceleration.setMag(0.2);
 

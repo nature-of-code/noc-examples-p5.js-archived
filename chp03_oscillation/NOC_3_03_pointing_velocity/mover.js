@@ -3,8 +3,8 @@
 // http://natureofcode.com
 
 var Mover = function() {
-  this.position = new PVector(width/2, height/2);
-  this.velocity = new PVector(0, 0);
+  this.position = createVector(width/2, height/2);
+  this.velocity = createVector(0, 0);
   this.acceleration = 0;
   this.topspeed = 4;
   this.xoff = 1000;
@@ -13,8 +13,8 @@ var Mover = function() {
 };
 
 Mover.prototype.update = function () {
-  var mouse = new PVector(mouseX, mouseY);
-  var dir = PVector.sub(mouse, this.position);
+  var mouse = createVector(mouseX, mouseY);
+  var dir = p5.Vector.sub(mouse, this.position);
   dir.normalize();
   dir.mult(0.5);
   this.acceleration = dir;
@@ -30,14 +30,14 @@ Mover.prototype.display = function () {
   stroke(0);
   strokeWeight(2);
   fill(127);
-  pushMatrix();
+  push();
   rectMode(CENTER);
 
   translate(this.position.x, this.position.y);
   rotate(angle);
   rect(0, 0, 30, 10);
 
-  popMatrix();
+  pop();
 };
 
 Mover.prototype.checkEdges = function () {

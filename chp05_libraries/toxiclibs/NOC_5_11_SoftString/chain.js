@@ -45,7 +45,7 @@ function Chain(l,n,r,s) {
   this.tail.radius = this.radius;
 
   // Some variables for mouse dragging
-  this.offset = new PVector();
+  this.offset = createVector();
   this.dragged = false;  
 }
 

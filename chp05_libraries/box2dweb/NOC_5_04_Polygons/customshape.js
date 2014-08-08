@@ -79,7 +79,7 @@ CustomShape.prototype.display = function() {
   var ps = f.GetShape();
 
   rectMode(CENTER);
-  pushMatrix();
+  push();
   translate(pos.x,pos.y);
   //println(pos.x + " " + pos.y);
   rotate(a);
@@ -94,7 +94,7 @@ CustomShape.prototype.display = function() {
     vertex(v.x, v.y);
   }
   endShape(CLOSE);
-  popMatrix();
+  pop();
 }
 
 

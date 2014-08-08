@@ -16,8 +16,8 @@ function draw() {
 };
 
 function Walker() {
-  this.position = new PVector(width/2,height/2);
-  this.noff = new PVector(random(1000),random(1000));
+  this.position = createVector(width/2,height/2);
+  this.noff = createVector(random(1000),random(1000));
 };
 
 Walker.prototype.display = function() {

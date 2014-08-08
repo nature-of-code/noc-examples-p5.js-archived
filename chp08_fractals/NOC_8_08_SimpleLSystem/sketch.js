@@ -17,13 +17,13 @@ var show;
 var results = '';
 
 function setup() {
-  instructions = createHTML('<a href=\'#\'>Click the mouse to generate.</a>');
+  instructions = createP('<a href=\'#\'>Click the mouse to generate.</a>');
   instructions.position(50,50);
   instructions.class('clickable');
   instructions.mousePressed(generate);
   
   results += 'Generation ' + count + ': ' + current + '<br>';
-  show = createHTML(results);
+  show = createP(results);
   show.position(50,100);
 }
 
