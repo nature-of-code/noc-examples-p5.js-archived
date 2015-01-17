@@ -27,12 +27,12 @@ function Boundary(x_,y_, w_, h_) {
   fd.shape = new box2d.b2PolygonShape();
   fd.shape.SetAsBox(this.w/(scaleFactor*2), this.h/(scaleFactor*2));
   this.body = world.CreateBody(bd).CreateFixture(fd);
-}
 
   // Draw the boundary, if it were at an angle we'd have to do something fancier
-Boundary.prototype.display = function() {
-  fill(127);
-  stroke(200);
-  rectMode(CENTER);
-  rect(this.x,this.y,this.w,this.h);
+  this.display = function() {
+    fill(127);
+    stroke(200);
+    rectMode(CENTER);
+    rect(this.x,this.y,this.w,this.h);
+  }
 }

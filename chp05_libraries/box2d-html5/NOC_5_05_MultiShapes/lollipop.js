@@ -43,43 +43,43 @@ function Lollipop(x, y) {
 
   // Some additional stuff
   this.body.SetLinearVelocity(new box2d.b2Vec2(random(-5, 5), random(2, 5)));
-  this.body.SetAngularVelocity(random(-5,5));
-}
+    this.body.SetAngularVelocity(random(-5,5));
 
-// This function removes the particle from the box2d world
-Lollipop.prototype.killBody = function() {
-  world.DestroyBody(this.body);
-}
-
-// Is the particle ready for deletion?
-Lollipop.prototype.done = function() {
-  // Let's find the screen position of the particle
-  var pos = scaleToPixels(this.body.GetPosition());
-  // Is it off the bottom of the screen?
-  if (pos.y > height+this.w*this.h) {
-    this.killBody();
-    return true;
+  // This function removes the particle from the box2d world
+  this.killBody = function() {
+    world.DestroyBody(this.body);
   }
-  return false;
-}
 
-// Drawing the box
-Lollipop.prototype.display = function() {
-  // Get the body's position
-  var pos = scaleToPixels(this.body.GetPosition());
-  // Get its angle of rotation
-  var a = this.body.GetAngleRadians();
-  
-  // Draw it!
-  rectMode(CENTER);
-  push();
-  translate(pos.x, pos.y);
-  rotate(a);
-  fill(127);
-  stroke(200);
-  strokeWeight(2);
+  // Is the particle ready for deletion?
+  this.done = function() {
+    // Let's find the screen position of the particle
+    var pos = scaleToPixels(this.body.GetPosition());
+    // Is it off the bottom of the screen?
+    if (pos.y > height+this.w*this.h) {
+      this.killBody();
+      return true;
+    }
+    return false;
+  }
 
-  rect(0,0,this.w,this.h);
-  ellipse(0, -this.h/2, this.r*2, this.r*2);
-  pop();
+  // Drawing the box
+  this.display = function() {
+    // Get the body's position
+    var pos = scaleToPixels(this.body.GetPosition());
+    // Get its angle of rotation
+    var a = this.body.GetAngleRadians();
+    
+    // Draw it!
+    rectMode(CENTER);
+    push();
+    translate(pos.x, pos.y);
+    rotate(a);
+    fill(127);
+    stroke(200);
+    strokeWeight(2);
+
+    rect(0,0,this.w,this.h);
+    ellipse(0, -this.h/2, this.r*2, this.r*2);
+    pop();
+  }
 }

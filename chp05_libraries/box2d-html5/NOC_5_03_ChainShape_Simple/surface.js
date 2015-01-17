@@ -36,20 +36,20 @@ function Surface() {
   fd.restitution = 0.3;
 
   // Attach the fixture
-  this.body.CreateFixture(fd);
-}
+    this.body.CreateFixture(fd);
 
-// A simple function to just draw the edge chain as a series of vertex points
-Surface.prototype.display = function() {
-  strokeWeight(1);
-  stroke(200);
-  fill(200);
-  beginShape();
-  for (var i = 0; i < this.surface.length; i++) {
-    var v = scaleToPixels(this.surface[i]);
-    vertex(v.x, v.y);
+  // A simple function to just draw the edge chain as a series of vertex points
+  this.display = function() {
+    strokeWeight(1);
+    stroke(200);
+    fill(200);
+    beginShape();
+    for (var i = 0; i < this.surface.length; i++) {
+      var v = scaleToPixels(this.surface[i]);
+      vertex(v.x, v.y);
+    }
+    vertex(width, height);
+    vertex(0, height);
+    endShape(CLOSE);
   }
-  vertex(width, height);
-  vertex(0, height);
-  endShape(CLOSE);
 }

@@ -29,23 +29,22 @@ function Box(x, y) {
   // Attach the fixture
   this.body.CreateFixture(fd);
 
-}
-
-// Drawing the box
-Box.prototype.display = function() {
-  // Get the body's position
-  var pos = scaleToPixels(this.body.GetPosition());
-  // Get its angle of rotation
-  var a = this.body.GetAngleRadians();
-  
-  // Draw it!
-  rectMode(CENTER);
-  push();
-  translate(pos.x,pos.y);
-  rotate(a);
-  fill(127);
-  stroke(200);
-  strokeWeight(2);
-  rect(0, 0, this.w, this.h);
-  pop();
+  // Drawing the box
+  this.display = function() {
+    // Get the body's position
+    var pos = scaleToPixels(this.body.GetPosition());
+    // Get its angle of rotation
+    var a = this.body.GetAngleRadians();
+    
+    // Draw it!
+    rectMode(CENTER);
+    push();
+    translate(pos.x,pos.y);
+    rotate(a);
+    fill(127);
+    stroke(200);
+    strokeWeight(2);
+    rect(0, 0, this.w, this.h);
+    pop();
+  }
 }

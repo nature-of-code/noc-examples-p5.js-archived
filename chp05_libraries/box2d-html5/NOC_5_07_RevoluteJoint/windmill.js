@@ -26,27 +26,26 @@ function Windmill(x,y) {
   // See box2d manual for more
 
   // Create the joint
-  joint = world.CreateJoint(rjd);
-}
+    joint = world.CreateJoint(rjd);
 
+  this.display = function() {
+    this.box2.display();
+    this.box1.display();
 
-Windmill.prototype.display = function() {
-  this.box2.display();
-  this.box1.display();
+    // Draw anchor just for debug
+    var anchor = scaleToPixels(this.box1.body.GetWorldCenter());
+    fill(0);
+    noStroke();
+    ellipse(anchor.x, anchor.y, 8, 8);
+  }
 
-  // Draw anchor just for debug
-  var anchor = scaleToPixels(this.box1.body.GetWorldCenter());
-  fill(0);
-  noStroke();
-  ellipse(anchor.x, anchor.y, 8, 8);
-}
+  // Turn the motor on or off
+  this.toggleMotor = function() {
+    joint.EnableMotor(!joint.IsMotorEnabled());
+  }
 
-// Turn the motor on or off
-Windmill.prototype.toggleMotor = function() {
-  joint.EnableMotor(!joint.IsMotorEnabled());
-}
-
-Windmill.prototype.motorOn = function() {
-  return joint.IsMotorEnabled();
+  this.motorOn = function() {
+    return joint.IsMotorEnabled();
+  }
 }
 

@@ -25,21 +25,21 @@ function Pair(x,y) {
   // Make the joint.  Note we aren't storing a reference to the joint ourselves anywhere!
   // We might need to someday, but for now it's ok
   var dj = world.CreateJoint(djd);
-}
 
-Pair.prototype.done = function() {
-  return this.p1.done() && this.p2.done();
-}
+  this.done = function() {
+    return this.p1.done() && this.p2.done();
+  }
 
-Pair.prototype.display = function() {
-  // Get the body's position
-  var pos1 = scaleToPixels(this.p1.body.GetPosition());
-  var pos2 = scaleToPixels(this.p2.body.GetPosition());
+  this.display = function() {
+    // Get the body's position
+    var pos1 = scaleToPixels(this.p1.body.GetPosition());
+    var pos2 = scaleToPixels(this.p2.body.GetPosition());
 
-  stroke(200);
-  strokeWeight(2);
-  line(pos1.x,pos1.y,pos2.x,pos2.y);
+    stroke(200);
+    strokeWeight(2);
+    line(pos1.x,pos1.y,pos2.x,pos2.y);
 
-  this.p1.display();
-  this.p2.display();
+    this.p1.display();
+    this.p2.display();
+  }
 }

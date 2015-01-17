@@ -9,7 +9,7 @@ function CustomListener() {
 }
 
 // Collision event functions!
-CustomListener.prototype.BeginContact = function(contact) {
+this.BeginContact = function(contact) {
   // Get both fixtures
   var f1 = contact.GetFixtureA();
   var f2 = contact.GetFixtureB();
@@ -25,14 +25,14 @@ CustomListener.prototype.BeginContact = function(contact) {
     o1.change();
     o2.change();
   }
-}
 
-// Objects stop touching each other
-CustomListener.prototype.EndContact = function(contact) {
-}
+  // Objects stop touching each other
+  this.EndContact = function(contact) {
+  }
 
-CustomListener.prototype.PreSolve = function(contact,manifold) {
-}
+  this.PreSolve = function(contact,manifold) {
+  }
 
-CustomListener.prototype.PostSolve = function(contact,manifold) {
+  this.PostSolve = function(contact,manifold) {
+  }
 }
