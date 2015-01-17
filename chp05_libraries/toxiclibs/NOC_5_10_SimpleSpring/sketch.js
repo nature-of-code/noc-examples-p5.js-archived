@@ -50,7 +50,7 @@ function draw() {
   p2.display();
 
   // Move the second one according to the mouse
-  if (isMousePressed()) {
+  if (mouseIsPressed) {
     p2.lock();
     p2.x = mouseX;
     p2.y = mouseY;
