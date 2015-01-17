@@ -46,45 +46,44 @@ function Chain(l,n,r,s) {
 
   // Some variables for mouse dragging
   this.offset = createVector();
-  this.dragged = false;  
-}
+    this.dragged = false;  
 
-// Check if a point is within the ball at the end of the chain
-// If so, set dragged = true;
-Chain.prototype.contains = function(x, y) {
-  var d = dist(x,y,this.tail.x,this.tail.y);
-  if (d < this.radius) {
-    this.offset.x = this.tail.x - x;
-    this.offset.y = this.tail.y - y;
-    this.tail.lock();
-    this.dragged = true;
+  // Check if a point is within the ball at the end of the chain
+  // If so, set dragged = true;
+  this.contains = function(x, y) {
+    var d = dist(x,y,this.tail.x,this.tail.y);
+    if (d < this.radius) {
+      this.offset.x = this.tail.x - x;
+      this.offset.y = this.tail.y - y;
+      this.tail.lock();
+      this.dragged = true;
+    }
+  }
+
+  // Release the ball
+  this.release = function() {
+    this.tail.unlock();
+    this.dragged = false;
+  }
+
+  // Update tail location if being dragged
+  this.updateTail = function(x, y) {
+    if (this.dragged) {
+      this.tail.set(x+this.offset.x,y+this.offset.y);
+    }
+  }
+
+  // Draw the chain
+  this.display = function() {
+    // Draw line connecting all points
+    beginShape();
+    stroke(200);
+    strokeWeight(2);
+    noFill();
+    for (var i = 0; i < this.particles.length; i++) {
+      vertex(this.particles[i].x,this.particles[i].y);
+    }
+    endShape();
+    this.tail.display();
   }
 }
-
-// Release the ball
-Chain.prototype.release = function() {
-  this.tail.unlock();
-  this.dragged = false;
-}
-
-// Update tail location if being dragged
-Chain.prototype.updateTail = function(x, y) {
-  if (this.dragged) {
-    this.tail.set(x+this.offset.x,y+this.offset.y);
-  }
-}
-
-// Draw the chain
-Chain.prototype.display = function() {
-  // Draw line connecting all points
-  beginShape();
-  stroke(200);
-  strokeWeight(2);
-  noFill();
-  for (var i = 0; i < this.particles.length; i++) {
-    vertex(this.particles[i].x,this.particles[i].y);
-  }
-  endShape();
-  this.tail.display();
-}
-

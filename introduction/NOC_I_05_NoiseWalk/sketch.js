@@ -18,17 +18,17 @@ function draw() {
 function Walker() {
   this.position = createVector(width/2,height/2);
   this.noff = createVector(random(1000),random(1000));
-};
 
-Walker.prototype.display = function() {
-  strokeWeight(2);
-  fill(51);
-  stroke(0);
-  ellipse(this.position.x, this.position.y, 48, 48);
-};
+  this.display = function() {
+    strokeWeight(2);
+    fill(51);
+    stroke(0);
+    ellipse(this.position.x, this.position.y, 48, 48);
+  }
 
-Walker.prototype.walk = function() {
-  this.position.x = map(noise(this.noff.x),0,1,0,width);
-  this.position.y = map(noise(this.noff.y),0,1,0,height);
-  this.noff.add(0.01,0.01,0);
+  this.walk = function() {
+    this.position.x = map(noise(this.noff.x),0,1,0,width);
+    this.position.y = map(noise(this.noff.y),0,1,0,height);
+    this.noff.add(0.01,0.01,0);
+  }
 }

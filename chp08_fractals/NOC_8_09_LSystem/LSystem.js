@@ -11,42 +11,42 @@
 function LSystem(axiom, r) {
   this.sentence = axiom;  // The sentence (a String)
   this.ruleset = r;       // The ruleset (an array of Rule objects)
-  this.generation = 0;    // Keeping track of the generation #
-}
+    this.generation = 0;    // Keeping track of the generation #
 
-// Generate the next generation
-LSystem.prototype.generate = function() {
-  // An empty StringBuffer that we will fill
-  var nextgen = '';
-  // For every character in the sentence
-  for (var i = 0; i < this.sentence.length; i++) {
-    // What is the character
-    // We will replace it with itself unless it matches one of our rules
-    var replace = this.sentence.charAt(i);
-    // Check every rule
-    for (var j = 0; j < this.ruleset.length; j++) {
-      var a = this.ruleset[j].getA();
-      // if we match the Rule, get the replacement String out of the Rule
-      if (a === replace) {
-        replace = this.ruleset[j].getB();
-        break;
+  // Generate the next generation
+  this.generate = function() {
+    // An empty StringBuffer that we will fill
+    var nextgen = '';
+    // For every character in the sentence
+    for (var i = 0; i < this.sentence.length; i++) {
+      // What is the character
+      // We will replace it with itself unless it matches one of our rules
+      var replace = this.sentence.charAt(i);
+      // Check every rule
+      for (var j = 0; j < this.ruleset.length; j++) {
+        var a = this.ruleset[j].getA();
+        // if we match the Rule, get the replacement String out of the Rule
+        if (a === replace) {
+          replace = this.ruleset[j].getB();
+          break;
+        }
       }
+      // Append replacement String
+      nextgen += replace;
     }
-    // Append replacement String
-    nextgen += replace;
-  }
-  // Replace sentence
-  this.sentence = nextgen;
-  // Increment generation
-  this.generation++;
-};
+    // Replace sentence
+    this.sentence = nextgen;
+    // Increment generation
+    this.generation++;
+  };
 
-LSystem.prototype.getSentence = function() {
-  return this.sentence;
-};
+  this.getSentence = function() {
+    return this.sentence;
+  };
 
-LSystem.prototype.getGeneration = function() {
-  return this.generation;
-};
+  this.getGeneration = function() {
+    return this.generation;
+  };
+}
 
 

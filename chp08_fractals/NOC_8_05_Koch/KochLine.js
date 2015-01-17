@@ -11,45 +11,45 @@ function KochLine(a,b) {
   // start is the "left" p5.Vector and 
   // end is the "right p5.Vector
   this.start = a.get();
-  this.end = b.get();
-}
+    this.end = b.get();
 
-KochLine.prototype.display = function() {
-  stroke(255);
-  line(this.start.x, this.start.y, this.end.x, this.end.y);
-}
+  this.display = function() {
+    stroke(255);
+    line(this.start.x, this.start.y, this.end.x, this.end.y);
+  }
 
-KochLine.prototype.kochA = function() {
-  return this.start.get();
-}
+  this.kochA = function() {
+    return this.start.get();
+  }
 
-// This is easy, just 1/3 of the way
-KochLine.prototype.kochB = function() {
-  var v = p5.Vector.sub(this.end, this.start);
-  v.div(3);
-  v.add(this.start);
-  return v;
-}    
+  // This is easy, just 1/3 of the way
+  this.kochB = function() {
+    var v = p5.Vector.sub(this.end, this.start);
+    v.div(3);
+    v.add(this.start);
+    return v;
+  }    
 
-// More complicated, have to use a little trig to figure out where this p5.Vector is!
-KochLine.prototype.kochC = function() {
-  var a = this.start.get(); // Start at the beginning
-  var v = p5.Vector.sub(this.end, this.start);
-  v.div(3);
-  a.add(v);  // Move to point B
-  v.rotate2D(-PI/3); // Rotate 60 degrees
-  a.add(v);  // Move to point C
-  return a;
-}    
+  // More complicated, have to use a little trig to figure out where this p5.Vector is!
+  this.kochC = function() {
+    var a = this.start.get(); // Start at the beginning
+    var v = p5.Vector.sub(this.end, this.start);
+    v.div(3);
+    a.add(v);  // Move to point B
+    v.rotate2D(-PI/3); // Rotate 60 degrees
+    a.add(v);  // Move to point C
+    return a;
+  }    
 
-// Easy, just 2/3 of the way
-KochLine.prototype.kochD = function() {
-  var v = p5.Vector.sub(this.end, this.start);
-  v.mult(2/3.0);
-  v.add(this.start);
-  return v;
-}
+  // Easy, just 2/3 of the way
+  this.kochD = function() {
+    var v = p5.Vector.sub(this.end, this.start);
+    v.mult(2/3.0);
+    v.add(this.start);
+    return v;
+  }
 
-KochLine.prototype.kochE = function() {
-  return this.end.get();
+  this.kochE = function() {
+    return this.end.get();
+  }
 }

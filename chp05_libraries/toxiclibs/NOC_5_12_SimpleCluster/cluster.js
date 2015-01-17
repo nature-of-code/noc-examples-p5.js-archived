@@ -24,24 +24,24 @@ function Cluster(n,d,center) {
       // A Spring needs two particles, a resting length, and a strength
       physics.addSpring(new VerletSpring2D(this.nodes[i], this.nodes[j], this.diameter, 0.01));
     }
+    }
+
+  this.display = function() {
+    // Show all the nodes
+    for (var i = 0; i < this.nodes.length; i++) {
+      this.nodes[i].display();
+    }
   }
-}
-
-Cluster.prototype.display = function() {
-  // Show all the nodes
-  for (var i = 0; i < this.nodes.length; i++) {
-    this.nodes[i].display();
-  }
-}
 
 
-// Draw all the internal connections
-Cluster.prototype.showConnections = function() {
-  stroke(255, 150);
-  strokeWeight(2);
-  for (var i = 0; i < this.nodes.length-1; i++) {
-    for (var j = i+1; j < this.nodes.length; j++) {
-      line(this.nodes[i].x, this.nodes[i].y, this.nodes[j].x, this.nodes[j].y);
+  // Draw all the internal connections
+  this.showConnections = function() {
+    stroke(255, 150);
+    strokeWeight(2);
+    for (var i = 0; i < this.nodes.length-1; i++) {
+      for (var j = i+1; j < this.nodes.length; j++) {
+        line(this.nodes[i].x, this.nodes[i].y, this.nodes[j].x, this.nodes[j].y);
+      }
     }
   }
 }

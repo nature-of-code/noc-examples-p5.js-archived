@@ -9,24 +9,24 @@ function Cell(x_, y_, w_) {
   this.w = w_;
 
   this.state = Math.floor(random(2));
-  this.previous = this.state;
-}
-  
-Cell.prototype.savePrevious = function() {
-  this.previous = this.state; 
-}
+    this.previous = this.state;
+    
+  this.savePrevious = function() {
+    this.previous = this.state; 
+  }
 
-Cell.prototype.newState = function(s) {
-  this.state = s;
-}
+  this.newState = function(s) {
+    this.state = s;
+  }
 
-Cell.prototype.display = function() {
-  if (this.previous == 0 && this.state == 1) fill(0,0,255);
-  else if (this.state == 1) fill(0);
-  else if (this.previous == 1 && this.state == 0) fill(255,0,0);
-  else fill(255); 
-  stroke(0);
-  rect(this.x, this.y, this.w, this.w);
+  this.display = function() {
+    if (this.previous == 0 && this.state == 1) fill(0,0,255);
+    else if (this.state == 1) fill(0);
+    else if (this.previous == 1 && this.state == 0) fill(255,0,0);
+    else fill(255); 
+    stroke(0);
+    rect(this.x, this.y, this.w, this.w);
+  }
 }
 
 
