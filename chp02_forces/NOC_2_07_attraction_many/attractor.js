@@ -34,17 +34,17 @@ var Attractor = function() {
     strokeWeight(4);
     stroke(0);
     if (this.dragging) {
-      fill(50);
+      fill(255);
     } else if (this.rollover) {
-      fill(100);
+      fill(175);
     } else {
-      fill(175, 200);
+      fill(101, 200);
     }
     ellipse(this.position.x, this.position.y, this.mass*2, this.mass*2);
   };
 
     // The methods below are for mouse interaction
-  this.handleClick = function(mx, my) {
+  this.handlePress = function(mx, my) {
     var d = dist(mx, my, this.position.x, this.position.y);
     if (d < this.mass) {
       this.dragging = true;

@@ -2,11 +2,11 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var Mover = function() {
-  this.position = createVector(400, 50);
+var Mover = function(mass, x, y) {
+  this.position = createVector(x, y);
   this.velocity = createVector(1, 0);
   this.acceleration = createVector(0, 0);
-  this.mass = 1;
+  this.mass = mass;
 
   this.applyForce = function(force) {
     var f = p5.Vector.div(force,this.mass);
@@ -22,7 +22,7 @@ var Mover = function() {
   this.display = function() {
     stroke(0);
     strokeWeight(2);
-    fill(255, 127);
+    fill(255, 175);
     ellipse(this.position.x, this.position.y, this.mass*16, this.mass*16);
   };
 
