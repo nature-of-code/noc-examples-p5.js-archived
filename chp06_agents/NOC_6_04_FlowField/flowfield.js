@@ -12,17 +12,15 @@ function FlowField(r) {
   this.cols = width/this.resolution;
   this.rows = height/this.resolution;
   // A flow field is a two dimensional array of p5.Vectors
-  this.field = make2Darray(this.cols);
-    this.init();
-
   // We can't make 2D arrays, but this is sort of faking it
-  var make2Darray = function(n) {
+  this.make2Darray = function(n) {
     var array = [];
     for (var i = 0; i < n; i++) {
        array[i] = [];
     }
     return array;
   }
+  this.field = this.make2Darray(this.cols);
 
   this.init = function() {
     // Reseed noise so we get a new flow field every time
@@ -41,6 +39,7 @@ function FlowField(r) {
       xoff += 0.1;
     }
   }
+  this.init();
 
   // Draw every vector
   this.display = function() {
