@@ -11,7 +11,7 @@ function KochLine(a,b) {
 	// start is the "left" p5.Vector and 
 	// end is the "right p5.Vector
   this.start = a.get();
-    this.end = b.get();
+  this.end = b.get();
 
   this.display = function() {
     stroke(255);
@@ -36,7 +36,7 @@ function KochLine(a,b) {
     var v = p5.Vector.sub(this.end, this.start);
     v.div(3);
     a.add(v);  // Move to point B
-    v.rotate2D(-PI/3); // Rotate 60 degrees
+    v.rotate(-PI/3); // Rotate 60 degrees
     a.add(v);  // Move to point C
     return a;
   }    

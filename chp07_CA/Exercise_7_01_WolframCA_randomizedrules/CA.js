@@ -12,8 +12,7 @@ function CA(r) {
   this.generation;
   // An array to store the ruleset, for example [0,1,1,0,1,1,0,1]
 	this.ruleset = r;
-    this.restart();
-
+  
   // Make a random ruleset
   this.randomize = function() {
   	for (var i = 0; i < 8; i++) {
@@ -30,6 +29,7 @@ function CA(r) {
   	this.cells[this.cells.length/2] = 1;
   	this.generation = 0;
   }
+  this.restart();
 
   // The process of creating the new generation
   this.generate = function() {

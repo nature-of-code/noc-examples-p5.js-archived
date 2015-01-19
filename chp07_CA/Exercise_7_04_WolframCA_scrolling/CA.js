@@ -19,15 +19,7 @@ function CA(r) {
   for( var i = 0; i < this.cols; i++) {
     this.matrix[i] = new Array(this.rows);
   }
-    this.restart();
-
-    // Make a random ruleset
-  this.randomize = function() {
-    for (var i = 0; i < 8; i++) {
-      this.ruleset[i] = Math.floor(random(2));
-    }
-  }
-
+  
   // Reset to generation 0
   this.restart = function() {
     for (var i = 0; i < this.cols; i++) {
@@ -38,6 +30,16 @@ function CA(r) {
     this.matrix[this.cols/2][0] = 1;    // We arbitrarily start with just the middle cell having a state of "1"
     this.generation = 0;
   }
+  this.restart();
+
+    // Make a random ruleset
+  this.randomize = function() {
+    for (var i = 0; i < 8; i++) {
+      this.ruleset[i] = Math.floor(random(2));
+    }
+  }
+
+
 
 
   // The process of creating the new generation

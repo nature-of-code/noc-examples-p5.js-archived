@@ -14,7 +14,7 @@ function setup() {
 
   createCanvas(640,360);
   // We are now making random vehicles and storing them in an array
-  for (var i = 0; i < 100; i++) {
+  for (var i = 0; i < 25; i++) {
     vehicles.push(new Vehicle(random(width),random(height)));
   }
 }

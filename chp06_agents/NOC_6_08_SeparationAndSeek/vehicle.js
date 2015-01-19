@@ -14,10 +14,13 @@ function Vehicle(x, y) {
   this.velocity = createVector(0, 0);
 
   this.applyBehaviors = function(vehicles) {
+     
      var separateForce = this.separate(vehicles);
      var seekForce = this.seek(createVector(mouseX,mouseY));
-     separateForce.mult(2);
-     seekForce.mult(1);
+     
+     separateForce.mult(slider1.value());
+     seekForce.mult(slider2.value());
+     
      this.applyForce(separateForce);
      this.applyForce(seekForce); 
   }
@@ -30,7 +33,7 @@ function Vehicle(x, y) {
   // Separation
   // Method checks for nearby vehicles and steers away
   this.separate = function(vehicles) {
-    var desiredseparation = this.r*2;
+    var desiredseparation = slider3.value();
     var sum = createVector();
     var count = 0;
     // For every boid in the system, check if it's too close

@@ -16,8 +16,6 @@ function GOL() {
   for (var i = 0; i < this.columns; i++) {
     this.next[i] = new Array(this.rows);
   }
-    this.init();
-
   this.init = function() {
     for (var i =0;i < this.columns;i++) {
       for (var j =0;j < this.rows;j++) {
@@ -29,6 +27,8 @@ function GOL() {
       }
     }
   }
+
+  this.init();
 
   // The process of creating the new generation
   this.generate = function() {

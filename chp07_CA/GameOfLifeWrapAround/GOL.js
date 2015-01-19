@@ -11,7 +11,6 @@ function GOL() {
   for (var i = 0; i < this.columns; i++) {
     this.board[i] = new Array(this.rows);
   } 
-    this.init();
 
   this.init = function() {
     for (var i =0;i < this.columns;i++) {
@@ -20,6 +19,7 @@ function GOL() {
       }
     }
   }
+  this.init();
 
   // The process of creating the new generation
   this.generate = function() {

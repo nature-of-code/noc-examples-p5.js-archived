@@ -12,7 +12,7 @@
 var ca;
 
 function setup() {
-  createCanvas(360, 640);
+  createCanvas(360, 600);
   var ruleset = new Array(0,1,0,1,1,0,1,0);  // Rule 90
 
   //int[] ruleset = {0,1,1,1,1,0,1,1};   // Rule 222  

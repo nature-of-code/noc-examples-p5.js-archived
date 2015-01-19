@@ -10,8 +10,7 @@ function KochFractal() {
   this.end = createVector(width,height-20); // A p5.Vector for the end
   this.lines = [];                         // An array to keep track of all the lines
   this.count = 0;
-    this.restart();
-
+  
   this.nextLevel = function() {  
     // For every line that is in the arraylist
     // create 4 more lines in a new arraylist
@@ -24,6 +23,7 @@ function KochFractal() {
     this.lines = [];  // Empty the array list
     this.lines.push(new KochLine(this.start,this.end));  // Add the initial line (from one end p5.Vector to the other)
   }
+  this.restart();
 
   this.getCount = function() {
     return this.count;
