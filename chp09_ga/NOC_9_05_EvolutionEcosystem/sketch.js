@@ -10,27 +10,26 @@
 // When the creatures die, food is left behind
 
 
-World world;
+var world;
 
-void setup() {
-  size(640, 360);
+function setup() {
+  createCanvas(640, 360);
   // World starts with 20 creatures
   // and 20 pieces of food
   world = new World(20);
-  smooth();
 }
 
-void draw() {
-  background(255);
+function draw() {
+  background(175);
   world.run();
 }
 
 // We can add a creature manually if we so desire
-void mousePressed() {
+function mousePressed() {
   world.born(mouseX,mouseY); 
 }
 
-void mouseDragged() {
+function mouseDragged() {
   world.born(mouseX,mouseY); 
 }
 

@@ -71,7 +71,7 @@
     textAlign(CENTER);
     if (this.rolloverOn) fill(0);
     else fill(0.25);
-    text(floor(this.fitness), this.x, this.y+55);
+    text('' + floor(this.fitness), this.x, this.y+55);
   }
 
   this.getFitness = function() {

@@ -17,7 +17,7 @@ function DNA(newgenes) {
       this.genes[i] = p5.Vector.fromAngle(angle);
       this.genes[i].mult(random(0, this.maxforce));
     }
-    }
+  }
 
   // CROSSOVER
   // Creates new DNA sequence from two (this & and a partner)

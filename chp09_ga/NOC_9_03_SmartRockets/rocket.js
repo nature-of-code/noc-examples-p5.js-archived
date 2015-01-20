@@ -7,21 +7,21 @@
 
 
 
-  //constructor
-  function Rocket(l, dna_, totalRockets) {
-    this.acceleration = createVector(0,0);
-    this.velocity = createVector(0,0);
-    this.location = createVector(l.x,l.y);
+//constructor
+function Rocket(l, dna_, totalRockets) {
+  this.acceleration = createVector(0,0);
+  this.velocity = createVector(0,0);
+  this.location = createVector(l.x,l.y);
   // Size
-    this.r = 4;
+  this.r = 4;
   // Fitness and DNA
-    this.fitness = 0;
+  this.fitness = 0;
   // To count which force we're on in the genes
-    this.geneCounter = 0;
-    this.dna = dna_;
+  this.geneCounter = 0;
+  this.dna = dna_;
   // How close did it get to the target
-    this.recordDist = 10000;      // Some high number that will be beat instantly
-    this.finishTime = 0;          // We're going to count how long it takes to reach target
+  this.recordDist = 10000;      // Some high number that will be beat instantly
+  this.finishTime = 0;          // We're going to count how long it takes to reach target
 
   this.hitObstacle = false;    // Am I stuck on an obstacle?
   this.hitTarget = false;   // Did I reach the target
@@ -33,7 +33,9 @@
   // f(distance,finish) =   (1.0f / finish^1.5) * (1.0f / distance^6);
   // a lower finish is rewarded (exponentially) and/or shorter distance to target (exponetially)
   this.calcFitness = function() {
-    if (this.recordDist < 1) this.recordDist = 1;
+    if (this.recordDist < 1) {
+      this.recordDist = 1;
+    }
 
     // Reward finishing faster and getting close
     this.fitness = (1/(this.finishTime*this.recordDist));
