@@ -121,20 +121,22 @@ function Rocket(l, dna_) {
     //fill(0,150);
     //stroke(0);
     //ellipse(pos.x,pos.y,r,r);
-    var theta = this.velocity.heading() + PI/2;
+    //var theta = this.velocity.heading() + PI/2;
     fill(200,100);
     if (!this.velocity.x) fill(255,0,0);
     stroke(0);
     strokeWeight(0.5);
-    push();
-    translate(this.pos.x,this.pos.y);
-    rotate(theta);
-    beginShape(TRIANGLES);
-    vertex(0, -this.r*2);
-    vertex(-this.r, this.r*2);
-    vertex(this.r, this.r*2);
-    endShape(CLOSE);
-    pop();
+
+    ellipse(this.pos.x,this.pos.y,this.r*2,this.r*2);
+    // push();
+    // translate(this.pos.x,this.pos.y);
+    // rotate(theta);
+    // beginShape(TRIANGLES);
+    // vertex(0, -this.r*2);
+    // vertex(-this.r, this.r*2);
+    // vertex(this.r, this.r*2);
+    // endShape(CLOSE);
+    // pop();
   }
   
   this.highlight = function() {

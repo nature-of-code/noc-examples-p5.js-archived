@@ -23,7 +23,6 @@ function Population(p, m, num) {
   for (var i = 0; i < num; i++) {
     this.population[i] = new DNA(this.target.length);
   }
-  this.calcFitness();
     this.matingPool = [];
 
   // Fill our fitness array with a value for every member of the population
@@ -32,6 +31,7 @@ function Population(p, m, num) {
       this.population[i].calcFitness(target);
     }
   }
+  this.calcFitness();
 
   // Generate a mating pool
   this.naturalSelection = function() {

@@ -53,7 +53,7 @@ function setup() {
   
   //createCanvas(640, 360);
   target = "To be or not to be.";
-  popmax = 150;
+  popmax = 2000;
   mutationRate = 0.01;
 
   // Create a populationation with a target phrase, mutation rate, and populationation max

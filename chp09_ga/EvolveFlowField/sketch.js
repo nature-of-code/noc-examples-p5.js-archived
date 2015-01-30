@@ -47,7 +47,7 @@ function setup() {
   start = new Obstacle(diam/2,height/2-diam/2,diam,diam);
 
   // Create a population with a mutation rate, and population max
-  var popmax = 200;
+  var popmax = 500;
   var mutationRate = 0.02;
   population = new Population(mutationRate,popmax);
 
