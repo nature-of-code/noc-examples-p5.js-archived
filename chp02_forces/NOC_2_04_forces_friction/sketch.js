@@ -21,7 +21,7 @@ function draw() {
     var c = 0.01;
     var normal = 1;
     var frictionMag = c * normal;
-    var friction = movers[i].velocity.get();
+    var friction = movers[i].velocity.copy();
     friction.mult(-1);
     friction.normalize();
     friction.mult(frictionMag);

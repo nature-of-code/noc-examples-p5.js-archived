@@ -15,8 +15,6 @@ var movers = [];
 var liquid;
 
 function setup() {
-  // Must be before createGraphics
-  var text = createP("click mouse to reset");
 
   createCanvas(640, 360);
   reset();
@@ -30,6 +28,8 @@ function setup() {
 
 function draw() {
   background(127);
+  fill(0);
+  text("click to reset",10,100);
   
   // Draw water
   liquid.display();
