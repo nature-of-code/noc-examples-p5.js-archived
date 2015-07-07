@@ -27,7 +27,7 @@ function setup() {
 }
 
 function draw() {
-  background(127);
+  background(255);
   fill(0);
   text("click to reset",10,100);
   
