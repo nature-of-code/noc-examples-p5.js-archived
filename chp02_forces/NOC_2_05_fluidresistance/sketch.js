@@ -69,9 +69,3 @@ function reset() {
     movers[i] = new Mover(random(0.5, 3), 40+i*70, 0);
   }
 }
-
-
-
-
-
-
