@@ -11,11 +11,11 @@ function setup() {
   background(255);
   position = createVector(100,100);
   velocity = createVector(2.5,5);
-};
+}
 
 function draw() {
   background(255);
-  
+
   // Add the current speed to the position.
   position.add(velocity);
 
@@ -31,5 +31,4 @@ function draw() {
   strokeWeight(2);
   fill(127);
   ellipse(position.x, position.y, 48, 48);
-};
-
+}
