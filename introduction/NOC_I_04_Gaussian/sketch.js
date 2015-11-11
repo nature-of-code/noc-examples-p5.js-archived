@@ -5,8 +5,8 @@
 
 function setup() {
   createCanvas(640,360);
-  background(127);  
-};
+  background(127);
+}
 
 function draw() {
 
@@ -21,4 +21,4 @@ function draw() {
   noStroke();
   ellipse(xloc, height/2, 16, 16);   // Draw an ellipse at our "normal" random position
 
-};
+}

@@ -10,7 +10,7 @@ function setup() {
   createCanvas(640,360);
   background(0);
   noStroke();
-};
+}
 
 function draw() {
 
@@ -18,7 +18,7 @@ function draw() {
   rect(0,0,width,height);
 
   //var n = random(0,width);  // Try this line instead of noise
-  
+
   // Get a noise value based on xoff and scale it according to the window's width
   var n = noise(xoff);
 
@@ -26,11 +26,10 @@ function draw() {
 
   // With each cycle, increment xoff
   xoff += xincrement;
-  
+
   // Draw the ellipse at the value produced by perlin noise
   fill(200);
   ellipse(x,height/2, 64, 64);
 
   println(n);
-};
-
+}

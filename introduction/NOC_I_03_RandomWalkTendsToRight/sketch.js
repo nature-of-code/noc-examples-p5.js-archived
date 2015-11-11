@@ -8,12 +8,12 @@ function setup() {
   createCanvas(640,360);
   walker = new Walker();
   background(127);
-};
+}
 
 function draw() {
   walker.step();
   walker.render();
-};
+}
 
 function Walker() {
   this.x = width/2;
@@ -28,7 +28,7 @@ function Walker() {
     var choice = floor(random(4));
     var r = random(1);
       // A 40% of moving to the right!
-    if (r < 0.4) {    
+    if (r < 0.4) {
       this.x++;
     } else if (r < 0.6) {
       this.x--;
@@ -39,5 +39,5 @@ function Walker() {
     }
     this.x = constrain(this.x,0,width-1);
     this.y = constrain(this.y,0,height-1);
-  }
+  };
 }
