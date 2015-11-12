@@ -34,4 +34,4 @@ var ParticleSystem = function(position) {
       p.applyForce(force);
     }
   };
-}
+};

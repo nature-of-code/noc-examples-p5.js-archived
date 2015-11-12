@@ -26,4 +26,4 @@ var ParticleSystem = function(position) {
       this.particles[i].applyForce(f);
     }
   };
-}
+};

@@ -24,4 +24,4 @@ var ParticleSystem = function(position) {
       }
     }
   };
-}
+};
