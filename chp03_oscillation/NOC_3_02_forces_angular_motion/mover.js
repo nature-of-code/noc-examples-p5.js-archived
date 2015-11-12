@@ -41,4 +41,4 @@ var Mover = function(m, x, y) {
     rect(0, 0, this.mass*16, this.mass*16);
     pop();
   };
-}
+};

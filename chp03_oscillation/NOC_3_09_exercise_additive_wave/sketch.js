@@ -50,7 +50,7 @@ function calcWave() {
     var x = theta;
     for (var i = 0; i < yvalues.length; i++) {
       // Every other wave is cosine instead of sine
-      if (j % 2 == 0)  yvalues[i] += sin(x)*amplitude[j];
+      if (j % 2 === 0)  yvalues[i] += sin(x)*amplitude[j];
       else yvalues[i] += cos(x)*amplitude[j];
       x+=dx[j];
     }

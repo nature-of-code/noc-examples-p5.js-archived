@@ -52,4 +52,4 @@ var Mover = function() {
       this.position.y = height;
     }
   };
-}
+};
