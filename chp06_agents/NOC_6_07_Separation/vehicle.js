@@ -16,7 +16,7 @@ function Vehicle(x, y) {
   this.applyForce = function(force) {
     // We could add mass here if we want A = F / M
     this.acceleration.add(force);
-  }
+  };
 
   // Separation
   // Method checks for nearby vehicles and steers away
@@ -48,7 +48,7 @@ function Vehicle(x, y) {
       steer.limit(this.maxforce);
       this.applyForce(steer);
     }
-  }
+  };
 
   // Method to update location
   this.update = function() {
@@ -59,7 +59,7 @@ function Vehicle(x, y) {
     this.position.add(this.velocity);
     // Reset accelertion to 0 each cycle
     this.acceleration.mult(0);
-  }
+  };
 
   this.display = function() {
     fill(127);
@@ -69,7 +69,7 @@ function Vehicle(x, y) {
     translate(this.position.x, this.position.y);
     ellipse(0, 0, this.r, this.r);
     pop();
-  }
+  };
 
   // Wraparound
   this.borders = function() {
@@ -77,11 +77,5 @@ function Vehicle(x, y) {
     if (this.position.y < -this.r) this.position.y = height+this.r;
     if (this.position.x >  width+this.r) this.position.x = -this.r;
     if (this.position.y > height+this.r) this.position.y = -this.r;
-  }
+  };
 }
-
-
-
-
-
-

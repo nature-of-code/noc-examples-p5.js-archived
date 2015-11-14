@@ -15,15 +15,15 @@ function Path() {
   this.addPoint = function(x, y) {
     var point = createVector(x, y);
     this.points.push(point);
-  }
+  };
 
   this.getStart = function() {
      return this.points[0];
-  }
+  };
 
   this.getEnd = function() {
      return this.points[this.points.length-1];
-  }
+  };
 
 
   // Draw the path
@@ -46,8 +46,5 @@ function Path() {
       vertex(this.points[i].x, this.points[i].y);
     }
     endShape();
-  }
+  };
 }
-
-
-

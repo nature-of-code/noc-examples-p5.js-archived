@@ -32,9 +32,8 @@ function draw() {
   v.update();
   v.display();
 
-};
+}
 
 function mousePressed() {
   debug = !debug;
 }
-

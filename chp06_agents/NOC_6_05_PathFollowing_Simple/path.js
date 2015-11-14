@@ -23,15 +23,5 @@ function Path() {
     strokeWeight(1);
     stroke(200);
     line(this.start.x,this.start.y,this.end.x,this.end.y);
-  }
+  };
 }
-
-
-
-
-
-
-
-
-
-
