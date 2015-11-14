@@ -18,5 +18,4 @@ function draw() {
   if (ca.generation < height/ca.w) {
     ca.generate();
   }
-};
-
+}

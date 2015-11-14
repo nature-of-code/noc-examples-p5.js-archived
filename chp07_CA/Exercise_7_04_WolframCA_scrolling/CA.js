@@ -8,7 +8,7 @@
 
 function CA(r) {
   // How many generations?
-  this.generation = 0;  
+  this.generation = 0;
   // An array to store the ruleset, for example [0,1,1,0,1,1,0,1]
   this.ruleset = r;
   this.w = 4;
@@ -19,7 +19,7 @@ function CA(r) {
   for( var i = 0; i < this.cols; i++) {
     this.matrix[i] = new Array(this.rows);
   }
-  
+
   // Reset to generation 0
   this.restart = function() {
     for (var i = 0; i < this.cols; i++) {
@@ -29,7 +29,7 @@ function CA(r) {
     }
     this.matrix[this.cols/2][0] = 1;    // We arbitrarily start with just the middle cell having a state of "1"
     this.generation = 0;
-  }
+  };
   this.restart();
 
     // Make a random ruleset
@@ -37,7 +37,7 @@ function CA(r) {
     for (var i = 0; i < 8; i++) {
       this.ruleset[i] = Math.floor(random(2));
     }
-  }
+  };
 
 
 
@@ -54,7 +54,7 @@ function CA(r) {
       this.matrix[i][(this.generation+1)%this.rows] = this.rules(left, me, right); // Compute next generation state based on ruleset
     }
     this.generation++;
-  }
+  };
 
   // This is the easy part, just draw the cells, fill 255 for '1', fill 0 for '0'
   this.display = function() {
@@ -72,7 +72,7 @@ function CA(r) {
         }
       }
     }
-  }
+  };
 
   // Implementing the Wolfram rules
   // This is the concise conversion to binary way
@@ -80,16 +80,15 @@ function CA(r) {
     var s = "" + a + b + c;
     var index = parseInt(s, 2);
     return this.ruleset[index];
-  }
+  };
 
   // The CA is done if it reaches the bottom of the screen
   this.finished = function() {
     if (this.generation > height/this.w) {
       return true;
-    } 
+    }
     else {
       return false;
     }
-  }
+  };
 }
-

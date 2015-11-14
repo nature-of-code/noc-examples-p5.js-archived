@@ -7,18 +7,18 @@
 // A class to manage the CA
 function CA(r) {
 	this.w = 5;
-  // An array of 0s and 1s 
+  // An array of 0s and 1s
   this.cells = new Array(width/this.w);
   this.generation;
   // An array to store the ruleset, for example [0,1,1,0,1,1,0,1]
 	this.ruleset = r;
-  
+
   // Make a random ruleset
   this.randomize = function() {
   	for (var i = 0; i < 8; i++) {
   		this.ruleset[i] = Math.floor(random(2));
   	}
-  }
+  };
 
   // Reset to generation 0
   this.restart = function() {
@@ -28,7 +28,7 @@ function CA(r) {
     // We arbitrarily start with just the middle cell having a state of "1"
   	this.cells[this.cells.length/2] = 1;
   	this.generation = 0;
-  }
+  };
   this.restart();
 
   // The process of creating the new generation
@@ -46,7 +46,7 @@ function CA(r) {
     // The current generation is the new generation
     this.cells = nextgen;
     this.generation++;
-  }
+  };
 
   // This is the easy part, just draw the cells, fill 255 for '1', fill 0 for '0'
   this.display = function() {
@@ -56,7 +56,7 @@ function CA(r) {
   		noStroke();
   		rect(i*this.w, this.generation*this.w, this.w, this.w);
   	}
-  }
+  };
 
   // Implementing the Wolfram rules
   // This could be condensed probably, here is java way
@@ -67,24 +67,23 @@ function CA(r) {
   }*/
   this.rules = function(a, b, c) {
   	if (a == 1 && b == 1 && c == 1) return this.ruleset[0];
-  	if (a == 1 && b == 1 && c == 0) return this.ruleset[1];
-  	if (a == 1 && b == 0 && c == 1) return this.ruleset[2];
-  	if (a == 1 && b == 0 && c == 0) return this.ruleset[3];
-  	if (a == 0 && b == 1 && c == 1) return this.ruleset[4];
-  	if (a == 0 && b == 1 && c == 0) return this.ruleset[5];
-  	if (a == 0 && b == 0 && c == 1) return this.ruleset[6];
-  	if (a == 0 && b == 0 && c == 0) return this.ruleset[7];
+  	if (a == 1 && b == 1 && c === 0) return this.ruleset[1];
+  	if (a == 1 && b === 0 && c == 1) return this.ruleset[2];
+  	if (a == 1 && b === 0 && c === 0) return this.ruleset[3];
+  	if (a === 0 && b == 1 && c == 1) return this.ruleset[4];
+  	if (a === 0 && b == 1 && c === 0) return this.ruleset[5];
+  	if (a === 0 && b === 0 && c == 1) return this.ruleset[6];
+  	if (a === 0 && b === 0 && c === 0) return this.ruleset[7];
   	return 0;
-  }
+  };
 
   // The CA is done if it reaches the bottom of the screen
   this.finished = function() {
   	if (this.generation > height/this.w) {
   		return true;
-  	} 
+  	}
   	else {
   		return false;
   	}
-  }
+  };
 }
-
