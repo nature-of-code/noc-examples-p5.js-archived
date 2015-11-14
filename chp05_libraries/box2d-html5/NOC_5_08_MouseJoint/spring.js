@@ -9,17 +9,17 @@ function Spring(x,y) {
   // At first it doesn't exist
     this.mouseJoint = null;
 
-  // If it exists we set its target to the mouse location 
+  // If it exists we set its target to the mouse location
   this.update = function(x, y) {
-    if (this.mouseJoint != null) {
+    if (this.mouseJoint !== null) {
       // Always convert to world coordinates!
       var mouseWorld = scaleToWorld(x,y);
       this.mouseJoint.SetTarget(mouseWorld);
     }
-  }
+  };
 
   this.display = function() {
-    if (this.mouseJoint != null) {
+    if (this.mouseJoint !== null) {
 
       var posA = this.mouseJoint.GetAnchorA();
       var posB = this.mouseJoint.GetAnchorB();
@@ -33,7 +33,7 @@ function Spring(x,y) {
 
       line(v1.x,v1.y,v2.x,v2.y);
     }
-  }
+  };
 
   // This is the key function where
   // we attach the spring to an x,y location
@@ -59,13 +59,13 @@ function Spring(x,y) {
 
     // Make the joint!
     this.mouseJoint = world.CreateJoint(md);
-  }
+  };
 
   this.destroy = function() {
     // We can get rid of the joint when the mouse is released
-    if (this.mouseJoint != null) {
+    if (this.mouseJoint !== null) {
       world.DestroyJoint(this.mouseJoint);
       this.mouseJoint = null;
     }
-  }
+  };
 }

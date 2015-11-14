@@ -23,15 +23,15 @@ function CustomListener() {
       o1.change();
       o2.change();
     }
-  }
+  };
 
   // Objects stop touching each other
   this.EndContact = function(contact) {
-  }
+  };
 
   this.PreSolve = function(contact,manifold) {
-  }
+  };
 
   this.PostSolve = function(contact,manifold) {
-  }
+  };
 }

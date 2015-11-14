@@ -19,12 +19,12 @@ function Particle(x, y) {
   // Fixture holds shape
   fd.shape = new box2d.b2CircleShape();
   fd.shape.m_radius = scaleToWorld(this.r);
-  
+
   // Some physics
   fd.density = 1.0;
   fd.friction = 0.1;
   fd.restitution = 0.3;
- 
+
   // Create the body
   this.body = world.CreateBody(bd);
   // Attach the fixture
@@ -37,7 +37,7 @@ function Particle(x, y) {
   // This function removes the particle from the box2d world
   this.killBody = function() {
     world.DestroyBody(this.body);
-  }
+  };
 
   // Is the particle ready for deletion?
   this.done = function() {
@@ -49,7 +49,7 @@ function Particle(x, y) {
       return true;
     }
     return false;
-  }
+  };
 
   // Drawing the box
   this.display = function() {
@@ -57,7 +57,7 @@ function Particle(x, y) {
     var pos = scaleToPixels(this.body.GetPosition());
     // Get its angle of rotation
     var a = this.body.GetAngleRadians();
-    
+
     // Draw it!
     rectMode(CENTER);
     push();
@@ -70,5 +70,5 @@ function Particle(x, y) {
     // Let's add a line so we can see the rotation
     line(0,0,this.r,0);
     pop();
-  }
+  };
 }

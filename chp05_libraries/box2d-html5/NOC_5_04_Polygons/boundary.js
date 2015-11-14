@@ -18,9 +18,9 @@ function Boundary(x_,y_, w_, h_) {
   fd.density = 1.0;
   fd.friction = 0.5;
   fd.restitution = 0.2;
- 
+
   var bd = new box2d.b2BodyDef();
- 
+
   bd.type = box2d.b2BodyType.b2_staticBody;
   bd.position = scaleToWorld(this.x, this.y);
   fd.shape = new box2d.b2PolygonShape();
@@ -33,5 +33,5 @@ function Boundary(x_,y_, w_, h_) {
     stroke(200);
     rectMode(CENTER);
     rect(this.x,this.y,this.w,this.h);
-  }
+  };
 }
