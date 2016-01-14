@@ -23,4 +23,4 @@ var Confetti = function(position) {
 
 // Inherit from the parent class
 Confetti.prototype = Object.create(Particle.prototype);
-this.constructor = Confetti;
+Confetti.prototype.constructor = Confetti;
