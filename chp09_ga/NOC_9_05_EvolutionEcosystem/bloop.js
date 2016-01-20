@@ -8,7 +8,7 @@
 
 // Create a "bloop" creature
 function Bloop(l, dna_) {
-  this.position = l.get();  // Location
+  this.position = l.copy();  // Location
   this.health = 200;  // Life timer
   this.xoff = random(1000);  // For perlin noise
   this.yoff = random(1000);

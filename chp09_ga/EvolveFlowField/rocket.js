@@ -12,7 +12,7 @@ function Rocket(l, dna_) {
   // All of our physics stuff
   this.acceleration = createVector();
   this.velocity = createVector();
-  this.pos = l.get();
+  this.pos = l.copy();
   this.r = 2;
   this.dna = dna_;
   this.stopped = false;   // Am I stuck?
@@ -104,7 +104,7 @@ function Rocket(l, dna_) {
 
       // Get the steering vector out of our genes in the right spot
       // A little Reynolds steering here
-      var desired = this.dna.genes[x+y*(width/gridscale)].get();
+      var desired = this.dna.genes[x+y*(width/gridscale)].copy();
       desired.mult(this.maxspeed);
       var steer = p5.Vector.sub(desired,this.velocity);
       this.acceleration.add(steer);

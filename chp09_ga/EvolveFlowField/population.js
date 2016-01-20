@@ -105,7 +105,7 @@ function Population(m, num) {
       // Mutate their genes
       child.mutate(this.mutationRate);
       // Fill the new population with the new child
-      var position = start.position.get();
+      var position = start.position.copy();
       this.population[i] = new Rocket(position, child);
     }
     this.generations++;
