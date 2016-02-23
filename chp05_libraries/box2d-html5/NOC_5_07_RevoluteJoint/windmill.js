@@ -8,8 +8,8 @@
 function Windmill(x,y) {
   this.len = 32;
 
-  this.box1 = new Box(x, y-20, 120, 10, false); 
-  this.box2 = new Box(x, y, 10, 40, true); 
+  this.box1 = new Box(x, y-20, 120, 10, false);
+  this.box2 = new Box(x, y, 10, 40, true);
 
   // Define joint as between two bodies
   var rjd = new box2d.b2RevoluteJointDef();
@@ -37,15 +37,14 @@ function Windmill(x,y) {
     fill(0);
     noStroke();
     ellipse(anchor.x, anchor.y, 8, 8);
-  }
+  };
 
   // Turn the motor on or off
   this.toggleMotor = function() {
     joint.EnableMotor(!joint.IsMotorEnabled());
-  }
+  };
 
   this.motorOn = function() {
     return joint.IsMotorEnabled();
-  }
+  };
 }
-

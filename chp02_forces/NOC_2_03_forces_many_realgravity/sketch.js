@@ -7,13 +7,13 @@ var movers = [];
 function setup() {
   createCanvas(640,360);
   for (var i = 0; i < 20; i++) {
-    movers[i] = new Mover(random(1,4),0,0); 
+    movers[i] = new Mover(random(1,4),0,0);
   }
 }
 
 function draw() {
   background(51);
-  
+
   for (var i = 0; i < movers.length; i++) {
     var wind = createVector(0.01,0);
     var gravity = createVector(0, 0.1*movers[i].mass);
@@ -23,14 +23,4 @@ function draw() {
     movers[i].display();
     movers[i].checkEdges();
   }
-};
-
-
-
-
-
-
-
-
-
-
+}

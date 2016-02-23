@@ -27,7 +27,7 @@ function Pendulum(origin_, r_) {
     this.update();
     this.drag();    // for user interaction
     this.display();
-  }
+  };
 
   // Function to update position
   this.update = function() {
@@ -39,7 +39,7 @@ function Pendulum(origin_, r_) {
       this.aVelocity *= this.damping;                                  // Arbitrary damping
       this.angle += this.aVelocity;                                    // Increment angle
     }
-  }
+  };
 
   this.display = function() {
     this.position.set(this.r*sin(this.angle), this.r*cos(this.angle), 0);         // Polar to cartesian conversion
@@ -54,7 +54,7 @@ function Pendulum(origin_, r_) {
     if (this.dragging) fill(200);
     // Draw the ball
     ellipse(this.position.x, this.position.y, this.ballr, this.ballr);
-  }
+  };
 
 
   // The methods below are for mouse interaction
@@ -65,24 +65,21 @@ function Pendulum(origin_, r_) {
     if (d < this.ballr) {
       this.dragging = true;
     }
-  }
+  };
 
   // This tells us we are not longer clicking on the ball
   this.stopDragging = function() {
     this.aVelocity = 0; // No velocity once you let go
     this.dragging = false;
-  }
+  };
 
   this.drag = function() {
-    // If we are draging the ball, we calculate the angle between the 
+    // If we are draging the ball, we calculate the angle between the
     // pendulum origin and mouse position
     // we assign that angle to the pendulum
     if (this.dragging) {
       var diff = p5.Vector.sub(this.origin, createVector(mouseX, mouseY));      // Difference between 2 points
       this.angle = atan2(-1*diff.y, diff.x) - radians(90);                   // Angle relative to vertical axis
     }
-  }
+  };
 }
-
-
-

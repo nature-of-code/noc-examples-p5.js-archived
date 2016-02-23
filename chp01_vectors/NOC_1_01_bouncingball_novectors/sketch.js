@@ -10,7 +10,7 @@ var yspeed = 2;
 
 function setup() {
   createCanvas(640, 360);
-};
+}
 
 function draw() {
   background(51);
@@ -31,5 +31,4 @@ function draw() {
   strokeWeight(2);
   fill(127);
   ellipse(x, y, 48, 48);
-};
-
+}

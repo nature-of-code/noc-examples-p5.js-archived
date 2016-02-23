@@ -24,4 +24,4 @@ var Oscillator = function() {
     ellipse(x, y, 32, 32);
     pop();
   };
-}
+};

@@ -19,7 +19,5 @@ function Box(x, y) {
     stroke(200);
     strokeWeight(2);
     rect(this.x,this.y, this.w, this.h);
-  }
+  };
 }
-
-

@@ -18,12 +18,12 @@ function Boid(x,y) {
     this.update();
     this.borders();
     this.render();
-  }
+  };
 
   this.applyForce = function(force) {
     // We could add mass here if we want A = F / M
     this.acceleration.add(force);
-  }
+  };
 
   // We accumulate a new acceleration each time based on three rules
   this.flock = function(boids) {
@@ -38,7 +38,7 @@ function Boid(x,y) {
     this.applyForce(sep);
     this.applyForce(ali);
     this.applyForce(coh);
-  }
+  };
 
   // Method to update location
   this.update = function() {
@@ -49,7 +49,7 @@ function Boid(x,y) {
     this.position.add(this.velocity);
     // Reset accelertion to 0 each cycle
     this.acceleration.mult(0);
-  }
+  };
 
   // A method that calculates and applies a steering force towards a target
   // STEER = DESIRED MINUS VELOCITY
@@ -62,7 +62,7 @@ function Boid(x,y) {
     var steer = p5.Vector.sub(desired,this.velocity);
     steer.limit(this.maxforce);  // Limit to maximum steering force
     return steer;
-  }
+  };
 
   this.render = function() {
     // Draw a triangle rotated in the direction of velocity
@@ -78,7 +78,7 @@ function Boid(x,y) {
     vertex(this.r, this.r*2);
     endShape(CLOSE);
     pop();
-  }
+  };
 
   // Wraparound
   this.borders = function() {
@@ -86,7 +86,7 @@ function Boid(x,y) {
     if (this.position.y < -this.r)  this.position.y = height+this.r;
     if (this.position.x > width +this.r) this.position.x = -this.r;
     if (this.position.y > height+this.r) this.position.y = -this.r;
-  }
+  };
 
   // Separation
   // Method checks for nearby boids and steers away
@@ -121,7 +121,7 @@ function Boid(x,y) {
       steer.limit(this.maxforce);
     }
     return steer;
-  }
+  };
 
   // Alignment
   // For every nearby boid in the system, calculate the average velocity
@@ -146,7 +146,7 @@ function Boid(x,y) {
     } else {
       return createVector(0,0);
     }
-  }
+  };
 
   // Cohesion
   // For the average location (i.e. center) of all nearby boids, calculate steering vector towards that location
@@ -167,6 +167,5 @@ function Boid(x,y) {
     } else {
       return createVector(0,0);
     }
-  }
+  };
 }
-

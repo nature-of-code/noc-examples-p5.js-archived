@@ -33,7 +33,7 @@ function CustomShape(x, y) {
   fd.density = 1.0;
   fd.friction = 0.5;
   fd.restitution = 0.2;
- 
+
   // Create the body
   this.body = world.CreateBody(bd);
   // Attach the fixture
@@ -46,7 +46,7 @@ function CustomShape(x, y) {
   // This function removes the particle from the box2d world
   this.killBody = function() {
     world.DestroyBody(this.body);
-  }
+  };
 
   // Is the particle ready for deletion?
   this.done = function() {
@@ -58,7 +58,7 @@ function CustomShape(x, y) {
       return true;
     }
     return false;
-  }
+  };
 
   // Drawing the box
   this.display = function() {
@@ -66,7 +66,7 @@ function CustomShape(x, y) {
     var pos = scaleToPixels(this.body.GetPosition());
     // Get its angle of rotation
     var a = this.body.GetAngleRadians();
-    
+
     // Draw it!
     var f = this.body.GetFixtureList();
     var ps = f.GetShape();
@@ -88,5 +88,5 @@ function CustomShape(x, y) {
     }
     endShape(CLOSE);
     pop();
-  }
+  };
 }

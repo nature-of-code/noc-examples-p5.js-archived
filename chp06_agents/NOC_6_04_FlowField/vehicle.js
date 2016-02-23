@@ -16,7 +16,7 @@ function Vehicle(x,y,ms,mf) {
     this.update();
     this.borders();
     this.display();
-  }
+  };
 
   // Implementing Reynolds' flow field following algorithm
   // http://www.red3d.com/cwr/steer/FlowFollow.html
@@ -29,12 +29,12 @@ function Vehicle(x,y,ms,mf) {
     var steer = p5.Vector.sub(desired, this.velocity);
     steer.limit(this.maxforce);  // Limit to maximum steering force
     this.applyForce(steer);
-  }
+  };
 
   this.applyForce = function(force) {
     // We could add mass here if we want A = F / M
     this.acceleration.add(force);
-  }
+  };
 
     // Method to update location
   this.update = function() {
@@ -45,7 +45,7 @@ function Vehicle(x,y,ms,mf) {
     this.position.add(this.velocity);
     // Reset accelerationelertion to 0 each cycle
     this.acceleration.mult(0);
-  }
+  };
 
   // Wraparound
   this.borders = function() {
@@ -53,8 +53,8 @@ function Vehicle(x,y,ms,mf) {
     if (this.position.y < -this.r) this.position.y = height+this.r;
     if (this.position.x > width+this.r) this.position.x = -this.r;
     if (this.position.y > height+this.r) this.position.y = -this.r;
-  }
-      
+  };
+
   this.display = function() {
     // Draw a triangle rotated in the direction of velocity
     var theta = this.velocity.heading() + PI/2;
@@ -70,8 +70,5 @@ function Vehicle(x,y,ms,mf) {
     vertex(this.r, this.r*2);
     endShape(CLOSE);
     pop();
-  }
+  };
 }
-
-
-

@@ -23,7 +23,7 @@ function Pendulum(origin_, r_) {
   this.go = function() {
     this.update();
     this.display();
-  }
+  };
 
   // Function to update position
   this.update = function() {
@@ -33,7 +33,7 @@ function Pendulum(origin_, r_) {
     this.aVelocity += this.aAcceleration;                            // Increment velocity
     this.aVelocity *= this.damping;                                  // Arbitrary damping
     this.angle += this.aVelocity;                                    // Increment angle
-  }
+  };
 
   this.display = function() {
     this.position.set(this.r*sin(this.angle), this.r*cos(this.angle), 0);         // Polar to cartesian conversion
@@ -47,9 +47,5 @@ function Pendulum(origin_, r_) {
     fill(127);
     // Draw the ball
     ellipse(this.position.x, this.position.y, this.ballr, this.ballr);
-  }
+  };
 }
-
-
-
-

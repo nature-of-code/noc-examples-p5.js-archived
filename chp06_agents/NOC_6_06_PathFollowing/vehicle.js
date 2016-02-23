@@ -15,7 +15,7 @@ function Vehicle(x,y,ms,mf) {
   this.run = function() {
     this.update();
     this.display();
-  }
+  };
 
   // This function implements Craig Reynolds' path following algorithm
   // http://www.red3d.com/cwr/steer/PathFollow.html
@@ -23,12 +23,12 @@ function Vehicle(x,y,ms,mf) {
 
 
     // Predict location 50 (arbitrary choice) frames ahead
-    // This could be based on speed 
+    // This could be based on speed
     var predict = this.velocity.get();
     predict.normalize();
     predict.mult(50);
     var predictLoc = p5.Vector.add(this.position, predict);
-   
+
     // Now we must find the normal to the path from the predicted location
     // We look at the normal for each line segment and pick out the closest one
 
@@ -74,7 +74,7 @@ function Vehicle(x,y,ms,mf) {
     }
 
     // Only if the distance is greater than the path's radius do we bother to steer
-    if (worldRecord > p.radius && target != null) {
+    if (worldRecord > p.radius && target !== null) {
       this.seek(target);
     }
 
@@ -96,13 +96,13 @@ function Vehicle(x,y,ms,mf) {
       noStroke();
       ellipse(target.x, target.y, 8, 8);
     }
-  }
+  };
 
 
   this.applyForce = function(force) {
     // We could add mass here if we want A = F / M
     this.acceleration.add(force);
-  }
+  };
 
   // A method that calculates and applies a steering force towards a target
   // STEER = DESIRED MINUS VELOCITY
@@ -111,7 +111,7 @@ function Vehicle(x,y,ms,mf) {
 
     // If the magnitude of desired equals 0, skip out of here
     // (We could optimize this to check if x and y are 0 to avoid mag() square root
-    if (desired.mag() == 0) return;
+    if (desired.mag() === 0) return;
 
     // Normalize desired and scale to maximum speed
     desired.normalize();
@@ -121,7 +121,7 @@ function Vehicle(x,y,ms,mf) {
     steer.limit(this.maxforce);  // Limit to maximum steering force
 
     this.applyForce(steer);
-  }
+  };
 
     // Method to update position
   this.update = function() {
@@ -132,7 +132,7 @@ function Vehicle(x,y,ms,mf) {
     this.position.add(this.velocity);
     // Reset accelerationelertion to 0 each cycle
     this.acceleration.mult(0);
-  }
+  };
 
   // Wraparound
   this.borders = function(p) {
@@ -140,8 +140,8 @@ function Vehicle(x,y,ms,mf) {
       this.position.x = p.getStart().x - this.r;
       this.position.y = p.getStart().y + (this.position.y-p.getEnd().y);
     }
-  }
-      
+  };
+
   this.display = function() {
     // Draw a triangle rotated in the direction of velocity
     var theta = this.velocity.heading() + PI/2;
@@ -157,7 +157,7 @@ function Vehicle(x,y,ms,mf) {
     vertex(this.r, this.r*2);
     endShape(CLOSE);
     pop();
-  }
+  };
 
   // A function to get the normal point from a point (p) to a line segment (a-b)
   // This function could be optimized to make fewer new Vector objects
@@ -171,8 +171,5 @@ function Vehicle(x,y,ms,mf) {
     ab.mult(ap.dot(ab));
     var normalPoint = p5.Vector.add(a, ab);
     return normalPoint;
-  }
+  };
 }
-
-
-

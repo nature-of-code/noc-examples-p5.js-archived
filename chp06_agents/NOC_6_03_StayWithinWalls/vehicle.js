@@ -21,12 +21,12 @@ function Vehicle(x,y) {
     this.position.add(this.velocity);
     // Reset accelerationelertion to 0 each cycle
     this.acceleration.mult(0);
-  }
+  };
 
   this.applyForce = function(force) {
     // We could add mass here if we want A = F / M
     this.acceleration.add(force);
-  }
+  };
 
   this.boundaries = function() {
 
@@ -34,27 +34,27 @@ function Vehicle(x,y) {
 
     if (this.position.x < d) {
       desired = createVector(this.maxspeed, this.velocity.y);
-    } 
+    }
     else if (this.position.x > width -d) {
       desired = createVector(-this.maxspeed, this.velocity.y);
-    } 
+    }
 
     if (this.position.y < d) {
       desired = createVector(this.velocity.x, this.maxspeed);
-    } 
+    }
     else if (this.position.y > height-d) {
       desired = createVector(this.velocity.x, -this.maxspeed);
-    } 
+    }
 
-    if (desired != null) {
+    if (desired !== null) {
       desired.normalize();
       desired.mult(this.maxspeed);
       var steer = p5.Vector.sub(desired, this.velocity);
       steer.limit(this.maxforce);
       this.applyForce(steer);
     }
-  }  
-      
+  };
+
   this.display = function() {
     // Draw a triangle rotated in the direction of velocity
     var theta = this.velocity.heading() + PI/2;
@@ -70,8 +70,5 @@ function Vehicle(x,y) {
     vertex(this.r, this.r*2);
     endShape(CLOSE);
     pop();
-  }
+  };
 }
-
-
-

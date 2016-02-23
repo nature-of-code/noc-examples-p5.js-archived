@@ -13,14 +13,14 @@ function GOL() {
   for (var i = 0; i < this.columns; i++) {
     this.board[i] = new Array(this.rows);
   }
-  
+
   this.init = function() {
     for (var i = 0; i < this.columns; i++) {
       for (var j = 0; j < this.rows; j++) {
         this.board[i][j] = new Cell(i*this.w, j*this.w, this.w);
       }
     }
-  }
+  };
   this.init();
 
   // The process of creating the new generation
@@ -44,17 +44,17 @@ function GOL() {
         }
 
         // A little trick to subtract the current cell's state since
-        // we added it in the above loop      
+        // we added it in the above loop
         neighbors -= this.board[x][y].previous;
 
         // Rules of Life
         if      ((this.board[x][y].state == 1) && (neighbors <  2)) this.board[x][y].newState(0);
         else if ((this.board[x][y].state == 1) && (neighbors >  3)) this.board[x][y].newState(0);
-        else if ((this.board[x][y].state == 0) && (neighbors == 3)) this.board[x][y].newState(1);
+        else if ((this.board[x][y].state === 0) && (neighbors == 3)) this.board[x][y].newState(1);
         // else do nothing!
       }
     }
-  }
+  };
 
   // This is the easy part, just draw the cells, fill 255 for '1', fill 0 for '0'
   this.display = function() {
@@ -63,6 +63,5 @@ function GOL() {
         this.board[i][j].display();
       }
     }
-  }
+  };
 }
-

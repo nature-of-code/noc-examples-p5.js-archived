@@ -7,8 +7,8 @@
 
 function CA() {
   this.w = 10;
-  // An array of 0s and 1s 
-  this.cells = new Array(width/this.w); 
+  // An array of 0s and 1s
+  this.cells = new Array(width/this.w);
   for (var i = 0; i < this.cells.length; i++) {
     this.cells[i] = 0;
   }
@@ -33,8 +33,8 @@ function CA() {
     }
     // The current generation is the new generation
     this.cells = nextgen;
-    this.generation++; 
-  }
+    this.generation++;
+  };
 
   // This is the easy part, just draw the cells
   this.display = function() {
@@ -44,20 +44,19 @@ function CA() {
   		noStroke();
   		rect(i*this.w, this.generation*this.w, this.w, this.w);
   	}
-  }
+  };
 
   // Implementing the Wolfram rules
   // Could be improved and made more concise, but here we can explicitly see what is going on for each case
   this.rules = function(a, b, c) {
   	if (a == 1 && b == 1 && c == 1) return this.ruleset[0];
-  	if (a == 1 && b == 1 && c == 0) return this.ruleset[1];
-  	if (a == 1 && b == 0 && c == 1) return this.ruleset[2];
-  	if (a == 1 && b == 0 && c == 0) return this.ruleset[3];
-  	if (a == 0 && b == 1 && c == 1) return this.ruleset[4];
-  	if (a == 0 && b == 1 && c == 0) return this.ruleset[5];
-  	if (a == 0 && b == 0 && c == 1) return this.ruleset[6];
-  	if (a == 0 && b == 0 && c == 0) return this.ruleset[7];
+  	if (a == 1 && b == 1 && c === 0) return this.ruleset[1];
+  	if (a == 1 && b === 0 && c == 1) return this.ruleset[2];
+  	if (a == 1 && b === 0 && c === 0) return this.ruleset[3];
+  	if (a === 0 && b == 1 && c == 1) return this.ruleset[4];
+  	if (a === 0 && b == 1 && c === 0) return this.ruleset[5];
+  	if (a === 0 && b === 0 && c == 1) return this.ruleset[6];
+  	if (a === 0 && b === 0 && c === 0) return this.ruleset[7];
   	return 0;
-  }
+  };
 }
-

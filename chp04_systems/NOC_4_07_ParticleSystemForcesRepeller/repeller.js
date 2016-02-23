@@ -18,4 +18,4 @@ var Repeller = function(x, y) {
     dir.mult(force);                                  // Get force vector --> magnitude * direction
     return dir;
   };
-}
+};

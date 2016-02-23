@@ -24,7 +24,7 @@ function Lollipop(x, y) {
   fd1.density = 1.0;
   fd1.friction = 0.5;
   fd1.restitution = 0.2;
- 
+
   // Define fixture #2
   var fd2 = new box2d.b2FixtureDef();
   fd2.shape = new box2d.b2CircleShape();
@@ -48,7 +48,7 @@ function Lollipop(x, y) {
   // This function removes the particle from the box2d world
   this.killBody = function() {
     world.DestroyBody(this.body);
-  }
+  };
 
   // Is the particle ready for deletion?
   this.done = function() {
@@ -60,7 +60,7 @@ function Lollipop(x, y) {
       return true;
     }
     return false;
-  }
+  };
 
   // Drawing the box
   this.display = function() {
@@ -68,7 +68,7 @@ function Lollipop(x, y) {
     var pos = scaleToPixels(this.body.GetPosition());
     // Get its angle of rotation
     var a = this.body.GetAngleRadians();
-    
+
     // Draw it!
     rectMode(CENTER);
     push();
@@ -81,5 +81,5 @@ function Lollipop(x, y) {
     rect(0,0,this.w,this.h);
     ellipse(0, -this.h/2, this.r*2, this.r*2);
     pop();
-  }
+  };
 }

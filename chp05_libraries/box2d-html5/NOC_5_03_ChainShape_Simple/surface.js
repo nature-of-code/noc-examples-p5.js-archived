@@ -20,7 +20,7 @@ function Surface() {
   // This is what box2d uses to put the surface in its world
   var chain = new box2d.b2ChainShape();
   chain.CreateChain(this.surface, this.surface.length);
-  
+
   // Need a body to attach shape!
   var bd = new box2d.b2BodyDef();
   this.body = world.CreateBody(bd);
@@ -51,5 +51,5 @@ function Surface() {
     vertex(width, height);
     vertex(0, height);
     endShape(CLOSE);
-  }
+  };
 }

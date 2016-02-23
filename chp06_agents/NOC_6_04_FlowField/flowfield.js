@@ -19,7 +19,7 @@ function FlowField(r) {
        array[i] = [];
     }
     return array;
-  }
+  };
   this.field = this.make2Darray(this.cols);
 
   this.init = function() {
@@ -38,7 +38,7 @@ function FlowField(r) {
       }
       xoff += 0.1;
     }
-  }
+  };
   this.init();
 
   // Draw every vector
@@ -48,14 +48,14 @@ function FlowField(r) {
         drawVector(this.field[i][j],i*this.resolution,j*this.resolution,this.resolution-2);
       }
     }
-  }
+  };
 
   this.lookup = function(lookup) {
     var column = Math.floor(constrain(lookup.x/this.resolution,0,this.cols-1));
     var row = Math.floor(constrain(lookup.y/this.resolution,0,this.rows-1));
     //println(lookup.x);
     return this.field[column][row].get();
-  }
+  };
 
   // Renders a vector object 'v' as an arrow and a location 'x,y'
   var drawVector = function(v, x, y, scayl) {
@@ -73,11 +73,5 @@ function FlowField(r) {
     //line(len,0,len-arrowsize,+arrowsize/2);
     //line(len,0,len-arrowsize,-arrowsize/2);
     pop();
-  }
+  };
 }
-
-
-
-
-
-

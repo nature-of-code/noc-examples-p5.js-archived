@@ -21,12 +21,12 @@ function Box(x, y, w, h, lock) {
   // Fixture holds shape
   fd.shape = new box2d.b2PolygonShape();
   fd.shape.SetAsBox(scaleToWorld(this.w/2), scaleToWorld(this.h/2));
-  
+
   // Some physics
   fd.density = 1.0;
   fd.friction = 0.5;
   fd.restitution = 0.2;
- 
+
   // Create the body
   this.body = world.CreateBody(bd);
   // Attach the fixture
@@ -39,7 +39,7 @@ function Box(x, y, w, h, lock) {
   // This function removes the particle from the box2d world
   this.killBody = function() {
     world.DestroyBody(this.body);
-  }
+  };
 
   // Is the particle ready for deletion?
   this.done = function() {
@@ -51,7 +51,7 @@ function Box(x, y, w, h, lock) {
       return true;
     }
     return false;
-  }
+  };
 
   // Drawing the box
   this.display = function() {
@@ -59,7 +59,7 @@ function Box(x, y, w, h, lock) {
     var pos = scaleToPixels(this.body.GetPosition());
     // Get its angle of rotation
     var a = this.body.GetAngleRadians();
-    
+
     // Draw it!
     rectMode(CENTER);
     push();
@@ -70,5 +70,5 @@ function Box(x, y, w, h, lock) {
     strokeWeight(2);
     rect(0, 0, this.w, this.h);
     pop();
-  }
+  };
 }

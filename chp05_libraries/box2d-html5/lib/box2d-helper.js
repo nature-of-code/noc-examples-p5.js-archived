@@ -19,7 +19,7 @@ var scaleToWorld = function(a,b) {
   } else {
     return a/scaleFactor;
   }
-}
+};
 
 var scaleToPixels = function(a,b) {
   if (a instanceof box2d.b2Vec2) {
@@ -35,7 +35,7 @@ var scaleToPixels = function(a,b) {
   } else {
     return a*scaleFactor;
   }
-}
+};
 
 // -----------------------------------------------------------------------------
 // Create Methods
@@ -52,7 +52,7 @@ var createWorld = function() {
   scaleFactor = 10;
 
 	return new box2d.b2World(gravity, doSleep);
-}
+};
 
 // -----------------------------------------------------------------------------
 // Draw Methods
@@ -73,13 +73,13 @@ var debugDraw = function(canvas, scale, world) {
 
 	// Draw body shapes
 	for(var b=world.m_bodyList; b; b=b.m_next) {
-		for(var f = b.GetFixtureList(); f!=null; f=f.GetNext()) {  
+		for(var f = b.GetFixtureList(); f!==null; f=f.GetNext()) {
       context.lineWidth = 0.5;
 			context.strokeStyle = '#F00';
       drawShape(context, scale, world, b, f);
     }
   }
-}
+};
 
 var drawJoint = function(context, scale, world, joint) {
 	context.save();
@@ -119,7 +119,7 @@ var drawJoint = function(context, scale, world, joint) {
   context.closePath();
   context.stroke();
   context.restore();
-}
+};
 
 var drawShape = function(context, scale, world, body, fixture) {
 
@@ -129,7 +129,7 @@ var drawShape = function(context, scale, world, body, fixture) {
   var bPos = body.GetPosition();
   context.translate(bPos.x, bPos.y);
   context.rotate(body.GetAngleRadians());
-  
+
   context.beginPath();
   context.lineWidth /= scale;
 
@@ -165,4 +165,4 @@ var drawShape = function(context, scale, world, body, fixture) {
   context.closePath();
   context.stroke();
   context.restore();
-}
+};

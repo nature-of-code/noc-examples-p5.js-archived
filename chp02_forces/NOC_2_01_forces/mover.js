@@ -11,20 +11,20 @@ var Mover = function() {
   this.applyForce = function(force) {
     var f = p5.Vector.div(force, this.mass);
     this.acceleration.add(f);
-  }
-    
+  };
+
   this.update = function() {
     this.velocity.add(this.acceleration);
     this.position.add(this.velocity);
     this.acceleration.mult(0);
-  }
+  };
 
   this.display = function() {
     stroke(0);
     strokeWeight(2);
     fill(255, 127);
     ellipse(this.position.x, this.position.y, 48, 48);
-  }
+  };
 
   this.checkEdges = function() {
     if (this.position.x > width) {
@@ -38,9 +38,6 @@ var Mover = function() {
       this.velocity.y *= -1;
       this.position.y = height;
     }
-  }
+  };
 
-}
-
-
-
+};

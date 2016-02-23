@@ -40,4 +40,4 @@ var Particle = function(position) {
       return false;
     }
   };
-}
+};
