@@ -24,7 +24,7 @@ function Vehicle(x,y,ms,mf) {
 
     // Predict location 50 (arbitrary choice) frames ahead
     // This could be based on speed
-    var predict = this.velocity.get();
+    var predict = this.velocity.copy();
     predict.normalize();
     predict.mult(50);
     var predictLoc = p5.Vector.add(this.position, predict);
@@ -51,7 +51,7 @@ function Vehicle(x,y,ms,mf) {
       if (normalPoint.x < a.x || normalPoint.x > b.x) {
         // This is something of a hacky solution, but if it's not within the line segment
         // consider the normal to just be the end of the line segment (point b)
-        normalPoint = b.get();
+        normalPoint = b.copy();
       }
 
       // How far away are we from the path?
@@ -68,7 +68,7 @@ function Vehicle(x,y,ms,mf) {
         // This is an oversimplification
         // Should be based on distance to path & velocity
         dir.mult(10);
-        target = normalPoint.get();
+        target = normalPoint.copy();
         target.add(dir);
       }
     }

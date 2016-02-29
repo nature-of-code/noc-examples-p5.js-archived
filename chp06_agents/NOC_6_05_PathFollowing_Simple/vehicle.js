@@ -22,7 +22,7 @@ function Vehicle(x,y,ms,mf) {
   this.follow = function(p) {
 
     // Predict position 50 (arbitrary choice) frames ahead
-    var predict = this.velocity.get();
+    var predict = this.velocity.copy();
     predict.normalize();
     predict.mult(50);
     var predictLoc = p5.Vector.add(this.position, predict);

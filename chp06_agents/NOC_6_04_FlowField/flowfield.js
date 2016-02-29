@@ -54,7 +54,7 @@ function FlowField(r) {
     var column = Math.floor(constrain(lookup.x/this.resolution,0,this.cols-1));
     var row = Math.floor(constrain(lookup.y/this.resolution,0,this.rows-1));
     //println(lookup.x);
-    return this.field[column][row].get();
+    return this.field[column][row].copy();
   };
 
   // Renders a vector object 'v' as an arrow and a location 'x,y'

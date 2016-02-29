@@ -15,7 +15,7 @@ function Food(num) {
   
   // Add some food at a location
   this.add = function(l) {
-     this.food.push(l.get()); 
+     this.food.push(l.copy()); 
   }
   
   // Display the food

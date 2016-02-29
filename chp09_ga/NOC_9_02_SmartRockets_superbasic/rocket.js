@@ -12,7 +12,7 @@ function Rocket(l, dna_) {
   // All of our physics stuff
   this.acceleration = createVector();
   this.velocity = createVector();
-  this.location = l.get();
+  this.location = l.copy();
   // Size
   this.r = 4;
   // Fitness and DNA

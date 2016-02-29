@@ -3,7 +3,7 @@
 // http://natureofcode.com
 
 var ParticleSystem = function(num, position) {
-	this.origin = position.get();
+	this.origin = position.copy();
 	this.particles = [];
   for (var i = 0; i < num; i++) {
       this.particles.push(new Particle(this.origin));    // Add "num" amount of particles to the arraylist

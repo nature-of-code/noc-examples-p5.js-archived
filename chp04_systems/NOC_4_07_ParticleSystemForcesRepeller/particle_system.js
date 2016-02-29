@@ -3,7 +3,7 @@
 // http://natureofcode.com
 
 var ParticleSystem = function(position) {
-	this.origin = position.get();
+	this.origin = position.copy();
   	this.particles = [];
 
   this.addParticle = function() {

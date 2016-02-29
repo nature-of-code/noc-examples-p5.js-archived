@@ -10,7 +10,7 @@
 // This constructor could be improved to allow a greater variety of pendulums
 function Pendulum(origin_, r_) {
   // Fill all variables
-  this.origin = origin_.get();
+  this.origin = origin_.copy();
   this.position = createVector();
   this.r = r_;
   this.angle = PI/4;

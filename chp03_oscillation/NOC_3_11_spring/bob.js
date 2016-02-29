@@ -21,7 +21,7 @@ var Bob = function(x, y) {
 
   // Newton's law: F = M * A
   this.applyForce = function(force) {
-    var f = force.get();
+    var f = force.copy();
     f.div(this.mass);
     this.acceleration.add(f);
   };
