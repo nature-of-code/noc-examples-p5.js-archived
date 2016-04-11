@@ -21,8 +21,11 @@ function CA() {
 
   // The process of creating the new generation
   this.generate = function() {
-    // First we create an empty array for the new values
-    var nextgen = new Array(this.cells.length);
+    // First we create an empty array filled with 0s for the new values
+    var nextgen = [];
+    for (var i = 0; i < this.cells.length; i++) {
+      nextgen[i] = 0;
+    }
     // For every spot, determine new state by examing current state, and neighbor states
     // Ignore edges that only have one neighor
     for (var i = 1; i < this.cells.length-1; i++) {
