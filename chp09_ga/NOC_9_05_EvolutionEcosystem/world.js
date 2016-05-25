@@ -13,17 +13,17 @@ function World(num) {
   this.food = new Food(num);
   this.bloops = [];        // An array for all creatures
   for (var i = 0; i < num; i++) {
-    var l = createVector(random(width),random(height));
+    var l = createVector(random(width), random(height));
     var dna = new DNA();
-    this.bloops.push(new Bloop(l,dna));
+    this.bloops.push(new Bloop(l, dna));
   }
 
 
   // Make a new creature
   this.born = function(x, y) {
-    var l = createVector(x,y);
+    var l = createVector(x, y);
     var dna = new DNA();
-    this.bloops.push(new Bloop(l,dna));
+    this.bloops.push(new Bloop(l, dna));
   }
 
   // Run the world
@@ -39,8 +39,8 @@ function World(num) {
       b.eat(this.food);
       // If it's dead, kill it and make food
       if (b.dead()) {
-        this.bloops.splice(i,1);
-        this.food.push(b.location);
+        this.bloops.splice(i, 1);
+        this.food.add(b.position);
       }
       // Perhaps this bloop would like to make a baby?
       var child = b.reproduce();
