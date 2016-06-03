@@ -47,7 +47,7 @@ function KochFractal() {
   this.iterate = function(before) {
     var now = [];    // Create emtpy list
     for(var i = 0; i < before.length; i++) {
-      var l = before.lines[i];
+      var l = before[i];
       // Calculate 5 koch p5.Vectors (done for us by the line object)
       var a = l.kochA();                 
       var b = l.kochB();
