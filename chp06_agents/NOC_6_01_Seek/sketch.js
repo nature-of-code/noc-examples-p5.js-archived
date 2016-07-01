@@ -20,7 +20,7 @@ function draw() {
 
   var mouse = createVector(mouseX, mouseY);
 
-  // Draw an ellipse at the mouse location
+  // Draw an ellipse at the mouse position
   fill(127);
   stroke(200);
   strokeWeight(2);

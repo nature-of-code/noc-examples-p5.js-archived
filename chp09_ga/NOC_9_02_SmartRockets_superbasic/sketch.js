@@ -20,7 +20,7 @@ var population;  // Population
 
 var lifeCounter;   // Timer for cycle of generation
 
-var target;        // Target location
+var target;        // Target position
 
 var info;
 
@@ -46,7 +46,7 @@ function setup() {
 function draw() {
   background(101);
 
-  // Draw the start and target locations
+  // Draw the start and target positions
   fill(0);
   stroke(0);
   ellipse(target.x,target.y,24,24);

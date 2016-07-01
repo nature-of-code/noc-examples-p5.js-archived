@@ -44,7 +44,7 @@ function draw() {
   // 2nd and 3rd arguments are velocity and position iterations
   world.Step(timeStep,10,10);
 
-  // Always alert the spring to the new mouse location
+  // Always alert the spring to the new mouse position
   spring.update(mouseX,mouseY);
 
   // Draw the boundaries
@@ -67,7 +67,7 @@ function mouseReleased() {
 function mousePressed() {
   // Check to see if the mouse was clicked on the box
   if (box.contains(mouseX, mouseY)) {
-    // And if so, bind the mouse location to the box with a spring
+    // And if so, bind the mouse position to the box with a spring
     spring.bind(mouseX,mouseY,box);
   }
 }

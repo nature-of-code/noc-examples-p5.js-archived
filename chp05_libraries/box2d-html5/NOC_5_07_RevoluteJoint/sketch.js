@@ -25,7 +25,7 @@ function setup() {
   // Initialize box2d physics and create the world
   world = createWorld();
 
-  // Make the windmill at an x,y location
+  // Make the windmill at an x,y position
   windmill = new Windmill(width/2,175);
 }
 

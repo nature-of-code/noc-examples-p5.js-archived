@@ -31,7 +31,7 @@ function draw() {
 
   // Update physics
   physics.update();
-  // Update chain's tail according to mouse location 
+  // Update chain's tail according to mouse position 
   chain.updateTail(mouseX, mouseY);
   // Display chain
   chain.display();

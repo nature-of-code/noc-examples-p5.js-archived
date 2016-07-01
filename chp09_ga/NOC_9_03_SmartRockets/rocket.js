@@ -11,7 +11,7 @@
 function Rocket(l, dna_, totalRockets) {
   this.acceleration = createVector(0,0);
   this.velocity = createVector(0,0);
-  this.location = createVector(l.x,l.y);
+   = createVector(l.x,l.y);
   // Size
   this.r = 4;
   // Fitness and DNA
@@ -65,10 +65,10 @@ function Rocket(l, dna_, totalRockets) {
 
   // Did I make it to the target?
   this.checkTarget = function() {
-    var d = dist(this.location.x, this.location.y, target.location.x, target.location.y);
+    var d = dist(.x, .y, target.location.x, target.location.y);
     if (d < this.recordDist) this.recordDist = d;
 
-    if (target.contains(this.location) && !this.hitTarget) {
+    if (target.contains() && !this.hitTarget) {
       this.hitTarget = true;
     } 
     else if (!this.hitTarget) {
@@ -79,7 +79,7 @@ function Rocket(l, dna_, totalRockets) {
   // Did I hit an obstacle?
   this.obstacles = function(os) {
     for (var i = 0; i < os.length; i++) {
-      if (os[i].contains(this.location)) {
+      if (os[i].contains()) {
         this.hitObstacle = true;
       }
     }
@@ -91,7 +91,7 @@ function Rocket(l, dna_, totalRockets) {
 
   this.update = function() {
     this.velocity.add(this.acceleration);
-    this.location.add(this.velocity);
+    .add(this.velocity);
     this.acceleration.mult(0);
   };
 
@@ -100,7 +100,7 @@ function Rocket(l, dna_, totalRockets) {
     var r = this.r;
     stroke(0);
     push();
-    translate(this.location.x, this.location.y);
+    translate(.x, .y);
     rotate(theta);
 
     // Thrusters

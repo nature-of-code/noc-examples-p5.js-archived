@@ -22,8 +22,8 @@ var lifetime;  // How long should each generation live
 var population;  // Population
 var lifecycle;          // Timer for cycle of generation
 var recordtime;         // Fastest time to target
-var target;        // Target location
-var start;         // Start location
+var target;        // Target position
+var start;         // Start position
 var diam = 24;          // Size of target
 
 var obstacles;  //an array list to keep track of all the obstacles!
@@ -63,7 +63,7 @@ function setup() {
 function draw() {
   background(210);
 
-  // Draw the target locations
+  // Draw the target positions
   target.display();
 
   // Draw the obstacles

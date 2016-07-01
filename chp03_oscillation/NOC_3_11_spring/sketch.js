@@ -11,7 +11,7 @@ var spring;
 function setup()  {
   createCanvas(640, 360);
   setFrameRate(60);
-  // Create objects at starting location
+  // Create objects at starting position
   // Note third argument in Spring constructor is "rest length"
   spring = new Spring(width/2, 10, 100);
   bob = new Bob(width/2, 100);

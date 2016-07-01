@@ -20,7 +20,7 @@ var population;  // Population
 
 var lifeCounter;   // Timer for cycle of generation
 
-var target;        // Target location
+var target;        // Target position
 
 var info;
 
@@ -58,7 +58,7 @@ function setup() {
 function draw() {
   background(101);
 
-  // Draw the start and target locations
+  // Draw the start and target positions
   target.display();
 
   // If the generation hasn't ended yet
@@ -89,6 +89,6 @@ function draw() {
 // Move the target if the mouse is pressed
 // System will adapt to new target
 function mousePressed() {
-  target.location.x = mouseX;
-  target.location.y = mouseY;
+  target.position.x = mouseX;
+  target.position.y = mouseY;
 }
