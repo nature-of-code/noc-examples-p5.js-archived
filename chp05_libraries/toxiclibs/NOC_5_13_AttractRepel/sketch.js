@@ -35,15 +35,10 @@ function draw() {
     particles[i].display();
   }
   // Move the second one according to the mouse
-  if (isMousePressed()) {
+  if (mouseIsPressed) {
     attractor.lock();
     attractor.set(mouseX,mouseY);
   } else {
     attractor.unlock();
   }
 }
-
-
-
-
-
