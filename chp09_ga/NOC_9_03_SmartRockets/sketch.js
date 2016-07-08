@@ -35,7 +35,7 @@ function setup() {
 
   // Initialize variables
   lifeCounter = 0;
-  
+
   target = new Obstacle(width/2-12, 24, 24, 24);
 
   // Create a population with a mutation rate, and population max
@@ -46,13 +46,12 @@ function setup() {
   info.position(10,380);
 
   recordtime = lifeCounter;
-  
+
   target = new Obstacle(width/2-12, 24, 24, 24);
 
-  // Create the obstacle course  
+  // Create the obstacle course
   obstacles = [];
   obstacles.push(new Obstacle(width/2-100, height/2, 200, 10));
-
 }
 
 function draw() {
@@ -80,10 +79,8 @@ function draw() {
  // Draw the obstacles
   for (var i = 0; i < obstacles.length; i++) {
     obstacles[i].display();
-
   }
   info.html("Generation #: " + population.getGenerations() + "<br>" + "Cycles left: " + (lifetime-lifeCounter));
-
 }
 
 // Move the target if the mouse is pressed
