@@ -12,7 +12,7 @@ function Rocket(l, dna_) {
   // All of our physics stuff
   this.acceleration = createVector();
   this.velocity = createVector();
-   = l.copy();
+  this.position = l.copy();
   // Size
   this.r = 4;
   // Fitness and DNA
@@ -21,12 +21,12 @@ function Rocket(l, dna_) {
   // To count which force we're on in the genes
   this.geneCounter = 0;
 
-    this.hitTarget = false;   // Did I reach the target
+  this.hitTarget = false;   // Did I reach the target
 
   // Fitness function
   // fitness = one divided by distance squared
   this.calcFitness = function() {
-    var d = dist(.x, .y, target.x, target.y);
+    var d = dist(this.position.x, this.position.y, target.x, target.y);
     this.fitness = pow(1/d, 2);
   };
 
@@ -44,7 +44,7 @@ function Rocket(l, dna_) {
 
   // Did I make it to the target?
   this.checkTarget = function() {
-    var d = dist(.x, .y, target.x, target.y);
+    var d = dist(this.position.x, this.position.y, target.x, target.y);
     if (d < 12) {
       this.hitTarget = true;
     }
@@ -56,7 +56,7 @@ function Rocket(l, dna_) {
 
   this.update = function() {
     this.velocity.add(this.acceleration);
-    .add(this.velocity);
+    this.position.add(this.velocity);
     this.acceleration.mult(0);
   };
 
@@ -65,7 +65,7 @@ function Rocket(l, dna_) {
     var r = this.r;
     stroke(0);
     push();
-    translate(.x, .y);
+    translate(this.position.x, this.position.y);
     rotate(theta);
 
     // Thrusters
