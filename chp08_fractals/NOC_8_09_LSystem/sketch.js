@@ -25,14 +25,10 @@ function setup() {
    turtle = new Turtle(lsys.getSentence(),width-1,PI/2);
    */
 
-
-  // TODO: change this example to work with radians once https://github.com/lmccart/p5.js/pull/185
-  angleMode(DEGREES);
-
   var ruleset = [];
   ruleset[0] = new Rule('F', "FF+[+F-F-F]-[-F+F+F]");
   lsys = new LSystem("F", ruleset);
-  turtle = new Turtle(lsys.getSentence(), height/3, 25);
+  turtle = new Turtle(lsys.getSentence(), height/3, radians(25));
 }
 
 function draw() {
@@ -41,8 +37,7 @@ function draw() {
   //text("Click mouse to generate", 10, height-10);
 
   translate(width/2, height);
-  angleMode(RADIANS);
-  rotate(-90);
+  rotate(-PI/2);
   turtle.render();
 }
 
