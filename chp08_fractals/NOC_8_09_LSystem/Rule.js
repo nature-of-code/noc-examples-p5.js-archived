@@ -6,7 +6,7 @@
 
 function Rule(a_, b_) {
   this.a = a_;
-    this.b = b_;
+  this.b = b_;
 
   this.getA = function() {
     return this.a;
@@ -16,4 +16,3 @@ function Rule(a_, b_) {
     return this.b;
   };
 }
-

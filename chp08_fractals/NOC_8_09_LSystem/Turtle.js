@@ -5,7 +5,7 @@
 function Turtle(s, l, t) {
   this.todo = s;
   this.len = l;
-    this.theta = t;
+  this.theta = t;
 
   this.render = function() {
     stroke(255);

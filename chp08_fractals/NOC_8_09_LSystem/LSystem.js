@@ -11,7 +11,7 @@
 function LSystem(axiom, r) {
   this.sentence = axiom;  // The sentence (a String)
   this.ruleset = r;       // The ruleset (an array of Rule objects)
-    this.generation = 0;    // Keeping track of the generation #
+  this.generation = 0;    // Keeping track of the generation #
 
   // Generate the next generation
   this.generate = function() {
@@ -48,5 +48,3 @@ function LSystem(axiom, r) {
     return this.generation;
   };
 }
-
-

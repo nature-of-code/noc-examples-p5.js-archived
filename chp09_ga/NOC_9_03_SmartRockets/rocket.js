@@ -11,7 +11,7 @@
 function Rocket(l, dna_, totalRockets) {
   this.acceleration = createVector(0,0);
   this.velocity = createVector(0,0);
-   = createVector(l.x,l.y);
+  this.position = l.copy();
   // Size
   this.r = 4;
   // Fitness and DNA
@@ -25,9 +25,9 @@ function Rocket(l, dna_, totalRockets) {
 
   this.hitObstacle = false;    // Am I stuck on an obstacle?
   this.hitTarget = false;   // Did I reach the target
-  
 
-  // FITNESS FUNCTION 
+
+  // FITNESS FUNCTION
   // distance = distance from target
   // finish = what order did i finish (first, second, etc. . .)
   // f(distance,finish) =   (1.0f / finish^1.5) * (1.0f / distance^6);
@@ -65,12 +65,12 @@ function Rocket(l, dna_, totalRockets) {
 
   // Did I make it to the target?
   this.checkTarget = function() {
-    var d = dist(.x, .y, target.location.x, target.location.y);
+    var d = dist(this.position.x, this.position.y, target.location.x, target.location.y);
     if (d < this.recordDist) this.recordDist = d;
 
-    if (target.contains() && !this.hitTarget) {
+    if (target.contains(this.position) && !this.hitTarget) {
       this.hitTarget = true;
-    } 
+    }
     else if (!this.hitTarget) {
       this.finishTime++;
     }
@@ -79,7 +79,7 @@ function Rocket(l, dna_, totalRockets) {
   // Did I hit an obstacle?
   this.obstacles = function(os) {
     for (var i = 0; i < os.length; i++) {
-      if (os[i].contains()) {
+      if (os[i].contains(this.position)) {
         this.hitObstacle = true;
       }
     }
@@ -91,7 +91,7 @@ function Rocket(l, dna_, totalRockets) {
 
   this.update = function() {
     this.velocity.add(this.acceleration);
-    .add(this.velocity);
+    this.position.add(this.velocity);
     this.acceleration.mult(0);
   };
 
@@ -100,7 +100,7 @@ function Rocket(l, dna_, totalRockets) {
     var r = this.r;
     stroke(0);
     push();
-    translate(.x, .y);
+    translate(this.position.x, this.position.y);
     rotate(theta);
 
     // Thrusters
