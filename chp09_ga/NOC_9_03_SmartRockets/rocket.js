@@ -65,7 +65,7 @@ function Rocket(l, dna_, totalRockets) {
 
   // Did I make it to the target?
   this.checkTarget = function() {
-    var d = dist(this.position.x, this.position.y, target.location.x, target.location.y);
+    var d = dist(this.position.x, this.position.y, target.x, target.y);
     if (d < this.recordDist) this.recordDist = d;
 
     if (target.contains(this.position) && !this.hitTarget) {
