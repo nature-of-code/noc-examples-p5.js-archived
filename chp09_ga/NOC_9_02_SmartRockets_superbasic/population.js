@@ -82,7 +82,7 @@
     return this.generations;
   };
 
-  // Find highest fintess for the population
+  // Find highest fitness for the population
   this.getMaxFitness = function() {
     var record = 0;
     for (var i = 0; i < this.population.length; i++) {
