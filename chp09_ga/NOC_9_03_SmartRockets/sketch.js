@@ -6,7 +6,7 @@
 
 // Each Rocket's DNA is an array of p5.Vectors
 // Each p5.Vector acts as a force for each frame of animation
-// Imagine an booster on the end of the rocket that can point in any direction
+// Imagine a booster on the end of the rocket that can point in any direction
 // and fire at any strength every frame
 
 // The Rocket's fitness is a function of how close it gets to the target as well as how fast it gets there
