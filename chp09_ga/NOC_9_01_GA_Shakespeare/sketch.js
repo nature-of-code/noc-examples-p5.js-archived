@@ -56,7 +56,7 @@ function setup() {
   popmax = 200;
   mutationRate = 0.01;
 
-  // Create a populationation with a target phrase, mutation rate, and populationation max
+  // Create a population with a target phrase, mutation rate, and population max
   population = new Population(target, mutationRate, popmax);
 }
 
@@ -80,7 +80,7 @@ function draw() {
 }
 
 function displayInfo() {
-  // Display current status of populationation
+  // Display current status of population
   var answer = population.getBest();
   
   bestPhrase.html("Best phrase:<br>" + answer);
