@@ -4,7 +4,7 @@
 
 // Genetic Algorithm, Evolving Shakespeare
 
-// A class to describe a psuedo-DNA, i.e. genotype
+// A class to describe a pseudo-DNA, i.e. genotype
 //   Here, a virtual organism's DNA is an array of character.
 //   Functionality:
 //      -- convert DNA into a string
