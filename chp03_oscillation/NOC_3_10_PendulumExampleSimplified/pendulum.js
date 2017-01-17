@@ -5,7 +5,6 @@
 // Pendulum
 
 // A Simple Pendulum Class
-// Includes functionality for user can click and drag the pendulum
 
 // This constructor could be improved to allow a greater variety of pendulums
 function Pendulum(origin_, r_) {
@@ -27,7 +26,6 @@ function Pendulum(origin_, r_) {
 
   // Function to update position
   this.update = function() {
-    // As long as we aren't dragging the pendulum, let it swing!
     var gravity = 0.4;                                               // Arbitrary constant
     this.aAcceleration = (-1 * gravity / this.r) * sin(this.angle);  // Calculate acceleration (see: http://www.myphysicslab.com/pendulum1.html)
     this.aVelocity += this.aAcceleration;                            // Increment velocity
