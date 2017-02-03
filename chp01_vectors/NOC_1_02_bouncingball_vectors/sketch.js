@@ -7,10 +7,10 @@ var position;
 var velocity;
 
 function setup() {
-  createCanvas(640,360);
+  createCanvas(640, 360);
   background(255);
-  position = createVector(100,100);
-  velocity = createVector(2.5,5);
+  position = createVector(100, 100);
+  velocity = createVector(2.5, 5);
 }
 
 function draw() {
