@@ -92,7 +92,7 @@ function displayInfo() {
   
   stats.html(statstext);
 
-  allPhrases.html("All phrases:<br>" + population.allPhrases())
+  allPhrases.html("All phrases:<br>" + population.allPhrases());
 }
 
 
