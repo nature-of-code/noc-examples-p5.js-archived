@@ -6,25 +6,21 @@
 // the only difference is that it has DNA & fitness
 
 
-
 //constructor
-function Rocket(l, dna_, totalRockets) {
-  this.acceleration = createVector(0,0);
-  this.velocity = createVector(0,0);
-  this.position = l.copy();
-  // Size
+function Rocket(pos, dna, totalRockets) {
+  // All of our physics stuff
+  this.acceleration = createVector();
+  this.velocity = createVector();
+  this.position = pos.copy();
   this.r = 4;
-  // Fitness and DNA
-  this.fitness = 0;
-  // To count which force we're on in the genes
-  this.geneCounter = 0;
-  this.dna = dna_;
-  // How close did it get to the target
-  this.recordDist = 10000;      // Some high number that will be beat instantly
-  this.finishTime = 0;          // We're going to count how long it takes to reach target
+  this.dna = dna;
+  this.finishTime = 0; // We're going to count how long it takes to reach target
+  this.recordDist = 10000; // Some high number that will be beat instantly
 
-  this.hitObstacle = false;    // Am I stuck on an obstacle?
-  this.hitTarget = false;   // Did I reach the target
+  this.fitness = 0;
+  this.geneCounter = 0;
+  this.hitObstacle = false; // Am I stuck on an obstacle?
+  this.hitTarget = false; // Did I reach the target
 
 
   // FITNESS FUNCTION
@@ -32,13 +28,11 @@ function Rocket(l, dna_, totalRockets) {
   // finish = what order did i finish (first, second, etc. . .)
   // f(distance,finish) =   (1.0f / finish^1.5) * (1.0f / distance^6);
   // a lower finish is rewarded (exponentially) and/or shorter distance to target (exponetially)
-  this.calcFitness = function() {
-    if (this.recordDist < 1) {
-      this.recordDist = 1;
-    }
+  this.fitness = function() {
+    if (this.recordDist < 1) this.recordDist = 1;
 
     // Reward finishing faster and getting close
-    this.fitness = (1/(this.finishTime*this.recordDist));
+    this.fitness = (1 / (this.finishTime * this.recordDist));
 
     // Make the function exponential
     this.fitness = pow(this.fitness, 4);
@@ -65,13 +59,12 @@ function Rocket(l, dna_, totalRockets) {
 
   // Did I make it to the target?
   this.checkTarget = function() {
-    var d = dist(this.position.x, this.position.y, target.x, target.y);
+    var d = dist(this.position.x, this.position.y, target.position.x, target.position.y);
     if (d < this.recordDist) this.recordDist = d;
 
     if (target.contains(this.position) && !this.hitTarget) {
       this.hitTarget = true;
-    }
-    else if (!this.hitTarget) {
+    } else if (!this.hitTarget) {
       this.finishTime++;
     }
   }
@@ -79,7 +72,8 @@ function Rocket(l, dna_, totalRockets) {
   // Did I hit an obstacle?
   this.obstacles = function(os) {
     for (var i = 0; i < os.length; i++) {
-      if (os[i].contains(this.position)) {
+      var obs = os[i];
+      if (obs.contains(this.position)) {
         this.hitObstacle = true;
       }
     }
@@ -87,18 +81,21 @@ function Rocket(l, dna_, totalRockets) {
 
   this.applyForce = function(f) {
     this.acceleration.add(f);
-  };
+  }
+
 
   this.update = function() {
     this.velocity.add(this.acceleration);
     this.position.add(this.velocity);
     this.acceleration.mult(0);
-  };
+  }
 
   this.display = function() {
-    var theta = this.velocity.heading() + PI/2;
-    var r = this.r;
+    //background(255,0,0);
+    var theta = this.velocity.heading() + PI / 2;
+    fill(200, 100);
     stroke(0);
+    strokeWeight(1);
     push();
     translate(this.position.x, this.position.y);
     rotate(theta);
@@ -106,27 +103,27 @@ function Rocket(l, dna_, totalRockets) {
     // Thrusters
     rectMode(CENTER);
     fill(0);
-    rect(-r/2, r*2, r/2, r);
-    rect(r/2, r*2, r/2, r);
+    rect(-this.r / 2, this.r * 2, this.r / 2, this.r);
+    rect(this.r / 2, this.r * 2, this.r / 2, this.r);
 
     // Rocket body
-    fill(255);
+    fill(175);
     beginShape(TRIANGLES);
-    vertex(0, -r*2);
-    vertex(-r, r*2);
-    vertex(r, r*2);
-    endShape(CLOSE);
+    vertex(0, -this.r * 2);
+    vertex(-this.r, this.r * 2);
+    vertex(this.r, this.r * 2);
+    endShape();
 
     pop();
-  };
+  }
 
   this.getFitness = function() {
     return this.fitness;
-  };
+  }
 
   this.getDNA = function() {
     return this.dna;
-  };
+  }
 
   this.stopped = function() {
     return this.hitObstacle;
