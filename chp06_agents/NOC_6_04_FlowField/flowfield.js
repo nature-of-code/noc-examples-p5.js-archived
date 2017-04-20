@@ -25,7 +25,7 @@ function FlowField(r) {
   this.init = function() {
     // Reseed noise so we get a new flow field every time
     // Need to get noise working
-    // noiseSeed(Math.floor(random(10000)));
+    noiseSeed(Math.floor(random(10000)));
     var xoff = 0;
     for (var i = 0; i < this.cols; i++) {
       var yoff = 0;
