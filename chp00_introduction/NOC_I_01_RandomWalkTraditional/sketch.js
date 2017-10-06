@@ -21,7 +21,7 @@ function Walker() {
 
   this.render = function() {
     stroke(0); //stroke with a color of black
-    point(this.x,this.y); //plot a point,takes parameters x and y
+    point(this.x,this.y); //plot a point,takes 2 parameters x and y
   };
 
   this.step = function() {
