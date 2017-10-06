@@ -31,5 +31,5 @@ function draw() {
   fill(200);
   ellipse(x,height/2, 64, 64);
 
-  print(n);
+
 }
