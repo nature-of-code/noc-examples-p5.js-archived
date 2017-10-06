@@ -26,7 +26,7 @@ function Walker() {
   };
 
   this.step = function() {
-    //var choice = floor(random(4)); 
+    
     var r = random(1); //return a random number between 0 and 1(exclusive)
       // A 40% of moving to the right!
     if (r < 0.4) {
