@@ -6,7 +6,7 @@
 // An array to keep track of how often random numbers are picked
 
 var randomCounts = [];
-var total = 20; //Number random  numbers we want to track
+var total = 20; //Number of random  numbers we want to track
 
 function setup() {
   createCanvas(640,360);
