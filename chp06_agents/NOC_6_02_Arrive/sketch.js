@@ -7,8 +7,7 @@
 // Implements Craig Reynold's autonomous steering behaviors
 // One vehicle "arrive"
 // See: http://www.red3d.com/cwr/
-
-var v;
+let v;
 
 function setup() {
   createCanvas(640,360);
@@ -18,7 +17,7 @@ function setup() {
 function draw() {
   background(51);
 
-  var mouse = createVector(mouseX, mouseY);
+  const mouse = createVector(mouseX, mouseY);
 
   // Draw an ellipse at the mouse position
   fill(127);
