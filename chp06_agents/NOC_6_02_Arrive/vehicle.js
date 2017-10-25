@@ -6,12 +6,12 @@
 
 class Vehicle {
   constructor(x,y) {
-  this.acceleration = createVector(0,0);
-  this.velocity = createVector(0,-2);
-  this.position = createVector(x,y);
-  this.r = 6;
-  this.maxspeed = 4;
-  this.maxforce = 0.1;
+    this.acceleration = createVector(0,0);
+    this.velocity = createVector(0,-2);
+    this.position = createVector(x,y);
+    this.r = 6;
+    this.maxspeed = 4;
+    this.maxforce = 0.1;
   }
 
   // Method to update location
