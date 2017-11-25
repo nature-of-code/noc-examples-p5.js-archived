@@ -4,11 +4,13 @@
 
 // Example 1-2: Bouncing Ball, with p5.Vector!
 
-function Ball() {
-  this.position = new createVector(100, 100);
-  this.velocity = new createVector(2.5, 5);
+class Ball {
+  constructor() {
+    this.position = new createVector(100, 100);
+    this.velocity = new createVector(2.5, 5);
+  }
 
-  this.update = function() {
+  update() {
     // Add the current speed to the position.
     this.position.add(this.velocity);
     if ((this.position.x > width) || (this.position.x < 0)) {
@@ -18,7 +20,7 @@ function Ball() {
       this.velocity.y = this.velocity.y * -1;
     }
   }
-  this.display = function() {
+  display() {
     // Display circle at x position
     stroke(0);
     fill(175);
