@@ -4,7 +4,7 @@
 // http://natureofcode.com
 
 let xoff = 0;
-const xincrement = 0.01;
+let xincrement = 0.01;
 
 function setup() {
   createCanvas(640,360);
@@ -20,9 +20,9 @@ function draw() {
   //var n = random(0,width);  // Try this line instead of noise
 
   // Get a noise value based on xoff and scale it according to the window's width
-  const n = noise(xoff);
+  let n = noise(xoff);
 
-  const x = map(n,0,1,0,width);
+  let x = map(n,0,1,0,width);
 
   // With each cycle, increment xoff
   xoff += xincrement;
