@@ -2,7 +2,7 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var walker;
+let walker;
 
 function setup() {
   createCanvas(640,360);
@@ -15,16 +15,18 @@ function draw() {
   walker.render();
 }
 
-function Walker() {
-  this.x = width/2;
-  this.y = height/2;
+class Walker {
+  constructor(){
+    this.x = width/2;
+    this.y = height/2;
+  }
 
-  this.render = function() {
+  render() {
     stroke(0);
     point(this.x,this.y);
-  };
+  }
 
-  this.step = function() {
+  step() {
     var choice = floor(random(4));
     if (choice === 0) {
       this.x++;
@@ -37,5 +39,5 @@ function Walker() {
     }
     this.x = constrain(this.x,0,width-1);
     this.y = constrain(this.y,0,height-1);
-  };
+  }
 }
