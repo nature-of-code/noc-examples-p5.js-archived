@@ -12,7 +12,9 @@ To run these examples you have to use a local server.
 For more information on how to use a local server,Please visit following links.
 
 [Local Server Guide](https://github.com/processing/p5.js/wiki/Local-server)
+
 [p5.js Workflow](https://www.youtube.com/watch?v=HZ4D3wDRaec)
+
 [Local Server,Text Editor,Console](https://www.youtube.com/watch?v=UCHzlUiDD10)
 
 
