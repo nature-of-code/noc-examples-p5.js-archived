@@ -27,8 +27,8 @@ class Walker{
   };
 
   step(){
-    const choice = floor(random(4));
-    const r = random(1);
+    let choice = floor(random(4));
+    let r = random(1);
       // A 40% of moving to the right!
     if (r < 0.4) {
       this.x++;
