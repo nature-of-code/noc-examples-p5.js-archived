@@ -2,7 +2,7 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var m;
+let m;
 
 function setup() {
   createCanvas(640, 360);
@@ -12,8 +12,8 @@ function setup() {
 function draw() {
   background(51);
 
-  var wind = createVector(0.01, 0);
-  var gravity = createVector(0, 0.1);
+  let wind = createVector(0.01, 0);
+  let gravity = createVector(0, 0.1);
   m.applyForce(wind);
   m.applyForce(gravity);
 
@@ -23,7 +23,3 @@ function draw() {
   m.checkEdges();
 
 }
-
-
-
-
