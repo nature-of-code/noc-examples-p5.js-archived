@@ -13,9 +13,9 @@ function draw() {
   background(51);
 
   // A vector that points to the mouse position
-  var mouse = createVector(mouseX,mouseY);
+  let mouse = createVector(mouseX,mouseY);
   // A vector that points to the center of the window
-  var center = createVector(width/2,height/2);
+  let center = createVector(width/2,height/2);
   // Subtract center from mouse which results in a vector that points from center to mouse
   mouse.sub(center);
 
