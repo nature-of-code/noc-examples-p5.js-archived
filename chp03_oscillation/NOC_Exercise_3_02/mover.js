@@ -2,7 +2,7 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var Mover = function() {
+class Mover {  constructor() {
   this.position = createVector(width/2, height/2);
   this.velocity = createVector(3, 0);
   this.acceleration = createVector(0, 0);
