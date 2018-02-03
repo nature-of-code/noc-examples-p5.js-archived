@@ -2,13 +2,13 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var movers = [];
-var attractor;
+let movers = [];
+let attractor;
 
 function setup() {
   createCanvas(640, 360);
-  
-  for (var i = 0; i < 20; i++) {
+
+  for (let i = 0; i < 20; i++) {
     movers.push(new Mover(random(0.1, 2), random(width), random(height)));
   }
   attractor = new Attractor();
@@ -19,8 +19,8 @@ function draw() {
 
   attractor.display();
 
-  for (var i = 0; i < movers.length; i++) {
-    var force = attractor.calculateAttraction(movers[i]);
+  for (let i = 0; i < movers.length; i++) {
+    let force = attractor.calculateAttraction(movers[i]);
     movers[i].applyForce(force);
 
     movers[i].update();
