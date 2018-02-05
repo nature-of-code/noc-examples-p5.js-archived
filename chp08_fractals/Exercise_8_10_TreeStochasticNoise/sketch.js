@@ -5,15 +5,14 @@
 // Stochastic Tree with angles fluctuating with Perlin noise
 // Nature of Code, Chapter 8
 
-// Perlin noise offset 
-var yoff = 0;
+// Perlin noise offset
+let yoff = 0;
 // Random seed to control randomness while drawing the tree
-var seed = 5;
+let seed = 5;
 
 
 function setup() {
-  size(800, 200);
-  smooth();
+  createCanvas(640, 360);
 }
 
 function draw() {
@@ -41,7 +40,7 @@ function mousePressed() {
 
 function branch(h, xoff) {
   // thickness of the branch is mapped to its length
-  var sw = map(h, 2, 100, 1, 5);
+  let sw = map(h, 2, 100, 1, 5);
   strokeWeight(sw);
   // Draw the branch
   line(0, 0, 0, -h);
@@ -50,25 +49,24 @@ function branch(h, xoff) {
 
   // Each branch will be 2/3rds the size of the previous one
   h *= 0.7;
-  
+
   // Move along through noise space
   xoff += 0.1;
 
   if (h > 4) {
     // Random number of branches
-    var n = var(random(0, 5));
-    for (var i = 0; i < n; i++) {
-      
+    let n = floor(random(0, 5));
+    for (let i = 0; i < n; i++) {
+
       // Here the angle is controlled by perlin noise
       // This is a totally arbitrary way to do it, try others!
-      var theta = map(noise(xoff+i, yoff), 0, 1, -PI/3, PI/3);
-      if (n%2==0) theta *= -1;
-      
-      pushMatrix();      // Save the current state of transformation (i.e. where are we now)
+      let theta = map(noise(xoff+i, yoff), 0, 1, -PI/3, PI/3);
+      if (n % 2 == 0) theta *= -1;
+
+      push();      // Save the current state of transformation (i.e. where are we now)
       rotate(theta);     // Rotate by theta
       branch(h, xoff);   // Ok, now call myself to branch again
-      popMatrix();       // Whenever we get back here, we "pop" in order to restore the previous matrix state
+      pop();       // Whenever we get back here, we "pop" in order to restore the previous matrix state
     }
   }
 }
-
