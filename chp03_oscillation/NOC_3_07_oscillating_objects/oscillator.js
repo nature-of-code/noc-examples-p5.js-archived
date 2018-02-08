@@ -2,7 +2,7 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-class Oscillator = {
+class Oscillator {
   constructor() {
     this.angle = createVector();
     this.velocity = createVector(random(-0.05, 0.05), random(-0.05, 0.05));

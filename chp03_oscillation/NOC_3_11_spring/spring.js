@@ -1,4 +1,4 @@
-// Nature of Code 2011
+// Nature of Code
 // Daniel Shiffman
 // Chapter 3: Oscillation
 

@@ -2,43 +2,46 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-class Mover {  constructor() {
-  this.position = createVector(width/2, height/2);
-  this.velocity = createVector(3, 0);
-  this.acceleration = createVector(0, 0);
-  this.topspeed = 4;
-  this.xoff = 1000;
-  this.yoff = 0;
-  this.r = 16;
+class Mover {
+  
+  constructor() {
+    this.position = createVector(width / 2, height / 2);
+    this.velocity = createVector(3, 0);
+    this.acceleration = createVector(0, 0);
+    this.topspeed = 4;
+    this.xoff = 1000;
+    this.yoff = 0;
+    this.r = 16;
+  }
 
-  this.turnLeft = function() {
-    var left = createVector(this.velocity.y,this.velocity.x*-1);
+  turnLeft() {
+    var left = createVector(this.velocity.y, this.velocity.x * -1);
     left.normalize();
     left.mult(0.1);
     this.applyForce(left);
   }
 
-  this.turnRight = function() {
-    var left = createVector(this.velocity.y,this.velocity.x);
+  turnRight() {
+    var left = createVector(this.velocity.y, this.velocity.x);
     left.normalize();
     left.mult(0.1);
     this.applyForce(left);
   }
 
-  this.applyForce = function(force) {
+  applyForce(force) {
     this.acceleration.add(force);
   }
 
-  this.update = function () {
+  update() {
     this.velocity.add(this.acceleration);
     this.velocity.limit(this.topspeed);
     this.position.add(this.velocity);
     this.acceleration.mult(0);
   };
 
-  this.display = function () {
+  display() {
     var angle = this.velocity.heading();
-    
+
     stroke(0, 0, 0);
     strokeWeight(2);
     fill(127, 127, 127);
@@ -57,20 +60,19 @@ class Mover {  constructor() {
     ellipse(15, -18, 20, 8);
     rect(21, 0, 11, 26);
     pop();
-  };
+  }
 
-  this.checkEdges = function () {
+  checkEdges() {
     if (this.position.x > width) {
       this.position.x = 0;
     } else if (this.position.x < 0) {
       this.position.x = width;
     }
-    
+
     if (this.position.y > height) {
       this.position.y = 0;
     } else if (this.position.y < 0) {
       this.position.y = height;
     }
-  };
-};
-
+  }
+}
