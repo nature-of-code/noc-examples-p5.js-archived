@@ -8,8 +8,8 @@ class Confetti extends Particle {
   // Override the display method
   display() {
     rectMode(CENTER);
-    fill(127, this.lifespan);
-    stroke(0, this.lifespan);
+    fill(255, this.lifespan);
+    stroke(255, this.lifespan);
     strokeWeight(2);
     push();
     translate(this.position.x, this.position.y);

@@ -6,7 +6,6 @@ let ps;
 
 function setup() {
   createCanvas(640, 360);
-  setFrameRate(60);
   ps = new ParticleSystem(createVector(width / 2, 50));
 }
 

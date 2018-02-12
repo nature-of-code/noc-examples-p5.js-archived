@@ -19,12 +19,13 @@ class ParticleSystem {
   }
 
   run() {
-    for (let i = this.particles.length - 1; i >= 0; i--) {
-      let p = this.particles[i];
-      p.run();
-      if (p.isDead()) {
-        this.particles.splice(i, 1);
-      }
+    // Run every particle
+    // ES6 for..of loop
+    for (let particle of this.particles) {
+      particle.run();
     }
+
+    // Filter removes any elements of the array that do not pass the test
+    this.particles = this.particles.filter(particle => !particle.isDead());
   }
 }
