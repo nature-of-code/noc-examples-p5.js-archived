@@ -12,9 +12,9 @@ function setup() {
 function draw() {
   background(51);
 
-  this.p.run();
-  if (this.p.isDead()) {
-    this.p = new Particle(createVector(width / 2, 20));
+  p.run();
+  if (p.isDead()) {
+    p = new Particle(createVector(width / 2, 20));
     //println("Particle dead!");
   }
 }
