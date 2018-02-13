@@ -1,0 +1,35 @@
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// Array of Images for particle textures
+
+let ps;
+
+let imgs = [];
+
+function preload() {
+  imgs[0] = loadImage("data/emitter.png");
+  imgs[1] = loadImage("data/particle.png");
+  imgs[2] = loadImage("data/reflection.png");
+}
+
+function setup() {
+  createCanvas(640, 360);
+  ps = new ParticleSystem(imgs);
+}
+
+
+function draw() {
+
+  // Additive blending!
+  // blendMode(ADD);
+  ps.addParticle(mouseX, mouseY);
+
+  background(0);
+
+  let up = createVector(0, -0.2);
+  ps.applyForce(up);
+
+  ps.update();
+}
