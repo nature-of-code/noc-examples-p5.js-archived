@@ -16,15 +16,18 @@ function preload() {
 }
 
 function setup() {
+
   createCanvas(640, 360, WEBGL);
   ps = new ParticleSystem(0, createVector(0, 75), img);
+
 }
 
 function draw() {
 
-  // Try additive blending!
-  // blendMode(ADD);
-  // clear();
+  // Access WEBGL Directly for more blending options?
+  // var gl = this._renderer.GL;
+  // gl.enable(gl.BLEND);
+  // gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
   background(0);
 
