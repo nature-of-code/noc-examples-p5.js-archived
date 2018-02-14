@@ -38,11 +38,8 @@ class Particle {
     push();
     translate(this.pos.x, this.pos.y);
 
-
-    tint(255, 10);
     texture(this.img);
     //ambientMaterial(255, 0, 0);
-
     plane(32, 32);
 
     // fill(255, this.lifespan);
