@@ -21,12 +21,15 @@ function setup() {
 
 
 function draw() {
-
-  // Additive blending!
-  // blendMode(ADD);
-  ps.addParticle(mouseX, mouseY);
+  // Try additive blending!
+  blendMode(ADD);
+  clear();
 
   background(0);
+
+  // Additive blending!
+  ps.addParticle(mouseX, mouseY);
+
 
   let up = createVector(0, -0.2);
   ps.applyForce(up);

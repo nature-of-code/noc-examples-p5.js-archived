@@ -21,8 +21,14 @@ function setup() {
 }
 
 function draw() {
+
+  // Try additive blending!
+  // blendMode(ADD);
+  // clear();
+
   background(0);
 
+  // Additive blending!
   // Calculate a "wind" force based on mouse horizontal position
   let dx = map(mouseX, 0, width, -0.2, 0.2);
   let wind = createVector(dx, 0);
