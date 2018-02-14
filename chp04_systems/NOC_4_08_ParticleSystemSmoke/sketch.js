@@ -23,6 +23,7 @@ function setup() {
 function draw() {
 
   // Try additive blending!
+  // You also need clear or else the colors will accumulate between frames
   // blendMode(ADD);
   // clear();
 
