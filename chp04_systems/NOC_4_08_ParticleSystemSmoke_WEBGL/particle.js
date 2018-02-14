@@ -38,6 +38,8 @@ class Particle {
     push();
     translate(this.pos.x, this.pos.y);
 
+    // This is needed for the texture to use transparency
+    fill(0, 0, 0, 0);
     texture(this.img);
     //ambientMaterial(255, 0, 0);
     plane(32, 32);

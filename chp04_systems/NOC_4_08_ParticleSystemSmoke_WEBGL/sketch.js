@@ -12,7 +12,7 @@ let ps;
 let img;
 
 function preload() {
-  img = loadImage("data/particle.png");
+  img = loadImage("data/texture.png");
 }
 
 function setup() {
@@ -50,6 +50,7 @@ function drawVector(v, pos, scayl) {
   // Translate to position to render vector
   translate(pos.x, pos.y);
   stroke(255);
+  fill(255);
   strokeWeight(1);
   // Call vector heading function to get direction (note that pointing up is a heading of 0) and rotate
   rotate(v.heading());
