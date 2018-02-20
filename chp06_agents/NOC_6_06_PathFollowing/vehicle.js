@@ -4,7 +4,7 @@
 
 // The "Vehicle" class
 
-clsss Vehicle {
+class Vehicle {
   constructor(x, y, ms, mf) {
     this.position = createVector(x, y);
     this.acceleration = createVector(0, 0);
