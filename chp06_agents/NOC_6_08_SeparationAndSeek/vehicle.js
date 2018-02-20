@@ -4,35 +4,37 @@
 
 // Vehicle object
 
-function Vehicle(x, y) {
-  // All the usual stuff
-  this.position = createVector(x, y);
-  this.r = 12;
-  this.maxspeed = 3;    // Maximum speed
-  this.maxforce = 0.2;  // Maximum steering force
-  this.acceleration = createVector(0, 0);
-  this.velocity = createVector(0, 0);
+class Vehicle {
+  constructor(x, y) {
+    // All the usual stuff
+    this.position = createVector(x, y);
+    this.r = 12;
+    this.maxspeed = 3; // Maximum speed
+    this.maxforce = 0.2; // Maximum steering force
+    this.acceleration = createVector(0, 0);
+    this.velocity = createVector(0, 0);
+  }
 
-  this.applyBehaviors = function(vehicles) {
+  applyBehaviors(vehicles) {
 
-     var separateForce = this.separate(vehicles);
-     var seekForce = this.seek(createVector(mouseX,mouseY));
+    var separateForce = this.separate(vehicles);
+    var seekForce = this.seek(createVector(mouseX, mouseY));
 
-     separateForce.mult(slider1.value());
-     seekForce.mult(slider2.value());
+    separateForce.mult(slider1.value());
+    seekForce.mult(slider2.value());
 
-     this.applyForce(separateForce);
-     this.applyForce(seekForce);
-  };
+    this.applyForce(separateForce);
+    this.applyForce(seekForce);
+  }
 
-  this.applyForce = function(force) {
+  applyForce(force) {
     // We could add mass here if we want A = F / M
     this.acceleration.add(force);
-  };
+  }
 
   // Separation
   // Method checks for nearby vehicles and steers away
-  this.separate = function(vehicles) {
+  separate(vehicles) {
     var desiredseparation = slider3.value();
     var sum = createVector();
     var count = 0;
@@ -44,9 +46,9 @@ function Vehicle(x, y) {
         // Calculate vector pointing away from neighbor
         var diff = p5.Vector.sub(this.position, vehicles[i].position);
         diff.normalize();
-        diff.div(d);        // Weight by distance
+        diff.div(d); // Weight by distance
         sum.add(diff);
-        count++;            // Keep track of how many
+        count++; // Keep track of how many
       }
     }
     // Average -- divide by how many
@@ -60,24 +62,24 @@ function Vehicle(x, y) {
       sum.limit(this.maxforce);
     }
     return sum;
-  };
+  }
 
-      // A method that calculates a steering force towards a target
-    // STEER = DESIRED MINUS VELOCITY
-  this.seek = function(target) {
-    var desired = p5.Vector.sub(target,this.position);  // A vector pointing from the location to the target
+  // A method that calculates a steering force towards a target
+  // STEER = DESIRED MINUS VELOCITY
+  seek(target) {
+    var desired = p5.Vector.sub(target, this.position); // A vector pointing from the location to the target
 
     // Normalize desired and scale to maximum speed
     desired.normalize();
     desired.mult(this.maxspeed);
     // Steering = Desired minus velocity
-    var steer = p5.Vector.sub(desired,this.velocity);
-    steer.limit(this.maxforce);  // Limit to maximum steering force
+    var steer = p5.Vector.sub(desired, this.velocity);
+    steer.limit(this.maxforce); // Limit to maximum steering force
     return steer;
-  };
+  }
 
   // Method to update location
-  this.update = function() {
+  update() {
     // Update velocity
     this.velocity.add(this.acceleration);
     // Limit speed
@@ -85,9 +87,9 @@ function Vehicle(x, y) {
     this.position.add(this.velocity);
     // Reset accelertion to 0 each cycle
     this.acceleration.mult(0);
-  };
+  }
 
-  this.display = function() {
+  display() {
     fill(127);
     stroke(200);
     strokeWeight(2);
@@ -95,13 +97,13 @@ function Vehicle(x, y) {
     translate(this.position.x, this.position.y);
     ellipse(0, 0, this.r, this.r);
     pop();
-  };
+  }
 
   // Wraparound
-  this.borders = function() {
-    if (this.position.x < -this.r) this.position.x =  width+this.r;
-    if (this.position.y < -this.r) this.position.y = height+this.r;
-    if (this.position.x >  width+this.r) this.position.x = -this.r;
-    if (this.position.y > height+this.r) this.position.y = -this.r;
-  };
+  borders() {
+    if (this.position.x < -this.r) this.position.x = width + this.r;
+    if (this.position.y < -this.r) this.position.y = height + this.r;
+    if (this.position.x > width + this.r) this.position.x = -this.r;
+    if (this.position.y > height + this.r) this.position.y = -this.r;
+  }
 }
