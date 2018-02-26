@@ -26,23 +26,24 @@ class Cluster {
         physics.addSpring(new VerletSpring2D(this.nodes[i], this.nodes[j], this.diameter, 0.01));
       }
     }
+  }
 
 
-    display() {
-      // Show all the nodes
-      for (let i = 0; i < this.nodes.length; i++) {
-        this.nodes[i].display();
-      }
+  display() {
+    // Show all the nodes
+    for (let i = 0; i < this.nodes.length; i++) {
+      this.nodes[i].display();
     }
+  }
 
-    // Draw all the internal connections
-    showConnections() {
-      stroke(255, 150);
-      strokeWeight(2);
-      for (let i = 0; i < this.nodes.length - 1; i++) {
-        for (let j = i + 1; j < this.nodes.length; j++) {
-          line(this.nodes[i].x, this.nodes[i].y, this.nodes[j].x, this.nodes[j].y);
-        }
+  // Draw all the internal connections
+  showConnections() {
+    stroke(255, 150);
+    strokeWeight(2);
+    for (let i = 0; i < this.nodes.length - 1; i++) {
+      for (let j = i + 1; j < this.nodes.length; j++) {
+        line(this.nodes[i].x, this.nodes[i].y, this.nodes[j].x, this.nodes[j].y);
       }
     }
   }
+}

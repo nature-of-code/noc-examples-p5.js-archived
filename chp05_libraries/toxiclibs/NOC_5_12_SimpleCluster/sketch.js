@@ -14,10 +14,9 @@ let showParticles = true;
 
 function setup() {
 
-  text = createP("'p' to display or hide particles<br>'c' to display or hide connections<br>'n' for new graph");
-  text.position(10, 365);
-
   createCanvas(640, 360);
+  createP("'p' to display or hide particles<br>'c' to display or hide connections<br>'n' for new graph");
+
 
   // Initialize the physics
   physics = new VerletPhysics2D();
