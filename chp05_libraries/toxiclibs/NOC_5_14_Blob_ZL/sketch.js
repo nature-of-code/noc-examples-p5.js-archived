@@ -4,11 +4,11 @@
 // Blob Example
 // Example 5.13 adapted by Zach Lieberman
 
-var physics;
+let physics;
 
-var particles = [];
-var springs = [];
-var attractor;
+let particles = [];
+let springs = [];
+let attractor;
 
 function setup() {
   createCanvas(500, 500);
@@ -17,7 +17,7 @@ function setup() {
   physics = new VerletPhysics2D();
   physics.setDrag(0.03);
 
-  for (var i = 0; i < 50; i++) {
+  for (let i = 0; i < 50; i++) {
     particles.push(new Particle(new Vec2D(random(width), random(height)), 4, 80, -1));
   }
 
@@ -26,17 +26,17 @@ function setup() {
   //attractor.set(450, 450);
 
 
-  for (var i = 0; i < 50; i++) {
-    var spring1 = new VerletSpring2D(particles[i], particles[(i + 1) % particles.length], 5, 0.01);
+  for (let i = 0; i < 50; i++) {
+    let spring1 = new VerletSpring2D(particles[i], particles[(i + 1) % particles.length], 5, 0.01);
     springs.push(spring1);
     physics.addSpring(spring1);
     if (i % 5 == 0) {
-      var spring2 = new VerletSpring2D(particles[i], particles[(i + 25) % particles.length], 400, 0.001);
+      let spring2 = new VerletSpring2D(particles[i], particles[(i + 25) % particles.length], 400, 0.001);
       springs.push(spring2);
       physics.addSpring(spring2);
     }
-    if ((i+5) % 10 == 0) {
-      var spring2 = new VerletSpring2D(particles[i], attractor, 200, 0.001);
+    if ((i + 5) % 10 == 0) {
+      let spring2 = new VerletSpring2D(particles[i], attractor, 200, 0.001);
       springs.push(spring2);
       physics.addSpring(spring2);
     }
@@ -58,7 +58,7 @@ function draw() {
   stroke(255);
   fill(255, 20);
   beginShape();
-  for (var i = 0; i < particles.length; i++) {
+  for (let i = 0; i < particles.length; i++) {
     //particles[i].display();
     vertex(particles[i].x, particles[i].y);
 
@@ -68,7 +68,7 @@ function draw() {
   }
   endShape(CLOSE);
 
-  for (var i = 0; i < springs.length; i++) {
+  for (let i = 0; i < springs.length; i++) {
     stroke(0, 50);
     line(springs[i].a.x, springs[i].a.y, springs[i].b.x, springs[i].b.y);
   }
