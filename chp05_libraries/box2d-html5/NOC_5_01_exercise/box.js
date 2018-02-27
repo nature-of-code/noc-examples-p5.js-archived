@@ -4,8 +4,6 @@
 
 // A rectangular box
 
-
-// Constructor
 class Box {
   constructor(x, y) {
     this.x = x;

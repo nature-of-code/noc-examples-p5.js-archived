@@ -2,10 +2,8 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-
 // A reference to our box2d world
 let world;
-
 
 // A list for all of our particles
 let particles = [];
@@ -13,14 +11,12 @@ let particles = [];
 // An object to describe a Windmill (two bodies and one joint)
 let windmill;
 
-
-let text;
+let txt;
 
 function setup() {
-  text = createP("Click mouse to toggle motor.\nMotor: OFF");
-  text.position(10, 365);
 
   createCanvas(640, 360);
+  txt = createP("Click mouse to toggle motor.\nMotor: OFF");
 
   // Initialize box2d physics and create the world
   world = createWorld();
@@ -64,5 +60,5 @@ function mousePressed() {
 
   let status = "OFF";
   if (windmill.motorOn()) status = "ON";
-  text.html("Click mouse to toggle motor.\nMotor: " + status);
+  txt.html("Click mouse to toggle motor.\nMotor: " + status);
 }

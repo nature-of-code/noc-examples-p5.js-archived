@@ -7,8 +7,6 @@
 // A boundary is a simple rectangle with x,y,width,and height
 class Boundary {
   constructor(x, y, w, h) {
-    // But we also have to make a body for box2d to know about it
-    // Body b;
 
     this.x = x;
     this.y = y;
