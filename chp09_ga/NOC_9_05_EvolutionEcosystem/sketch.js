@@ -10,7 +10,7 @@
 // When the creatures die, food is left behind
 
 
-var world;
+let world;
 
 function setup() {
   createCanvas(640, 360);
@@ -26,11 +26,9 @@ function draw() {
 
 // We can add a creature manually if we so desire
 function mousePressed() {
-  world.born(mouseX,mouseY); 
+  world.born(mouseX, mouseY);
 }
 
 function mouseDragged() {
-  world.born(mouseX,mouseY); 
+  world.born(mouseX, mouseY);
 }
-
-
