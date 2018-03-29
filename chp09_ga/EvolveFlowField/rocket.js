@@ -75,7 +75,7 @@ class Rocket {
 
   // Did I make it to the target?
   finished() {
-    let d = p5.Vector.dist(this.pos, target.position);
+    let d = p5.Vector.dist(this.pos, target.getCenter());
     if (d < this.recordDist) {
       this.recordDist = d;
     }
@@ -143,7 +143,8 @@ class Rocket {
 
   highlight() {
     stroke(0);
-    line(this.pos.x, this.pos.y, target.position.x, target.position.y);
+    let targetPos = target.getCenter();
+    line(this.pos.x, this.pos.y, targetPos.x, targetPos.y);
     fill(255, 0, 0, 100);
     ellipse(this.pos.x, this.pos.y, 16, 16);
   }

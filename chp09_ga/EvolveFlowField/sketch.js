@@ -40,7 +40,7 @@
     dnasize = floor(width / gridscale) * floor(height / gridscale);
     lifetime = width / 3;
 
-    // Initialize variables
+    // Initialize let iables
     lifecycle = 0;
     recordtime = lifetime;
     target = new Obstacle(width - diam - diam / 2, height / 2 - diam / 2, diam, diam);
@@ -99,6 +99,7 @@
   }
 
   function keyPressed() {
+    console.log(key);
     if (key === 'd' || key === 'D') {
       debug = !debug;
     }
