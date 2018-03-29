@@ -20,12 +20,12 @@ class Obstacle {
     stroke(0);
     fill(175);
     strokeWeight(2);
-    rectMode(CORNER);
+    rectMode(CENTER);
     rect(this.position.x, this.position.y, this.w, this.h);
   }
 
   contains(spot) {
-    if (spot.x > this.position.x && spot.x < this.position.x + this.w && spot.y > this.position.y && spot.y < this.position.y + this.h) {
+    if (spot.x > this.position.x - this.w / 2 && spot.x < this.position.x + this.w / 2 && spot.y > this.position.y - this.h / 2 && spot.y < this.position.y + this.h / 2) {
       return true;
     } else {
       return false;

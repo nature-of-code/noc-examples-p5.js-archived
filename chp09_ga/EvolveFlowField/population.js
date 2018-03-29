@@ -29,7 +29,7 @@ class Population {
     for (let i = 0; i < this.population.length; i++) {
       // If it finishes, mark it down as done!
       if ((this.population[i].finished())) {
-        this.population[i].setFinish(order);
+        this.population[i].setFinish(this.order);
         this.order++;
       }
       // Run it

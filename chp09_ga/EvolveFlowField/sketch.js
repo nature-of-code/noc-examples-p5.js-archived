@@ -99,7 +99,6 @@
   }
 
   function keyPressed() {
-    console.log(key);
     if (key === 'd' || key === 'D') {
       debug = !debug;
     }
