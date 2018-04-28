@@ -55,3 +55,4 @@ class Perceptron {
   getWeights() {
     return this.weights;
   }
+}
