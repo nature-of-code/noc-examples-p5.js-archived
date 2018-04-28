@@ -65,15 +65,15 @@ function draw() {
   stroke(255);
   strokeWeight(2);
   let weights = ptron.getWeights();
-  let x1 = xmin;
-  let y1 = (-weights[2] - weights[0] * x1) / weights[1];
-  let x2 = xmax;
-  let y2 = (-weights[2] - weights[0] * x2) / weights[1];
+  x1 = xmin;
+  y1 = (-weights[2] - weights[0] * x1) / weights[1];
+  x2 = xmax;
+  y2 = (-weights[2] - weights[0] * x2) / weights[1];
 
-  let x1 = map(x1, xmin, xmax, 0, width);
-  let y1 = map(y1, ymin, ymax, height, 0);
-  let x2 = map(x2, xmin, xmax, 0, width);
-  let y2 = map(y2, ymin, ymax, height, 0);
+  x1 = map(x1, xmin, xmax, 0, width);
+  y1 = map(y1, ymin, ymax, height, 0);
+  x2 = map(x2, xmin, xmax, 0, width);
+  y2 = map(y2, ymin, ymax, height, 0);
   line(x1, y1, x2, y2);
 
 
