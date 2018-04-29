@@ -25,7 +25,7 @@ function draw() {
   world.Step(timeStep, 10, 10);
 
   // Boxes fall from the top every so often
-  if (isMousePressed) {
+  if (mouseIsPressed) {
     let b = new Box(mouseX, mouseY);
     boxes.push(b);
   }
