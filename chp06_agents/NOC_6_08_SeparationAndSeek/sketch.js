@@ -20,9 +20,15 @@ function setup() {
     vehicles.push(new Vehicle(random(width), random(height)));
   }
 
-  slider1 = createSlider(0, 8, 4);
-  slider2 = createSlider(0, 8, 4);
-  slider3 = createSlider(10, 160, 24);
+  slider1 = createSlider(0, 8, 4); //Separation Force
+  slider2 = createSlider(0, 8, 4); //Seek Force
+  slider3 = createSlider(10, 160, 24); //Desired Separation Distance
+	s1 = createP("Separation Force");
+	s2 = createP("Seek Force");
+	s3 = createP("Separation Distance");
+	s1.position(15, 380);
+	s2.position(163, 380);
+	s3.position(267, 380);
 
 }
 
