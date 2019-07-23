@@ -33,8 +33,8 @@ class Vehicle {
   // A method that calculates a steering force towards a target
   // STEER = DESIRED MINUS VELOCITY
   arrive(target) {
-    var desired = p5.Vector.sub(target, this.position); // A vector pointing from the location to the target
-    var d = desired.mag();
+    let desired = p5.Vector.sub(target, this.position); // A vector pointing from the location to the target
+    let d = desired.mag();
     // Scale with arbitrary damping within 100 pixels
     if (d < 100) {
       var m = map(d, 0, 100, 0, this.maxspeed);
@@ -44,14 +44,14 @@ class Vehicle {
     }
 
     // Steering = Desired minus Velocity
-    var steer = p5.Vector.sub(desired, this.velocity);
-    steer.limit(this.maxforce); // Limit to maximum steering force
+    let steer = p5.Vector.sub(desired, this.velocity);
+    steer.limit(this.maxforce);  // Limit to maximum steering force
     this.applyForce(steer);
   }
 
   display() {
     // Draw a triangle rotated in the direction of velocity
-    var theta = this.velocity.heading() + PI / 2;
+    let theta = this.velocity.heading() + PI / 2;
     fill(127);
     stroke(200);
     strokeWeight(1);

@@ -30,5 +30,4 @@ function draw() {
   v.arrive(mouse);
   v.update();
   v.display();
-
 }
