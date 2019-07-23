@@ -3,10 +3,10 @@
 // http://natureofcode.com
 
 // Example 1-1: Bouncing Ball, no vectors
-var x = 100;
-var y = 100;
-var xspeed = 2.5;
-var yspeed = 2;
+let x = 100;
+let y = 100;
+let xspeed = 2.5;
+let yspeed = 2;
 
 function setup() {
   createCanvas(640, 360);

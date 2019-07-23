@@ -3,8 +3,8 @@
 // http://natureofcode.com
 
 // Example 1-2: Bouncing Ball, with p5.Vector!
-var position;
-var velocity;
+let position;
+let velocity;
 
 function setup() {
   createCanvas(640, 360);

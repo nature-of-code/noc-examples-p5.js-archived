@@ -1,10 +1,9 @@
-
 // The Nature of Code
 // Daniel Shiffman
 // http://natureofcode.com
-var mover;
+let mover;
 
-var attractor;
+let attractor;
 
 function setup() {
   createCanvas(640, 360);
@@ -15,10 +14,10 @@ function setup() {
 function draw() {
   background(51);
 
-  var force = attractor.calculateAttraction(mover);
+  let force = attractor.calculateAttraction(mover);
   mover.applyForce(force);
   mover.update();
-  
+
   attractor.display();
   mover.display();
 }

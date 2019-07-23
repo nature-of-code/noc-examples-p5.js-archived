@@ -4,26 +4,28 @@
 
 // A static drawing of a Neural Network
 
-function Neuron(x, y) {
-  // Neuron has a position
-  this.position = createVector(x, y);
-  // Neuron has a list of connections
-  this.connections = [];
+class Neuron {
+  constructor(x, y) {
+    // Neuron has a position
+    this.position = createVector(x, y);
+    // Neuron has a list of connections
+    this.connections = [];
+  }
 
   // Add a Connection
-  this.addConnection = function(c) {
+  addConnection(c) {
     this.connections.push(c);
   }
 
   // Draw Neuron as a circle
-  this.show = function() {
+  show() {
     stroke(0);
     strokeWeight(1);
     fill(0);
     ellipse(this.position.x, this.position.y, 16, 16);
 
     // Draw all its connections
-    for (var i = 0; i < this.connections.length; i++) {
+    for (let i = 0; i < this.connections.length; i++) {
       this.connections[i].display();
     }
   }

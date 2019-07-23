@@ -2,21 +2,21 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var ps;
-var repeller;
+let ps;
+let repeller;
 
 function setup() {
   createCanvas(640, 360);
-  ps = new ParticleSystem(createVector(width/2, 50));
-  repeller = new Repeller(width/2-20, height/2);
+  ps = new ParticleSystem(createVector(width / 2, 50));
+  repeller = new Repeller(width / 2, height / 2);
 }
 
 function draw() {
   background(51);
-  ps.addParticle();
+  ps.addParticle(mouseX, mouseY);
 
   // Apply gravity force to all Particles
-  var gravity = createVector(0,0.05);
+  let gravity = createVector(0, 0.02);
   ps.applyForce(gravity);
 
   ps.applyRepeller(repeller);

@@ -4,7 +4,7 @@
 
 // Example 1-2: Bouncing Ball, with p5.Vector!
 
-var b;
+let b;
 
 function setup() {
   createCanvas(640, 360);

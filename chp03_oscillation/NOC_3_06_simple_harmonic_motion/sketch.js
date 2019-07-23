@@ -2,8 +2,8 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var angle = 0;
-var aVelocity = 0.03;
+let angle = 0;
+let aVelocity = 0.03;
 
 function setup() {
   createCanvas(640, 360);
@@ -12,11 +12,11 @@ function setup() {
 function draw() {
   background(51);
 
-  var amplitude = 300;
-  var x = amplitude * sin(angle);
+  let amplitude = 300;
+  let x = amplitude * sin(angle);
   angle += aVelocity;
 
-  translate(width/2, height/2);
+  translate(width / 2, height / 2);
 
   stroke(255);
   fill(127);

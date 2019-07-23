@@ -3,19 +3,16 @@
 // http://natureofcode.com
 
 // Child class constructor
-function Particle(position) {
-  VerletParticle2D.call(this,position);
+class Particle extends VerletParticle2D {
+  constructor(position) {
+    super(position);
+  }
 
   // Override the display method
-  this.display = function(){
+  display() {
     fill(127);
     stroke(200);
     strokeWeight(2);
-    ellipse(this.x,this.y,32,32);
+    ellipse(this.x, this.y, 32, 32);
   }
 }
-
-// Inherit from the parent class
-Particle.prototype = Object.create(VerletParticle2D.prototype);
-Particle.prototype.constructor = Particle;
-

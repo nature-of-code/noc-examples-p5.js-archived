@@ -2,7 +2,7 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var walker;
+let walker;
 
 function setup() {
   createCanvas(640,360);
@@ -15,18 +15,20 @@ function draw() {
   walker.render();
 }
 
-function Walker() {
-  this.x = width/2;
+class Walker{
+  constructor(){
+    this.x = width/2;
     this.y = height/2;
+  };
 
-  this.render = function() {
+ render() {
     stroke(0);
     point(this.x,this.y);
   };
 
-  this.step = function() {
-    var choice = floor(random(4));
-    var r = random(1);
+  step(){
+    let choice = floor(random(4));
+    let r = random(1);
       // A 40% of moving to the right!
     if (r < 0.4) {
       this.x++;

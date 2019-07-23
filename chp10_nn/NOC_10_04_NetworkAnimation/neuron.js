@@ -4,32 +4,34 @@
 
 // A static drawing of a Neural Network
 
-function Neuron(x, y) {
-  // Neuron has a position
-  this.position = createVector(x, y);
-  // Neuron has a list of connections
-  this.connections = [];
+class Neuron {
+  constructor(x, y) {
+    // Neuron has a position
+    this.position = createVector(x, y);
+    // Neuron has a list of connections
+    this.connections = [];
 
-  // We now track the inputs and sum them
-  this.sum = 0;
+    // We now track the inputs and sum them
+    this.sum = 0;
 
-  // The Neuron's size can be animated
-  this.r = 32;
+    // The Neuron's size can be animated
+    this.r = 32;
+  }
 
 
   // The Neuron fires
-  this.fire = function() {
+  fire() {
     this.r = 64; // It suddenly is bigger
 
     // We send the output through all connections
-    for (var i = 0; i < this.connections.length; i++) {
-      var c = this.connections[i];
+    for (let i = 0; i < this.connections.length; i++) {
+      let c = this.connections[i];
       c.feedforward(this.sum);
     }
   }
 
   // Receive an input
-  this.feedforward = function(input) {
+  feedforward(input) {
     // Accumulate it
     this.sum += input;
     // Activate it?
@@ -41,16 +43,16 @@ function Neuron(x, y) {
 
 
   // Add a Connection
-  this.addConnection = function(c) {
+  addConnection(c) {
     this.connections.push(c);
   }
 
   // Draw Neuron as a circle
-  this.show = function() {
+  show() {
     stroke(0);
     strokeWeight(1);
     // Brightness is mapped to sum
-    var b = map(this.sum, 0, 1, 0, 255);
+    let b = map(this.sum, 0, 1, 0, 255);
 
     b += map(this.r, 32, 64, 0, 500);
 
@@ -61,7 +63,7 @@ function Neuron(x, y) {
     this.r = lerp(this.r, 32, 0.1);
 
     // Draw all its connections
-    // for (var i = 0; i < this.connections.length; i++) {
+    // for (let i = 0; i < this.connections.length; i++) {
     //   this.connections[i].display();
     // }
   }

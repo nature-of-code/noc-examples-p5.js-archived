@@ -3,29 +3,26 @@
 // http://natureofcode.com
 
 // Child class constructor
-function Particle(position, radius, range, strength) {
-  VerletParticle2D.call(this, position);
-  this.r = radius;
-  physics.addParticle(this);
-
-  this.behavior = new AttractionBehavior(this, range, strength);
-  // this.behavior.radius = 5.0;
-  // this.behavior.radiusSquared = 5 * 5;
-  physics.addBehavior(this.behavior);
+class Particle extends VerletParticle2D {
+  constructor(position, radius, range, strength) {
+    super(position);
+    this.r = radius;
+    physics.addParticle(this);
 
 
+    this.behavior = new AttractionBehavior(this, range, strength);
+    // this.behavior.radius = 5.0;
+    // this.behavior.radiusSquared = 5 * 5;
+    physics.addBehavior(this.behavior);
 
-  //console.log(this.behavior);
+    //console.log(this.behavior);
+  }
 
   // Override the display method
-  this.display = function() {
+  display() {
     fill(127);
     stroke(200);
     strokeWeight(2);
     ellipse(this.x, this.y, this.r * 2, this.r * 2);
   }
 }
-
-// Inherit from the parent class
-Particle.prototype = Object.create(VerletParticle2D.prototype);
-Particle.prototype.constructor = Particle;

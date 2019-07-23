@@ -11,8 +11,8 @@ function setup() {
 function draw() {
   background(51);
 
-  var mouse = createVector(mouseX,mouseY);
-  var center = createVector(width/2,height/2);
+  let mouse = createVector(mouseX,mouseY);
+  let center = createVector(width/2,height/2);
   mouse.sub(center);
 
   // Multiplying a vector!  The vector is now half its original size (multiplied by 0.5).
