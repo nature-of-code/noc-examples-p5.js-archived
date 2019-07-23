@@ -3,7 +3,7 @@
 // http://natureofcode.com
 
 class Mover {
-  constructor(m, x, y) {
+  constructor(x, y, m) {
     this.mass = m;
     this.position = createVector(x, y);
     this.velocity = createVector(0, 0);
