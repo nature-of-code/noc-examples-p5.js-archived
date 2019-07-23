@@ -14,15 +14,15 @@
 // This example is inspired by Jer Thorp's Smart Rockets
 // http://www.blprnt.com/smartrockets/
 
-var lifetime;  // How long should each generation live
+let lifetime; // How long should each generation live
 
-var population;  // Population
+let population; // Population
 
-var lifeCounter;   // Timer for cycle of generation
+let lifeCounter; // Timer for cycle of generation
 
-var target;        // Target position
+let target; // Target position
 
-var info;
+let info;
 
 function setup() {
   createCanvas(640, 360);
@@ -31,15 +31,15 @@ function setup() {
 
   // Initialize variables
   lifeCounter = 0;
-  
-  target = createVector(width/2, 24);
+
+  target = createVector(width / 2, 24);
 
   // Create a population with a mutation rate, and population max
-  var mutationRate = 0.01;
+  let mutationRate = 0.01;
   population = new Population(mutationRate, 50);
 
   info = createP("");
-  info.position(10,380);
+  info.position(10, 380);
 
 }
 
@@ -49,7 +49,7 @@ function draw() {
   // Draw the start and target positions
   fill(0);
   stroke(0);
-  ellipse(target.x,target.y,24,24);
+  ellipse(target.x, target.y, 24, 24);
 
 
   // If the generation hasn't ended yet
@@ -57,8 +57,7 @@ function draw() {
     population.live();
     lifeCounter++;
     // Otherwise a new generation
-  }
-  else {
+  } else {
     lifeCounter = 0;
     population.fitness();
     population.selection();
@@ -68,7 +67,7 @@ function draw() {
   // Display some info
   fill(0);
 
-  info.html("Generation #: " + population.getGenerations() + "<br>" + "Cycles left: " + (lifetime-lifeCounter));
+  info.html("Generation #: " + population.getGenerations() + "<br>" + "Cycles left: " + (lifetime - lifeCounter));
 }
 
 // Move the target if the mouse is pressed

@@ -4,35 +4,35 @@
 
 // A fixed boundary class
 
-  // A boundary is a simple rectangle with x,y,width,and height
-function Boundary(x_,y_, w_, h_) {
-  // But we also have to make a body for box2d to know about it
-  // Body b;
+// A boundary is a simple rectangle with x,y,width,and height
+class Boundary {
+  constructor(x, y, w, h) {
 
-  this.x = x_;
-  this.y = y_;
-  this.w = w_;
-  this.h = h_;
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
 
-  var fd = new box2d.b2FixtureDef();
-  fd.density = 1.0;
-  fd.friction = 0.5;
-  fd.restitution = 0.2;
+    let fd = new box2d.b2FixtureDef();
+    fd.density = 1.0;
+    fd.friction = 0.5;
+    fd.restitution = 0.2;
 
-  var bd = new box2d.b2BodyDef();
+    let bd = new box2d.b2BodyDef();
 
-  bd.type = box2d.b2BodyType.b2_staticBody;
-  bd.position.x = scaleToWorld(this.x);
-  bd.position.y = scaleToWorld(this.y);
-  fd.shape = new box2d.b2PolygonShape();
-  fd.shape.SetAsBox(this.w/(scaleFactor*2), this.h/(scaleFactor*2));
-  this.body = world.CreateBody(bd).CreateFixture(fd);
+    bd.type = box2d.b2BodyType.b2_staticBody;
+    bd.position.x = scaleToWorld(this.x);
+    bd.position.y = scaleToWorld(this.y);
+    fd.shape = new box2d.b2PolygonShape();
+    fd.shape.SetAsBox(this.w / (scaleFactor * 2), this.h / (scaleFactor * 2));
+    this.body = world.CreateBody(bd).CreateFixture(fd);
+  }
 
   // Draw the boundary, if it were at an angle we'd have to do something fancier
-  this.display = function() {
+  display() {
     fill(127);
     stroke(200);
     rectMode(CENTER);
-    rect(this.x,this.y,this.w,this.h);
-  };
+    rect(this.x, this.y, this.w, this.h);
+  }
 }

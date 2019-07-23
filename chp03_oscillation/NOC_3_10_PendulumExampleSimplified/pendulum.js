@@ -7,35 +7,37 @@
 // A Simple Pendulum Class
 
 // This constructor could be improved to allow a greater variety of pendulums
-function Pendulum(origin_, r_) {
-  // Fill all variables
-  this.origin = origin_.copy();
-  this.position = createVector();
-  this.r = r_;
-  this.angle = PI/4;
+class Pendulum {
 
-  this.aVelocity = 0.0;
-  this.aAcceleration = 0.0;
-  this.damping = 0.995;   // Arbitrary damping
-  this.ballr = 48.0;      // Arbitrary ball radius
+  constructor(origin, r) {
+    // Fill all variables
+    this.origin = origin.copy();
+    this.position = createVector();
+    this.r = r;
+    this.angle = PI / 4;
 
-  this.go = function() {
+    this.aVelocity = 0.0;
+    this.aAcceleration = 0.0;
+    this.damping = 0.995; // Arbitrary damping
+    this.ballr = 48.0; // Arbitrary ball radius
+  }
+  go() {
     this.update();
     this.display();
   };
 
   // Function to update position
-  this.update = function() {
-    var gravity = 0.4;                                               // Arbitrary constant
-    this.aAcceleration = (-1 * gravity / this.r) * sin(this.angle);  // Calculate acceleration (see: http://www.myphysicslab.com/pendulum1.html)
-    this.aVelocity += this.aAcceleration;                            // Increment velocity
-    this.aVelocity *= this.damping;                                  // Arbitrary damping
-    this.angle += this.aVelocity;                                    // Increment angle
-  };
+  update() {
+    let gravity = 0.4; // Arbitrary constant
+    this.aAcceleration = (-1 * gravity / this.r) * sin(this.angle); // Calculate acceleration (see: http://www.myphysicslab.com/pendulum1.html)
+    this.aVelocity += this.aAcceleration; // Increment velocity
+    this.aVelocity *= this.damping; // Arbitrary damping
+    this.angle += this.aVelocity; // Increment angle
+  }
 
-  this.display = function() {
-    this.position.set(this.r*sin(this.angle), this.r*cos(this.angle), 0);         // Polar to cartesian conversion
-    this.position.add(this.origin);                                               // Make sure the position is relative to the pendulum's origin
+  display() {
+    this.position.set(this.r * sin(this.angle), this.r * cos(this.angle), 0); // Polar to cartesian conversion
+    this.position.add(this.origin); // Make sure the position is relative to the pendulum's origin
 
     stroke(255);
     strokeWeight(2);
@@ -45,5 +47,5 @@ function Pendulum(origin_, r_) {
     fill(127);
     // Draw the ball
     ellipse(this.position.x, this.position.y, this.ballr, this.ballr);
-  };
+  }
 }

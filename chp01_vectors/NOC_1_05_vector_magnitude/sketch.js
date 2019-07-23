@@ -11,11 +11,11 @@ function setup() {
 function draw() {
   background(51);
 
-  var mouse = createVector(mouseX,mouseY);
-  var center = createVector(width/2,height/2);
+  let mouse = createVector(mouseX,mouseY);
+  let center = createVector(width/2,height/2);
   mouse.sub(center);
 
-  var m = mouse.mag();
+  let m = mouse.mag();
   fill(255);
   stroke(0);
   rect(0,0,m,10);

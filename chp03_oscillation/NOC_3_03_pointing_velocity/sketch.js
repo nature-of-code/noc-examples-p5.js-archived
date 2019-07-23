@@ -2,7 +2,7 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var mover;
+let mover;
 
 function setup() {
   createCanvas(640, 360);

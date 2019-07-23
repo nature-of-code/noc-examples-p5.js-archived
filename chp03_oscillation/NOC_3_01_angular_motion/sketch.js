@@ -2,9 +2,9 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var angle = 0;
-var aVelocity = 0;
-var aAcceleration = 0.0001;
+let angle = 0;
+let aVelocity = 0;
+let aAcceleration = 0.0001;
 
 function setup() {
   createCanvas(640, 360);
@@ -13,7 +13,7 @@ function setup() {
 function draw() {
   background(220);
 
-  translate(width/2, height/2);
+  translate(width / 2, height / 2);
   rotate(angle);
 
   stroke(0);

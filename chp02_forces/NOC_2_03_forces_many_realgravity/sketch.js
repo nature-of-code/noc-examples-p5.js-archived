@@ -2,21 +2,21 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var movers = [];
+let movers = [];
 
 function setup() {
-  createCanvas(640,360);
-  for (var i = 0; i < 20; i++) {
-    movers[i] = new Mover(random(1,4),0,0);
+  createCanvas(640, 360);
+  for (let i = 0; i < 20; i++) {
+    movers[i] = new Mover(random(1, 4), 0, 0);
   }
 }
 
 function draw() {
   background(51);
 
-  for (var i = 0; i < movers.length; i++) {
-    var wind = createVector(0.01,0);
-    var gravity = createVector(0, 0.1*movers[i].mass);
+  for (let i = 0; i < movers.length; i++) {
+    let wind = createVector(0.01, 0);
+    let gravity = createVector(0, 0.1 * movers[i].mass);
     movers[i].applyForce(wind);
     movers[i].applyForce(gravity);
     movers[i].update();

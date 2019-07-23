@@ -7,15 +7,15 @@
 // Demonstration of using a genetic algorithm to perform a search
 
 // setup()
-//  # Step 1: The Population 
+//  # Step 1: The Population
 //    # Create an empty population (an array or ArrayList)
 //    # Fill it with DNA encoded objects (pick random values to start)
 
 // draw()
-//  # Step 1: Selection 
+//  # Step 1: Selection
 //    # Create an empty mating pool (an empty ArrayList)
-//    # For every member of the population, evaluate its fitness based on some criteria / function, 
-//      and add it to the mating pool in a manner consistant with its fitness, i.e. the more fit it 
+//    # For every member of the population, evaluate its fitness based on some criteria / function,
+//      and add it to the mating pool in a manner consistant with its fitness, i.e. the more fit it
 //      is the more times it appears in the mating pool, in order to be more likely picked for reproduction.
 
 //  # Step 2: Reproduction Create a new empty population
@@ -25,60 +25,60 @@
 //       3. Mutation -- mutate the child's DNA based on a given probability.
 //       4. Add the child object to the new population.
 //    # Replace the old population with the new population
-//  
+//
 //   # Rinse and repeat
 
 
-var mutationRate = 0.01;    // Mutation rate
-var totalPopulation = 150;      // Total Population
+let mutationRate = 0.01; // Mutation rate
+let totalPopulation = 150; // Total Population
 
-var population;             // Array to hold the current population
-var matingPool;    // ArrayList which we will use for our "mating pool"
-var target;                // Target phrase
+let population; // Array to hold the current population
+let matingPool; // ArrayList which we will use for our "mating pool"
+let target; // Target phrase
 
-var display = "";
+let display = "";
 
 function setup() {
   display = createP("STARTING");
   display.class("results");
-  display.position(10,10);
+  display.position(10, 10);
 
   //createCanvas(800, 200);
   target = 'to be or not to be';
 
   population = [];
 
-  for (var i = 0; i < totalPopulation; i++) {
+  for (let i = 0; i < totalPopulation; i++) {
     population[i] = new DNA(target.length);
   }
 }
 
 function draw() {
-  for (var i = 0; i < population.length; i++) {
+  for (let i = 0; i < population.length; i++) {
     population[i].calcFitness(target);
   }
 
-  var matingPool = [];  // ArrayList which we will use for our "mating pool"
+  let matingPool = []; // ArrayList which we will use for our "mating pool"
 
-  for (var i = 0; i < population.length; i++) {
-    var nnnn = floor(population[i].fitness * 100);  // Arbitrary multiplier, we can also use monte carlo method
-    for (var j = 0; j <nnnn; j++) {              // and pick two random numbers
+  for (let i = 0; i < population.length; i++) {
+    let nnnn = floor(population[i].fitness * 100); // Arbitrary multiplier, we can also use monte carlo method
+    for (let j = 0; j < nnnn; j++) { // and pick two random numbers
       matingPool.push(population[i]);
     }
   }
 
-  for (var i = 0; i < population.length; i++) {
-    var a = floor(random(matingPool.length));
-    var b = floor(random(matingPool.length));
-    var partnerA = matingPool[a];
-    var partnerB = matingPool[b];
-    var child = partnerA.crossover(partnerB);
+  for (let i = 0; i < population.length; i++) {
+    let a = floor(random(matingPool.length));
+    let b = floor(random(matingPool.length));
+    let partnerA = matingPool[a];
+    let partnerB = matingPool[b];
+    let child = partnerA.crossover(partnerB);
     child.mutate(mutationRate);
     population[i] = child;
   }
-  
-  var everything = "";
-  for (var i = 0; i < population.length; i++) {
+
+  let everything = "";
+  for (let i = 0; i < population.length; i++) {
     if (i % 4 == 0) everything += "<br>";
     everything += population[i].getPhrase() + "    ";
   }
