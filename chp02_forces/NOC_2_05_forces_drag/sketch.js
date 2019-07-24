@@ -15,17 +15,12 @@ let movers = [];
 let liquid;
 
 function setup() {
-  // Must be before createGraphics
-  let text = createP("click mouse to reset");
-
   createCanvas(640, 360);
   reset();
   // Create liquid object
   liquid = new Liquid(0, height / 2, width, height / 2, 0.1);
 
-  // Here we call methods of each element to set the position and id, try changing these values.
-  text.position(10, 365);
-
+  createP("click mouse to reset");
 }
 
 function draw() {
@@ -66,6 +61,6 @@ function mousePressed() {
 // Restart all the Mover objects randomly
 function reset() {
   for (let i = 0; i < 9; i++) {
-    movers[i] = new Mover(random(0.5, 3), 40 + i * 70, 0);
+    movers[i] = new Mover(40 + i * 70, 0, random(0.5, 3));
   }
 }
