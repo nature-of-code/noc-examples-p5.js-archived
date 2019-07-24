@@ -3,8 +3,9 @@
 // http://natureofcode.com
 
 class Mover {
-  constructor(m, x, y) {
+  constructor(x, y, m) {
     this.mass = m;
+    this.radius = m * 8;
     this.position = createVector(x, y);
     this.velocity = createVector(0, 0);
     this.acceleration = createVector(0, 0);
@@ -25,20 +26,20 @@ class Mover {
     stroke(0);
     strokeWeight(2);
     fill(255, 127);
-    ellipse(this.position.x, this.position.y, this.mass * 16, this.mass * 16);
+    ellipse(this.position.x, this.position.y, this.radius * 2);
   }
 
   checkEdges() {
-    if (this.position.x > width) {
-      this.position.x = width;
+    if (this.position.x > width - this.radius) {
+      this.position.x = width - this.radius;
       this.velocity.x *= -1;
-    } else if (this.position.x < 0) {
+    } else if (this.position.x < this.radius) {
+      this.position.x = this.radius;
       this.velocity.x *= -1;
-      this.position.x = 0;
     }
-    if (this.position.y > height) {
+    if (this.position.y > height - this.radius) {
+      this.position.y = height - this.radius;
       this.velocity.y *= -1;
-      this.position.y = height;
     }
   }
 

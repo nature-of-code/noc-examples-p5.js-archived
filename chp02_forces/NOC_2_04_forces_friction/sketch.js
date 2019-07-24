@@ -2,36 +2,38 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-let movers = [];
+let mover;
 
 function setup() {
   createCanvas(640, 360);
-  for (let i = 0; i < 20; i++) {
-    movers[i] = new Mover(random(1, 4), random(width), 0);
-  }
+  mover = new Mover(width / 2, 30, 5);
+  createP('Click mouse to apply wind force.');
 }
 
 function draw() {
   background(51);
 
-  for (let i = 0; i < movers.length; i++) {
-    let wind = createVector(0.01, 0);
-    let gravity = createVector(0, 0.1 * movers[i].mass);
+  let gravity = createVector(0, 1);
+  //{!1} I should scale by mass to be more accurate, but this example only has one circle
+  mover.applyForce(gravity);
 
-    let c = 0.01;
-    let normal = 1;
-    let frictionMag = c * normal;
-    let friction = movers[i].velocity.copy();
-    friction.mult(-1);
-    friction.normalize();
-    friction.mult(frictionMag);
-
-
-    movers[i].applyForce(friction);
-    movers[i].applyForce(wind);
-    movers[i].applyForce(gravity);
-    movers[i].update();
-    movers[i].display();
-    movers[i].checkEdges();
+  if (mouseIsPressed) {
+    let wind = createVector(0.5, 0);
+    mover.applyForce(wind);
   }
+
+  if (mover.contactEdge()) {
+    //{!5 .bold}
+    let c = 0.1;
+    let friction = mover.velocity.copy();
+    friction.mult(-1);
+    friction.setMag(c);
+
+    //{!1 .bold} Apply the friction force vector to the object.
+    mover.applyForce(friction);
+  }
+
+  mover.bounceEdges();
+  mover.update();
+  mover.display();
 }
