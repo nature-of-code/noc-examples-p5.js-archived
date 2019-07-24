@@ -3,8 +3,9 @@
 // http://natureofcode.com
 
 class Mover {
-  constructor(m, x, y) {
-    this.mass = m;
+  constructor(x, y, mass) {
+    this.mass = mass;
+    this.radius = mass * 8;
     this.position = createVector(x, y);
     this.velocity = createVector(0, 0);
     this.acceleration = createVector(0, 0);
@@ -29,14 +30,14 @@ class Mover {
     stroke(0);
     strokeWeight(2);
     fill(255, 127);
-    ellipse(this.position.x, this.position.y, this.mass * 16, this.mass * 16);
+    ellipse(this.position.x, this.position.y, this.radius * 2);
   }
 
   // Bounce off bottom of window
   checkEdges() {
-    if (this.position.y > height) {
+    if (this.position.y > height - this.radius) {
       this.velocity.y *= -0.9; // A little dampening when hitting the bottom
-      this.position.y = height;
+      this.position.y = height - this.radius;
     }
   }
 }

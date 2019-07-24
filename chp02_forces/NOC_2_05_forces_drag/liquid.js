@@ -12,20 +12,20 @@ class Liquid {
   }
 
   // Is the Mover in the Liquid?
-  contains(m) {
-    let l = m.position;
+  contains(mover) {
+    let l = mover.position;
     return l.x > this.x && l.x < this.x + this.w &&
       l.y > this.y && l.y < this.y + this.h;
   }
 
   // Calculate drag force
-  calculateDrag(m) {
+  calculateDrag(mover) {
     // Magnitude is coefficient * speed squared
-    let speed = m.velocity.mag();
+    let speed = mover.velocity.mag();
     let dragMagnitude = this.c * speed * speed;
 
     // Direction is inverse of velocity
-    let dragForce = m.velocity.copy();
+    let dragForce = mover.velocity.copy();
     dragForce.mult(-1);
 
     // Scale according to magnitude
