@@ -7,14 +7,14 @@ let attractor;
 
 function setup() {
   createCanvas(640, 360);
-  mover = new Mover();
+  mover = new Mover(300, 100, 2);
   attractor = new Attractor();
 }
 
 function draw() {
   background(51);
 
-  let force = attractor.calculateAttraction(mover);
+  let force = attractor.attract(mover);
   mover.applyForce(force);
   mover.update();
 

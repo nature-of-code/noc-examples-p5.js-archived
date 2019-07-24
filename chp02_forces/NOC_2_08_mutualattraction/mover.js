@@ -3,7 +3,7 @@
 // http://natureofcode.com
 
 class Mover {
-  constructor(m, x, y) {
+  constructor(x, y, m) {
     this.mass = m;
     this.position = createVector(x, y);
     this.velocity = createVector(0, 0);
@@ -25,22 +25,21 @@ class Mover {
     stroke(0);
     strokeWeight(2);
     fill(255, 127);
-    ellipse(this.position.x, this.position.y, this.mass * 16, this.mass * 16);
+    ellipse(this.position.x, this.position.y, this.mass * 16);
   }
 
-  calculateAttraction(m) {
+  attract(other) {
     // Calculate direction of force
-    let force = p5.Vector.sub(this.position, m.position);
+    let force = p5.Vector.sub(this.position, other.position);
     // Distance between objects
     let distance = force.mag();
     // Limiting the distance to eliminate "extreme" results for very close or very far objects
     distance = constrain(distance, 5.0, 25.0);
-    // Normalize vector (distance doesn't matter here, we just want this vector for direction
-    force.normalize();
+
     // Calculate gravitional force magnitude
-    let strength = (G * this.mass * m.mass) / (distance * distance);
+    let strength = (G * this.mass * other.mass) / (distance * distance);
     // Get force vector --> magnitude * direction
-    force.mult(strength);
+    force.setMag(strength);
     return force;
   }
 }
