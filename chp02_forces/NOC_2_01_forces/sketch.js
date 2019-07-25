@@ -13,7 +13,6 @@ function setup() {
 function draw() {
   background(51);
 
-
   let gravity = createVector(0, 0.1);
   mover.applyForce(gravity);
 
@@ -22,9 +21,7 @@ function draw() {
     mover.applyForce(wind);
   }
 
-
   mover.update();
   mover.display();
   mover.checkEdges();
-
 }
