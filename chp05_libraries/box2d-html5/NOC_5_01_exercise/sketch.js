@@ -13,7 +13,7 @@ function draw() {
   background(51);
 
   // Boxes fall from the top every so often
-  if (isMousePressed) {
+  if (mouseIsPressed) {
     let b = new Box(mouseX, mouseY);
     boxes.push(b);
   }
