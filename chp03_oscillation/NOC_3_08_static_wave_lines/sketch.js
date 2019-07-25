@@ -2,8 +2,8 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var angle = 0;
-var angleVel = 0.1;
+let angle = 0;
+let angleVel = 0.1;
 
 function setup() {
   createCanvas(640, 360);
@@ -13,8 +13,8 @@ function setup() {
   noFill();
 
   beginShape();
-  for (var x = 0; x <= width; x += 5) {
-    var y = map(sin(angle), -1, 1, 0, height);
+  for (let x = 0; x <= width; x += 5) {
+    let y = map(sin(angle), -1, 1, 0, height);
     vertex(x, y);
     angle += angleVel;
   }

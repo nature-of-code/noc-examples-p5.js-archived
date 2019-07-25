@@ -3,12 +3,12 @@
 // http://natureofcode.com
 
 // An array of objects
-var oscillators = [];
+let oscillators = [];
 
-function setup()  {
+function setup() {
   createCanvas(640, 360);
   // Initialize all objects
-  for (var i = 0; i < 10; i++) {
+  for (let i = 0; i < 10; i++) {
     oscillators.push(new Oscillator());
   }
 }
@@ -16,7 +16,7 @@ function setup()  {
 function draw() {
   background(51);
   // Run all objects
-  for (var i = 0; i < oscillators.length; i++) {
+  for (let i = 0; i < oscillators.length; i++) {
     oscillators[i].oscillate();
     oscillators[i].display();
   }

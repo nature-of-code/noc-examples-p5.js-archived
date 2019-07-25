@@ -8,17 +8,17 @@
 // One vehicle "arrive"
 // See: http://www.red3d.com/cwr/
 
-var v;
+let v;
 
 function setup() {
-  createCanvas(640,360);
-  v = new Vehicle(width/2, height/2);
+  createCanvas(640, 360);
+  v = new Vehicle(width / 2, height / 2);
 }
 
 function draw() {
   background(51);
 
-  var mouse = createVector(mouseX, mouseY);
+  let mouse = createVector(mouseX, mouseY);
 
   // Draw an ellipse at the mouse position
   fill(127);
@@ -30,5 +30,4 @@ function draw() {
   v.arrive(mouse);
   v.update();
   v.display();
-
 }

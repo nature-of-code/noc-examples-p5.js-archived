@@ -6,7 +6,7 @@
 
 // Each Rocket's DNA is an array of PVectors
 // Each PVector acts as a force for each frame of animation
-// Imagine an booster on the end of the rocket that can povar in any direction
+// Imagine an booster on the end of the rocket that can polet in any direction
 // and fire at any strength every frame
 
 // The Rocket's fitness is a function of how close it gets to the target as well as how fast it gets there
@@ -14,18 +14,18 @@
 // This example is inspired by Jer Thorp's Smart Rockets
 // http://www.blprnt.com/smartrockets/
 
-var lifetime;  // How long should each generation live
+let lifetime; // How long should each generation live
 
-var population;  // Population
+let population; // Population
 
-var lifecycle;          // Timer for cycle of generation
-var recordtime;         // Fastest time to target
+let lifecycle; // Timer for cycle of generation
+let recordtime; // Fastest time to target
 
-var target;        // Target position
+let target; // Target position
 
-//var diam = 24;          // Size of target
+//let diam = 24;          // Size of target
 
-var obstacles = [];  //an array list to keep track of all the obstacles!
+let obstacles = []; //an array list to keep track of all the obstacles!
 
 function setup() {
   createCanvas(640, 360);
@@ -36,15 +36,15 @@ function setup() {
   lifecycle = 0;
   recordtime = lifetime;
 
-  target = new Obstacle(width/2-12, 24, 24, 24);
+  target = new Obstacle(width / 2 - 12, 24, 24, 24);
 
   // Create a population with a mutation rate, and population max
-  var mutationRate = 0.01;
+  let mutationRate = 0.01;
   population = new Population(mutationRate, 50);
 
   // Create the obstacle course
   obstacles = [];
-  obstacles.push(new Obstacle(width/2-100, height/2, 200, 10));
+  obstacles.push(new Obstacle(width / 2 - 100, height / 2, 200, 10));
 }
 
 function draw() {
@@ -62,16 +62,15 @@ function draw() {
     }
     lifecycle++;
     // Otherwise a new generation
-  }
-  else {
+  } else {
     lifecycle = 0;
-    population.fitness();
+    population.calcFitness();
     population.selection();
     population.reproduction();
   }
 
   // Draw the obstacles
-  for (var i = 0; i < obstacles.length; i++) {
+  for (let i = 0; i < obstacles.length; i++) {
     obstacles[i].display();
   }
 
@@ -79,7 +78,7 @@ function draw() {
   fill(0);
   noStroke();
   text("Generation #: " + population.getGenerations(), 10, 18);
-  text("Cycles left: " + (lifetime-lifecycle), 10, 36);
+  text("Cycles left: " + (lifetime - lifecycle), 10, 36);
   text("Record cycles: " + recordtime, 10, 54);
 
 

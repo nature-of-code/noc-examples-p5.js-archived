@@ -6,29 +6,29 @@
 // the only difference is that it has DNA & fitness
 
 
-//constructor
-function Rocket(pos, dna, totalRockets) {
-  // All of our physics stuff
-  this.acceleration = createVector();
-  this.velocity = createVector();
-  this.position = pos.copy();
-  this.r = 4;
-  this.dna = dna;
-  this.finishTime = 0; // We're going to count how long it takes to reach target
-  this.recordDist = 10000; // Some high number that will be beat instantly
+class Rocket {
+  constructor(pos, dna, totalRockets) {
+    // All of our physics stuff
+    this.acceleration = createVector();
+    this.velocity = createVector();
+    this.position = pos.copy();
+    this.r = 4;
+    this.dna = dna;
+    this.finishTime = 0; // We're going to count how long it takes to reach target
+    this.recordDist = 10000; // Some high number that will be beat instantly
 
-  this.fitness = 0;
-  this.geneCounter = 0;
-  this.hitObstacle = false; // Am I stuck on an obstacle?
-  this.hitTarget = false; // Did I reach the target
-
+    this.fitness = 0;
+    this.geneCounter = 0;
+    this.hitObstacle = false; // Am I stuck on an obstacle?
+    this.hitTarget = false; // Did I reach the target
+  }
 
   // FITNESS FUNCTION
   // distance = distance from target
   // finish = what order did i finish (first, second, etc. . .)
   // f(distance,finish) =   (1.0f / finish^1.5) * (1.0f / distance^6);
   // a lower finish is rewarded (exponentially) and/or shorter distance to target (exponetially)
-  this.fitness = function() {
+  calcFitness() {
     if (this.recordDist < 1) this.recordDist = 1;
 
     // Reward finishing faster and getting close
@@ -43,7 +43,7 @@ function Rocket(pos, dna, totalRockets) {
 
   // Run in relation to all the obstacles
   // If I'm stuck, don't bother updating or checking for intersection
-  this.run = function(os) {
+  run(os) {
     if (!this.hitObstacle && !this.hitTarget) {
       this.applyForce(this.dna.genes[this.geneCounter]);
       this.geneCounter = (this.geneCounter + 1) % this.dna.genes.length;
@@ -58,8 +58,8 @@ function Rocket(pos, dna, totalRockets) {
   }
 
   // Did I make it to the target?
-  this.checkTarget = function() {
-    var d = dist(this.position.x, this.position.y, target.position.x, target.position.y);
+  checkTarget() {
+    let d = dist(this.position.x, this.position.y, target.position.x, target.position.y);
     if (d < this.recordDist) this.recordDist = d;
 
     if (target.contains(this.position) && !this.hitTarget) {
@@ -70,29 +70,29 @@ function Rocket(pos, dna, totalRockets) {
   }
 
   // Did I hit an obstacle?
-  this.obstacles = function(os) {
-    for (var i = 0; i < os.length; i++) {
-      var obs = os[i];
+  obstacles(os) {
+    for (let i = 0; i < os.length; i++) {
+      let obs = os[i];
       if (obs.contains(this.position)) {
         this.hitObstacle = true;
       }
     }
   }
 
-  this.applyForce = function(f) {
+  applyForce(f) {
     this.acceleration.add(f);
   }
 
 
-  this.update = function() {
+  update() {
     this.velocity.add(this.acceleration);
     this.position.add(this.velocity);
     this.acceleration.mult(0);
   }
 
-  this.display = function() {
+  display() {
     //background(255,0,0);
-    var theta = this.velocity.heading() + PI / 2;
+    let theta = this.velocity.heading() + PI / 2;
     fill(200, 100);
     stroke(0);
     strokeWeight(1);
@@ -117,15 +117,15 @@ function Rocket(pos, dna, totalRockets) {
     pop();
   }
 
-  this.getFitness = function() {
+  getFitness() {
     return this.fitness;
   }
 
-  this.getDNA = function() {
+  getDNA() {
     return this.dna;
   }
 
-  this.stopped = function() {
+  stopped() {
     return this.hitObstacle;
   }
 }

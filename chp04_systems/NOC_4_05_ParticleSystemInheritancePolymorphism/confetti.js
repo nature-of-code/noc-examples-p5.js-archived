@@ -3,14 +3,13 @@
 // http://natureofcode.com
 
 // Child class constructor
-var Confetti = function(position) {
-  Particle.call(this, position);
+class Confetti extends Particle {
 
   // Override the display method
-  this.display = function(){
+  display() {
     rectMode(CENTER);
-    fill(127, this.lifespan);
-    stroke(0, this.lifespan);
+    fill(255, this.lifespan);
+    stroke(255, this.lifespan);
     strokeWeight(2);
     push();
     translate(this.position.x, this.position.y);
@@ -18,9 +17,5 @@ var Confetti = function(position) {
     rotate(theta);
     rect(0, 0, 12, 12);
     pop();
-  };
-};
-
-// Inherit from the parent class
-Confetti.prototype = Object.create(Particle.prototype);
-Confetti.prototype.constructor = Confetti;
+  }
+}

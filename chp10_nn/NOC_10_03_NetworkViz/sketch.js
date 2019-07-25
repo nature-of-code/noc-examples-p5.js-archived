@@ -4,7 +4,7 @@
 
 // A static drawing of a Neural Network
 
-var network;
+let network;
 
 function setup() {
   createCanvas(640, 360);
@@ -14,15 +14,15 @@ function setup() {
   // Create a bunch of Neurons
 
   // Two inputs
-  var x0 = new Neuron(-200, -75);
-  var x1 = new Neuron(-200, 75);
+  let x0 = new Neuron(-200, -75);
+  let x1 = new Neuron(-200, 75);
 
   // Two hidden
-  var h0 = new Neuron(0, -75);
-  var h1 = new Neuron(0, 75);
+  let h0 = new Neuron(0, -75);
+  let h1 = new Neuron(0, 75);
 
   // One output
-  var y = new Neuron(200, 0);
+  let y = new Neuron(200, 0);
 
   // Connect them
   network.connect(x0, h0);
