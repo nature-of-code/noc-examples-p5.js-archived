@@ -7,15 +7,15 @@
 
 class Spring {
 
-  constructor(x, y, l) {
+  constructor(x, y, length) {
     this.anchor = createVector(x, y);
-    this.restLength = l;
+    this.restLength = length;
     this.k = 0.2;
   }
   // Calculate and apply spring force
-  connect(b) {
+  connect(bob) {
     // Vector pointing from anchor to bob location
-    let force = p5.Vector.sub(b.position, this.anchor);
+    let force = p5.Vector.sub(bob.position, this.anchor);
     // What is distance
     let d = force.mag();
     // Stretch is difference between current distance and rest length
@@ -25,7 +25,7 @@ class Spring {
     // F = k * stretch
     force.normalize();
     force.mult(-1 * this.k * stretch);
-    b.applyForce(force);
+    bob.applyForce(force);
   }
 
   // Constrain the distance between bob and anchor between min and max
@@ -74,8 +74,7 @@ class Spring {
     stroke(255);
     fill(127);
     strokeWeight(2);
-    rectMode(CENTER);
-    rect(this.anchor.x, this.anchor.y, 10, 10);
+    ellipse(this.anchor.x, this.anchor.y, 10);
   }
 
   displayLine(b) {

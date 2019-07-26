@@ -4,8 +4,9 @@
 
 class Mover {
 
-  constructor(m, x, y) {
-    this.mass = m;
+  constructor(x, y, mass) {
+    this.mass = mass;
+    this.radius = this.mass * 8;
     this.position = createVector(x, y);
     this.angle = 0;
     this.aVelocity = 0;
@@ -36,7 +37,8 @@ class Mover {
     push();
     translate(this.position.x, this.position.y);
     rotate(this.angle);
-    rect(0, 0, this.mass * 16, this.mass * 16);
+    ellipse(0, 0, this.radius * 2);
+    line(0, 0, this.radius, 0);
     pop();
   }
 }

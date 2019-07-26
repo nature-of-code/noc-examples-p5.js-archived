@@ -9,9 +9,9 @@
 // This constructor could be improved to allow a greater variety of pendulums
 class Pendulum {
 
-  constructor(origin, r) {
+  constructor(x, y, r) {
     // Fill all variables
-    this.origin = origin.copy();
+    this.origin = createVector(x, y);
     this.position = createVector();
     this.r = r;
     this.angle = PI / 4;
@@ -21,10 +21,6 @@ class Pendulum {
     this.damping = 0.995; // Arbitrary damping
     this.ballr = 48.0; // Arbitrary ball radius
   }
-  go() {
-    this.update();
-    this.display();
-  };
 
   // Function to update position
   update() {

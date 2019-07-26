@@ -18,24 +18,25 @@
 
 // For a more substantial explanation, visit:
 // http://www.myphysicslab.com/pendulum1.html
-let p;
+let pendulum;
 
 function setup() {
   createCanvas(640, 360);
   // Make a new Pendulum with an origin position and armlength
-  p = new Pendulum(createVector(width / 2, 0), 175);
-
+  pendulum = new Pendulum(width / 2, 0, 175);
 }
 
 function draw() {
   background(51);
-  p.go();
+  pendulum.update();
+  pendulum.drag(); // for user interaction
+  pendulum.display();
 }
 
 function mousePressed() {
-  p.clicked(mouseX, mouseY);
+  pendulum.clicked(mouseX, mouseY);
 }
 
 function mouseReleased() {
-  p.stopDragging();
+  pendulum.stopDragging();
 }
