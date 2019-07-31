@@ -2,15 +2,15 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-let ps;
+let system;
 
 function setup() {
   createCanvas(640, 360);
-  ps = new ParticleSystem(createVector(width / 2, 50));
+  system = new ParticleSystem(width / 2, 50);
 }
 
 function draw() {
-  background(51);
-  ps.addParticle();
-  ps.run();
+  background(0);
+  system.addParticle();
+  system.run();
 }
