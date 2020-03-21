@@ -19,8 +19,6 @@ function draw() {
         for (let y = 0; y < height; y++) {
 
             let red = map(noise(redxoff, redyoff), 0, 1, 0, 255);
-            if (x === 0 && y === 0) console.log(red)
-
             let green = map(noise(greenxoff, greenyoff), 0, 1, 0, 255);
             let blue = map(noise(bluexoff, blueyoff), 0, 1, 0, 255);
 

@@ -1,14 +1,3 @@
-/*
-Create a random walker with dynamic probabilities. 
-For example, can you give it a 50% chance of moving in the direction of the mouse?
-*/
-
-// The Nature of Code
-// Daniel Shiffman
-// http://natureofcode.com
-
-// A random walker object!
-
 class Walker {
     constructor() {
         this.x = width / 2;
@@ -23,6 +12,7 @@ class Walker {
 
     step() {
         const r = random(1);
+        // A 50% of moving towards the mouse
         if (r < 0.5) {
             let xdir = (mouseX - this.x);
             let ydir = (mouseY - this.y);
@@ -36,6 +26,7 @@ class Walker {
             this.x += xdir;
             this.y += ydir;
         } else {
+            // Randomly move up, down, left, right, or stay in one place
             const xdir = int(random(-2, 2));
             const ydir = int(random(-2, 2));
 

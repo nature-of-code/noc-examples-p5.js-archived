@@ -1,9 +1,3 @@
-// The Nature of Code
-// Daniel Shiffman
-// http://natureofcode.com
-
-// A random walker object!
-
 class Walker {
     constructor() {
         this.x = width / 2;
