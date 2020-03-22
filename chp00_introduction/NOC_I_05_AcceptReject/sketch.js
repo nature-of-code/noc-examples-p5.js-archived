@@ -17,7 +17,7 @@ function setup() {
 
 function draw() {
   background(127);
-  let index = int(random(total));
+  let index = int(acceptReject(total));
   randomCounts[index]++;
 
   // Draw a rectangle to graph results
@@ -30,4 +30,16 @@ function draw() {
   for (let x = 0; x < randomCounts.length; x++) {
     rect(x*w,height-randomCounts[x],w-1,randomCounts[x]);
   }
+}
+
+function acceptReject() {
+    while (true) {
+        let r1 = floor(random(total));
+        let probability = r1;
+        let r2 = floor(random(total));
+
+        if (r2 < probability) {
+            return r1;
+        }
+    }
 }
