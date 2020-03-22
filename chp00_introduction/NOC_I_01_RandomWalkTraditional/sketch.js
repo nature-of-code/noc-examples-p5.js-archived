@@ -27,7 +27,7 @@ class Walker {
   }
 
   step() {
-    var choice = floor(random(4));
+    var choice = int(random(4));
     if (choice === 0) {
       this.x++;
     } else if (choice == 1) {

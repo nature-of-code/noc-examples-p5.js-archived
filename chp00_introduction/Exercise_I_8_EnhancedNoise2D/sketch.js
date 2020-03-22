@@ -6,7 +6,7 @@ function setup() {
 
 function draw() {
     background(0);
-    noiseDetail(5);
+    noiseDetail(floor(random(1, 10)));
     loadPixels();
 
     let redxoff = 25.0;

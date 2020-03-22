@@ -17,7 +17,7 @@ function setup() {
 
 function draw() {
   background(127);
-  let index = floor(random(total));
+  let index = int(random(total));
   randomCounts[index]++;
 
   // Draw a rectangle to graph results
