@@ -1,7 +1,13 @@
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+// A random walker object!
+
 class Walker {
     constructor() {
-        this.x = width / 2;
-        this.y = height / 2;
+        this.x = width/2;
+        this.y = height/2;
     }
 
     render() {
@@ -10,7 +16,9 @@ class Walker {
         point(this.x, this.y);
     }
 
+    // Randomly move up, down, left, right, or stay in one place
     step() {
+        
         const r = random(1);
         // A 50% of moving towards the mouse
         if (r < 0.5) {
@@ -26,7 +34,6 @@ class Walker {
             this.x += xdir;
             this.y += ydir;
         } else {
-            // Randomly move up, down, left, right, or stay in one place
             const xdir = int(random(-2, 2));
             const ydir = int(random(-2, 2));
 
