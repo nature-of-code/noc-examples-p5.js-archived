@@ -2,14 +2,14 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-// Example 1-2: Bouncing Ball, with p5.Vector!
 let position;
 let velocity;
+const depth = 250;
 
 function setup() {
   createCanvas(640, 360);
   background(255);
-  position = createVector(100, 100);
+  position = createVector(100, 100, 100);
   velocity = createVector(2.5, 5);
 }
 
@@ -25,10 +25,18 @@ function draw() {
   if ((position.y > height) || (position.y < 0)) {
     velocity.y = velocity.y * -1;
   }
+  if ((position.z > depth) || (position.z < 0)) {
+    velocity.z = velocity.z * -1;
+  }
 
   // Display circle at x position
   stroke(0);
   strokeWeight(2);
   fill(127);
-  ellipse(position.x, position.y, 48, 48);
+  ellipse(
+    position.x, 
+    position.y, 
+    map(position.x, 1, depth, 5, 48), 
+    map(position.x, 1, depth, 5, 48)
+  );
 }
