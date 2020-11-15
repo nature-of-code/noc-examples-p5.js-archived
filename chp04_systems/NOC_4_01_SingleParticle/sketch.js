@@ -2,19 +2,24 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-let p;
+let particle;
 
 function setup() {
   createCanvas(640, 360);
-  p = new Particle(createVector(width / 2, 20));
+  particle = new Particle(width / 2, 20);
 }
 
 function draw() {
-  background(51);
+  background(0);
 
-  p.run();
-  if (p.isDead()) {
-    p = new Particle(createVector(width / 2, 20));
-    //println("Particle dead!");
+  particle.update();
+  particle.display();
+
+  let gravity = createVector(0, 0.1);
+  particle.applyForce(gravity);
+
+  if (particle.isDead()) {
+    particle = new Particle(width / 2, 20);
+    //print("Particle dead!");
   }
 }
