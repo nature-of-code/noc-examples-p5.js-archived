@@ -59,22 +59,14 @@ function CA(r) {
   };
 
   // Implementing the Wolfram rules
-  // This could be condensed probably, here is java way
-  /*int rules (int a, int b, int c) {
-    String s = "" + a + b + c;
-    int index = Integer.parseInt(s, 2);
-    return ruleset[index];
-  }*/
   this.rules = function(a, b, c) {
-  	if (a == 1 && b == 1 && c == 1) return this.ruleset[0];
-  	if (a == 1 && b == 1 && c === 0) return this.ruleset[1];
-  	if (a == 1 && b === 0 && c == 1) return this.ruleset[2];
-  	if (a == 1 && b === 0 && c === 0) return this.ruleset[3];
-  	if (a === 0 && b == 1 && c == 1) return this.ruleset[4];
-  	if (a === 0 && b == 1 && c === 0) return this.ruleset[5];
-  	if (a === 0 && b === 0 && c == 1) return this.ruleset[6];
-  	if (a === 0 && b === 0 && c === 0) return this.ruleset[7];
-  	return 0;
+  	// First convert our values to a binary string
+	const binaryString = '' + a + b + c
+	// Then convert the binary string to an integer
+	// The 2 lets parseInt know the string is binary
+	const index = parseInt(binaryString, 2)
+	// Return next generation state
+	return this.ruleset[index]
   };
 
   // The CA is done if it reaches the bottom of the screen
