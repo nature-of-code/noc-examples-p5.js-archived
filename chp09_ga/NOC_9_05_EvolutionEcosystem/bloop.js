@@ -71,10 +71,10 @@ class Bloop {
 
   // Wraparound
   borders() {
-    if (this.position.x < 0) this.position.x = width-this.r/2;
-    if (this.position.y < 0) this.position.y = height-this.r/2;
-    if (this.position.x > width) this.position.x = this.r/2;
-    if (this.position.y > height) this.position.y = this.r/2;
+    if (this.position.x < -this.r/2) this.position.x = width+this.r/2;
+    if (this.position.y < this.r/2) this.position.y = height+this.r/2;
+    if (this.position.x > width+this.r/2) this.position.x = -this.r/2;
+    if (this.position.y > height+this.r/2) this.position.y = -this.r/2;
   }
 
   // Method to display
