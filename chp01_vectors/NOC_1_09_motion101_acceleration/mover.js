@@ -13,11 +13,7 @@ class Mover{
   }
 
   update() {
-
-    // this.acceleration = p5.Vector.random2D();
-    // random2D() not implemented? doing raw math for now instead
-    var angle = random(TWO_PI);
-    this.acceleration = createVector(cos(angle),sin(angle));
+    this.acceleration = p5.Vector.random2D();
     this.acceleration.mult(random(2));
 
     this.velocity.add(this.acceleration);
