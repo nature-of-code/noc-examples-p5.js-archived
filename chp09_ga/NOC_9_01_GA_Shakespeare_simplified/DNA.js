@@ -13,7 +13,7 @@
 //      -- mutate DNA
 
 function newChar() {
-  let c = floor(random(64, 122));
+  let c = floor(random(64, 123));
   if (c === 64) c = 32;
 
   return String.fromCharCode(c);
