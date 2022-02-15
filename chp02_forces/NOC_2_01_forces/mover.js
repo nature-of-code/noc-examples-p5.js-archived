@@ -2,31 +2,33 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var Mover = function() {
-  this.mass = 1;
-  this.position = createVector(30, 30);
-  this.velocity = createVector(0, 0);
-  this.acceleration = createVector(0, 0);
+class Mover {
+  constructor() {
+    this.mass = 1;
+    this.position = createVector(width / 2, 30);
+    this.velocity = createVector(0, 0);
+    this.acceleration = createVector(0, 0);
+  }
 
-  this.applyForce = function(force) {
+  applyForce(force) {
     var f = p5.Vector.div(force, this.mass);
     this.acceleration.add(f);
-  };
+  }
 
-  this.update = function() {
+  update() {
     this.velocity.add(this.acceleration);
     this.position.add(this.velocity);
     this.acceleration.mult(0);
-  };
+  }
 
-  this.display = function() {
+  display() {
     stroke(0);
     strokeWeight(2);
     fill(255, 127);
     ellipse(this.position.x, this.position.y, 48, 48);
-  };
+  }
 
-  this.checkEdges = function() {
+  checkEdges() {
     if (this.position.x > width) {
       this.position.x = width;
       this.velocity.x *= -1;
@@ -38,6 +40,6 @@ var Mover = function() {
       this.velocity.y *= -1;
       this.position.y = height;
     }
-  };
+  }
 
-};
+}

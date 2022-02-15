@@ -2,12 +2,13 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var walker;
+let walker;
 
 function setup() {
-  createCanvas(640,360); //creating a canvas of size 640 x 360 
-  walker = new Walker(); //creating an instance/object of class Walker
-  background(127); //setting a background of grey
+  createCanvas(640, 360);
+  // Creating the Walker object!
+  walker = new Walker();
+  background(127);
 }
 
 function draw() {
@@ -15,20 +16,20 @@ function draw() {
   walker.render();
 }
 
-function Walker() {
-  //initializing the position of walker
-  this.x = width/2; //width gives width of canvas
-  this.y = height/2; //width gives height of canvas
+class Walker {
+  constructor() {
+    this.x = width / 2;
+    this.y = height / 2;
+  }
 
-  this.render = function() {
-    stroke(0); //setting color of stroke to black
-    point(this.x,this.y);
-  };
+  render() {
+    stroke(0);
+    point(this.x, this.y);
+  }
 
-  this.step = function() {
-    
-    var r = random(1); //return a random number between 0 and 1(exclusive)
-      // A 40% of moving to the right!
+  step() {
+    let r = random(1);
+    // A 40% of moving to the right!
     if (r < 0.4) {
       this.x++;
     } else if (r < 0.6) {
@@ -38,7 +39,7 @@ function Walker() {
     } else {
       this.y--;
     }
-    this.x = constrain(this.x,0,width-1);
-    this.y = constrain(this.y,0,height-1);
-  };
+    this.x = constrain(this.x, 0, width - 1);
+    this.y = constrain(this.y, 0, height - 1);
+  }
 }

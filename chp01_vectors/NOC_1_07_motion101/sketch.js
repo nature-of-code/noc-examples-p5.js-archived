@@ -2,7 +2,7 @@
 // Daniel Shiffman
 // http://natureofcode.com
 
-var mover;
+let mover;
 
 function setup() {
   createCanvas(640,360);
@@ -11,9 +11,8 @@ function setup() {
 
 function draw() {
   background(51);
-  
+
   mover.update();
   mover.checkEdges();
-  mover.display(); 
+  mover.display();
 }
-

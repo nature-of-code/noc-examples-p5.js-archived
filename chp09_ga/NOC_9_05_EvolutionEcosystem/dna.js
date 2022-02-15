@@ -6,33 +6,35 @@
 
 
 // Constructor (makes a random DNA)
-function DNA(newgenes) {
-  if (newgenes) {
-    this.genes = newgenes;
-  } else {
-    // The genetic sequence
-    // DNA is random floating point values between 0 and 1 (!!)
-    this.genes = new Array(1);
-    for (var i = 0; i < this.genes.length; i++) {
-      this.genes[i] = random(0,1);
+class DNA {
+  constructor(newgenes) {
+    if (newgenes) {
+      this.genes = newgenes;
+    } else {
+      // The genetic sequence
+      // DNA is random floating point values between 0 and 1 (!!)
+      this.genes = new Array(1);
+      for (let i = 0; i < this.genes.length; i++) {
+        this.genes[i] = random(0, 1);
+      }
     }
   }
-  
-  this.copy = function() {
+
+  copy() {
     // should switch to fancy JS array copy
-    var newgenes = [];
-    for (var i = 0; i < this.genes.length; i++) {
+    let newgenes = [];
+    for (let i = 0; i < this.genes.length; i++) {
       newgenes[i] = this.genes[i];
     }
-    
+
     return new DNA(newgenes);
   }
-  
+
   // Based on a mutation probability, picks a new random character in array spots
-  this.mutate = function(m) {
-    for (var i = 0; i < this.genes.length; i++) {
+  mutate(m) {
+    for (let i = 0; i < this.genes.length; i++) {
       if (random(1) < m) {
-         this.genes[i] = random(0,1);
+        this.genes[i] = random(0, 1);
       }
     }
   }

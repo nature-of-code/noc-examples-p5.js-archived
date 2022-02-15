@@ -7,8 +7,8 @@
 // x = r * cos(theta)
 // y = r * sin(theta)
 
-var r;
-var theta;
+let r;
+let theta;
 
 function setup() {
   createCanvas(640, 360);
@@ -21,11 +21,11 @@ function draw() {
   background(51);
 
   // Translate the origin point to the center of the screen
-  translate(width/2, height/2);
+  translate(width / 2, height / 2);
 
   // Convert polar to cartesian
-  var x = r * cos(theta);
-  var y = r * sin(theta);
+  let x = r * cos(theta);
+  let y = r * sin(theta);
 
   // Draw the ellipse at the cartesian coordinate
   ellipseMode(CENTER);

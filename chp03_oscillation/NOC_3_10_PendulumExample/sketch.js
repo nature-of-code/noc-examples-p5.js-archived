@@ -12,30 +12,31 @@
 // Pendulum Force = Gravity Force * sine(theta)
 // Angular Acceleration = Pendulum Force / Mass = gravitational acceleration * sine(theta);
 
-// Note this is an ideal world scenario with no tension in the 
+// Note this is an ideal world scenario with no tension in the
 // pendulum arm, a more realistic formula might be:
 // Angular Acceleration = (g / R) * sine(theta)
 
 // For a more substantial explanation, visit:
-// http://www.myphysicslab.com/pendulum1.html 
-var p;
+// http://www.myphysicslab.com/pendulum1.html
+let pendulum;
 
-function setup()  {
-  createCanvas(640,360);
+function setup() {
+  createCanvas(640, 360);
   // Make a new Pendulum with an origin position and armlength
-  p = new Pendulum(createVector(width/2,0),175);
-
+  pendulum = new Pendulum(width / 2, 0, 175);
 }
 
 function draw() {
   background(51);
-  p.go();
+  pendulum.update();
+  pendulum.drag(); // for user interaction
+  pendulum.display();
 }
 
 function mousePressed() {
-  p.clicked(mouseX,mouseY);
+  pendulum.clicked(mouseX, mouseY);
 }
 
 function mouseReleased() {
-  p.stopDragging();
+  pendulum.stopDragging();
 }
