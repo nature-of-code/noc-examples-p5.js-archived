@@ -11,7 +11,7 @@ function setup() {
 }
 
 function draw() {
-  walker.step();
+  walker.walk();
   walker.display();
 }
 
