@@ -24,7 +24,7 @@ function KochLine(a,b) {
 
   // This is easy, just 1/3 of the way
   this.kochB = function() {
-    var v = p5.Vector.sub(this.end, this.start);
+    let v = p5.Vector.sub(this.end, this.start);
     v.div(3);
     v.add(this.start);
     return v;
@@ -32,8 +32,8 @@ function KochLine(a,b) {
 
   // More complicated, have to use a little trig to figure out where this p5.Vector is!
   this.kochC = function() {
-    var a = this.start.copy(); // Start at the beginning
-    var v = p5.Vector.sub(this.end, this.start);
+    let a = this.start.copy(); // Start at the beginning
+    let v = p5.Vector.sub(this.end, this.start);
     v.div(3);
     a.add(v);  // Move to point B
     v.rotate(-PI/3); // Rotate 60 degrees
@@ -43,7 +43,7 @@ function KochLine(a,b) {
 
   // Easy, just 2/3 of the way
   this.kochD = function() {
-    var v = p5.Vector.sub(this.end, this.start);
+    let v = p5.Vector.sub(this.end, this.start);
     v.mult(2/3.0);
     v.add(this.start);
     return v;

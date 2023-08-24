@@ -6,7 +6,7 @@
 
 // Each cell is now an object!
 
-var gol;
+let gol;
 
 function setup() {
   createCanvas(640, 360);

@@ -7,7 +7,7 @@
 // Angles and number of branches are random
 
 function setup() {
-  var test = createP('Click mouse to generate a new tree');
+  let test = createP('Click mouse to generate a new tree');
   test.position(10,372);
 
   createCanvas(640, 360);
@@ -39,7 +39,7 @@ function newTree() {
 
 function branch(h) {
   // thickness of the branch is mapped to its length
-  var sw = map(h, 2, 120, 1, 5);
+  let sw = map(h, 2, 120, 1, 5);
   strokeWeight(sw);
   // Draw the actual branch
   line(0, 0, 0, -h);
@@ -53,10 +53,10 @@ function branch(h) {
   // Here, ours is when the length of the branch is 2 pixels or less
   if (h > 2) {
     // A random number of branches
-    var n = Math.floor(random(1, 4));
-    for (var i = 0; i < n; i++) {
+    let n = Math.floor(random(1, 4));
+    for (let i = 0; i < n; i++) {
       // Picking a random angle
-      var theta = random(-PI/3, PI/3);
+      let theta = random(-PI/3, PI/3);
       push();      // Save the current state of transformation (i.e. where are we now)
       rotate(theta);     // Rotate by theta
       branch(h);         // Ok, now call myself to branch again

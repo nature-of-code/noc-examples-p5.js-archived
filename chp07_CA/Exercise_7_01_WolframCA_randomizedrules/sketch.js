@@ -9,15 +9,15 @@
 // Mouse click restarts as well
 
  // An object to describe a Wolfram elementary Cellular Automata
-var ca;
+let ca;
 
-var delay = 0;
+let delay = 0;
 
 function setup() {
   createCanvas(640, 360);
   background(51);
   // An initial rule system
-  var ruleset = [0, 1, 0, 1, 1, 0, 1, 0];
+  let ruleset = [0, 1, 0, 1, 1, 0, 1, 0];
   ca = new CA(ruleset);
 }
 

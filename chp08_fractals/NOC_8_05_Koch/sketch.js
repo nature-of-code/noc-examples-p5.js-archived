@@ -6,7 +6,7 @@
 // Renders a simple fractal, the Koch snowflake
 // Each recursive level drawn in sequence
 
-var k;
+let k;
 
 function setup() {
   createCanvas(640,360);

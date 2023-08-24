@@ -8,13 +8,13 @@ function GOL() {
   this.columns = width/this.w;
   this.rows = height/this.w;
   this.board = new Array(this.columns);
-  for (var i = 0; i < this.columns; i++) {
+  for (let i = 0; i < this.columns; i++) {
     this.board[i] = new Array(this.rows);
   }
 
   this.init = function() {
-    for (var i =0;i < this.columns;i++) {
-      for (var j =0;j < this.rows;j++) {
+    for (let i =0;i < this.columns;i++) {
+      for (let j =0;j < this.rows;j++) {
         this.board[i][j] = Math.floor(random(2));
       }
     }
@@ -24,19 +24,19 @@ function GOL() {
   // The process of creating the new generation
   this.generate = function() {
 
-    var next = new Array(this.columns);
-    for (var i = 0; i < this.columns; i++) {
+    let next = new Array(this.columns);
+    for (let i = 0; i < this.columns; i++) {
       next[i] = new Array(this.rows);
     }
 
     // Loop through every spot in our 2D array and check spots neighbors
-    for (var x = 0; x < this.columns; x++) {
-      for (var y = 0; y < this.rows; y++) {
+    for (let x = 0; x < this.columns; x++) {
+      for (let y = 0; y < this.rows; y++) {
         // Add up all the states in a 3x3 surrounding grid
-        var neighbors = 0;
+        let neighbors = 0;
 
-        for (var i = -1; i <= 1; i++) {
-          for (var j = -1; j <= 1; j++) {
+        for (let i = -1; i <= 1; i++) {
+          for (let j = -1; j <= 1; j++) {
             neighbors += this.board[(x+i+this.columns)%this.columns][(y+j+this.rows)%this.rows];
           }
         }
@@ -59,8 +59,8 @@ function GOL() {
 
   // This is the easy part, just draw the cells, fill 255 for '1', fill 0 for '0'
   this.display = function() {
-    for ( var i = 0; i < this.columns;i++) {
-      for ( var j = 0; j < this.rows;j++) {
+    for (let i = 0; i < this.columns;i++) {
+      for (let j = 0; j < this.rows;j++) {
         if ((this.board[i][j] == 1)) fill(0);
         else fill(255);
         stroke(0);

@@ -14,7 +14,7 @@ class Mover{
 
   update() {
     // Compute a vector that points from position to mouse
-    var mouse = createVector(mouseX,mouseY);
+    let mouse = createVector(mouseX,mouseY);
     this.acceleration = p5.Vector.sub(mouse,this.position);
     // Set magnitude of acceleration
     this.acceleration.setMag(0.2);

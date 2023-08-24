@@ -31,7 +31,7 @@ function KochFractal() {
 
   // This is easy, just draw all the lines
   this.render = function() {
-    for(var i = 0; i < this.lines.length; i++) {
+    for(let i = 0; i < this.lines.length; i++) {
       this.lines[i].display();
     }
   }
@@ -45,15 +45,15 @@ function KochFractal() {
 
   // As we do this over and over again, each line gets broken into 4 lines, which gets broken into 4 lines, and so on. . . 
   this.iterate = function(before) {
-    var now = [];    // Create emtpy list
-    for(var i = 0; i < before.length; i++) {
-      var l = before[i];
+    let now = [];    // Create emtpy list
+    for(let i = 0; i < before.length; i++) {
+      let l = before[i];
       // Calculate 5 koch p5.Vectors (done for us by the line object)
-      var a = l.kochA();                 
-      var b = l.kochB();
-      var c = l.kochC();
-      var d = l.kochD();
-      var e = l.kochE();
+      let a = l.kochA();                 
+      let b = l.kochB();
+      let c = l.kochC();
+      let d = l.kochD();
+      let e = l.kochE();
       // Make line segments between all the p5.Vectors and add them
       now.push(new KochLine(a,b));
       now.push(new KochLine(b,c));

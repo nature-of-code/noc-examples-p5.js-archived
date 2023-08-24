@@ -16,15 +16,15 @@ function LSystem(axiom, r) {
   // Generate the next generation
   this.generate = function() {
     // An empty StringBuffer that we will fill
-    var nextgen = '';
+    let nextgen = '';
     // For every character in the sentence
-    for (var i = 0; i < this.sentence.length; i++) {
+    for (let i = 0; i < this.sentence.length; i++) {
       // What is the character
       // We will replace it with itself unless it matches one of our rules
-      var replace = this.sentence.charAt(i);
+      let replace = this.sentence.charAt(i);
       // Check every rule
-      for (var j = 0; j < this.ruleset.length; j++) {
-        var a = this.ruleset[j].getA();
+      for (let j = 0; j < this.ruleset.length; j++) {
+        let a = this.ruleset[j].getA();
         // if we match the Rule, get the replacement String out of the Rule
         if (a === replace) {
           replace = this.ruleset[j].getB();
