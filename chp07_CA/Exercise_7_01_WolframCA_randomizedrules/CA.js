@@ -15,14 +15,14 @@ function CA(r) {
 
   // Make a random ruleset
   this.randomize = function() {
-  	for (var i = 0; i < 8; i++) {
+  	for (let i = 0; i < 8; i++) {
   		this.ruleset[i] = Math.floor(random(2));
   	}
   };
 
   // Reset to generation 0
   this.restart = function() {
-  	for (var i = 0; i < this.cells.length; i++) {
+  	for (let i = 0; i < this.cells.length; i++) {
   		this.cells[i] = 0;
   	}
     // We arbitrarily start with just the middle cell having a state of "1"
@@ -34,13 +34,13 @@ function CA(r) {
   // The process of creating the new generation
   this.generate = function() {
     // First we create an empty array for the new values
-    var nextgen = new Array(this.cells.length);
+    let nextgen = new Array(this.cells.length);
     // For every spot, determine new state by examing current state, and neighbor states
     // Ignore edges that only have one neighor
-    for (var i = 1; i < this.cells.length-1; i++) {
-      var left = this.cells[i-1];   // Left neighbor state
-      var me = this.cells[i];       // Current state
-      var right = this.cells[i+1];  // Right neighbor state
+    for (let i = 1; i < this.cells.length-1; i++) {
+      let left = this.cells[i-1];   // Left neighbor state
+      let me = this.cells[i];       // Current state
+      let right = this.cells[i+1];  // Right neighbor state
       nextgen[i] = this.rules(left, me, right); // Compute next generation state based on ruleset
     }
     // The current generation is the new generation
@@ -50,7 +50,7 @@ function CA(r) {
 
   // This is the easy part, just draw the cells, fill 255 for '1', fill 0 for '0'
   this.display = function() {
-  	for (var i = 0; i < this.cells.length; i++) {
+  	for (let i = 0; i < this.cells.length; i++) {
   		if (this.cells[i] == 1) fill(200);
   		else                    fill(51);
   		noStroke();

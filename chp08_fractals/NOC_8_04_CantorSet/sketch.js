@@ -21,7 +21,7 @@ function draw() {
 
 function cantor(x, y, len) {
   
-  var h = 30;
+  let h = 30;
   
   // recursive exit condition
   if (len >= 1) {

@@ -9,8 +9,8 @@ function Turtle(s, l, t) {
 
   this.render = function() {
     stroke(255);
-    for (var i = 0; i < this.todo.length; i++) {
-      var c = this.todo.charAt(i);
+    for (let i = 0; i < this.todo.length; i++) {
+      let c = this.todo.charAt(i);
       if (c === 'F' || c === 'G') {
         line(0,0,this.len,0);
         translate(this.len,0);

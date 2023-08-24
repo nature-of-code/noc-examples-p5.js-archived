@@ -16,14 +16,14 @@ function CA(r) {
   this.rows = height/this.w;
   // Store a history of generations in 2D array, not just one
   this.matrix = new Array(this.cols);
-  for( var i = 0; i < this.cols; i++) {
+  for(let i = 0; i < this.cols; i++) {
     this.matrix[i] = new Array(this.rows);
   }
 
   // Reset to generation 0
   this.restart = function() {
-    for (var i = 0; i < this.cols; i++) {
-      for (var j = 0; j < this.rows; j++) {
+    for (let i = 0; i < this.cols; i++) {
+      for (let j = 0; j < this.rows; j++) {
         this.matrix[i][j] = 0;
       }
     }
@@ -34,7 +34,7 @@ function CA(r) {
 
     // Make a random ruleset
   this.randomize = function() {
-    for (var i = 0; i < 8; i++) {
+    for (let i = 0; i < 8; i++) {
       this.ruleset[i] = Math.floor(random(2));
     }
   };
@@ -47,10 +47,10 @@ function CA(r) {
 
     // For every spot, determine new state by examing current state, and neighbor states
     // Ignore edges that only have one neighor
-    for (var i = 0; i < this.cols; i++) {
-      var left  = this.matrix[(i+this.cols-1)%this.cols][this.generation%this.rows];   // Left neighbor state
-      var me    = this.matrix[i][this.generation%this.rows];       // Current state
-      var right = this.matrix[(i+1)%this.cols][this.generation%this.rows];  // Right neighbor state
+    for (let i = 0; i < this.cols; i++) {
+      let left  = this.matrix[(i+this.cols-1)%this.cols][this.generation%this.rows];   // Left neighbor state
+      let me    = this.matrix[i][this.generation%this.rows];       // Current state
+      let right = this.matrix[(i+1)%this.cols][this.generation%this.rows];  // Right neighbor state
       this.matrix[i][(this.generation+1)%this.rows] = this.rules(left, me, right); // Compute next generation state based on ruleset
     }
     this.generation++;
@@ -58,11 +58,11 @@ function CA(r) {
 
   // This is the easy part, just draw the cells, fill 255 for '1', fill 0 for '0'
   this.display = function() {
-    var offset = this.generation%this.rows;
+    let offset = this.generation%this.rows;
 
-    for (var i = 0; i < this.cols; i++) {
-      for (var j = 0; j < this.rows; j++) {
-        var y = j - offset;
+    for (let i = 0; i < this.cols; i++) {
+      for (let j = 0; j < this.rows; j++) {
+        let y = j - offset;
         if (y <= 0) y = this.rows + y;
         // Only draw if cell state is 1
         if (this.matrix[i][j] == 1) {
@@ -77,8 +77,8 @@ function CA(r) {
   // Implementing the Wolfram rules
   // This is the concise conversion to binary way
   this.rules = function(a, b, c) {
-    var s = "" + a + b + c;
-    var index = parseInt(s, 2);
+    let s = "" + a + b + c;
+    let index = parseInt(s, 2);
     return this.ruleset[index];
   };
 

@@ -10,7 +10,7 @@ let movers = [];
 
 function setup() {
   createCanvas(640,360);
-  for (var i = 0; i < 20; i++) {
+  for (let i = 0; i < 20; i++) {
      movers[i] = new Mover();
   }
 }

@@ -8,7 +8,7 @@
 // to describe each individual cell and a "cellular automata" class
 // to describe a collection of cells
 
-var gol;
+let gol;
 
 function setup() {
     createCanvas(640, 360);

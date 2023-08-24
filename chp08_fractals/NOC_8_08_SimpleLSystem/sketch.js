@@ -7,14 +7,14 @@
 // No drawing
 
 // Start with 'A'
-var current = 'A';
+let current = 'A';
 // Number of  generations
-var count = 0;
+let count = 0;
 
-var instructions;
-var show;
+let instructions;
+let show;
 
-var results = '';
+let results = '';
 
 function setup() {
   instructions = createP('<a href=\'#\'>Click the mouse to generate.</a>');
@@ -29,11 +29,11 @@ function setup() {
 
 function generate() {
   // A new StringBuffer for the next generation
-  var next = '';
+  let next = '';
   
   // Look through the current String to replace according to L-System rules
-  for (var i = 0; i < current.length; i++) {
-    var c = current.charAt(i);
+  for (let i = 0; i < current.length; i++) {
+    let c = current.charAt(i);
     if (c === 'A') {
       // If we find A replace with AB
       next += 'AB';

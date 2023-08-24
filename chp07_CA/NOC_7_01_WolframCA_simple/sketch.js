@@ -5,7 +5,7 @@
 
 // Simple demonstration of a Wolfram 1-dimensional cellular automata
 
-var ca;
+let ca;
 
 function setup() {
   createCanvas(640, 360);
